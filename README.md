@@ -97,39 +97,86 @@ code2mapは「実行するための再構成」ではなく、**レビュー・�
 ---
 
 ## Usage / 使い方（予定）
-> このREADMEは初期テンプレです。CLI仕様は固まり次第更新します。
+## Status / 現在のステータス
+- ⚠️ **WIP (Work In Progress)**: 仕様・計画策定段階。実装未開始。
+- 実装予定: 2026年1月～3月（約6-8週間）
 
-想定CLI:
+---
+
+## Installation / インストール（予定）
+> 実装後に記述予定。以下は想定フロー：
 ```bash
-code2map build path/to/BigFile.java --out ./code2map-out
+pip install code2map
 ```
 
-想定出力:
+## Quick Start / クイックスタート（予定）
+```bash
+# 単一ファイルをマッピング
+code2map build path/to/BigFile.java --out ./code2map-out
+
+# 出力を確認
+cat code2map-out/INDEX.md
+ls code2map-out/parts/
+cat code2map-out/MAP.json
+```
+
+### 想定出力構造
 ```
 code2map-out/
-  INDEX.md
-  MAP.json
-  parts/
-    FooService_doWork.java
-    ...
+├── INDEX.md              # AI/人間向け索引（Markdown）
+├── MAP.json              # 機械可読な対応表
+└── parts/
+    ├── FooService.class.java      # クラス全体
+    ├── FooService_doWork.java     # メソッド単位
+    ├── FooService_validate.java
+    └── ...
+```
+
+### 具体例
+```bash
+# 2000行のJavaファイルを処理
+code2map build ./src/main/java/com/example/LargeService.java --out ./docs/code-map
+
+# 出力:
+# docs/code-map/INDEX.md - クラス/メソッド一覧、呼び出し関係、副作用情報
+# docs/code-map/parts/* - 分割されたコード片（各々にメタデータヘッダ付き）
+# docs/code-map/MAP.json - 行番号とファイルの対応表
 ```
 
 ---
 
 ## Workflow / 推奨ワークフロー（AIレビュー）
 1. `code2map` で `INDEX.md` と `parts/` を生成
+   ```bash
+   code2map build src/main/java/YourService.java --out ./review
+   ```
 2. 先に「設計書Markdown」をAIに読ませる（目的・制約・不変条件・境界条件）
 3. 次に `INDEX.md` を読ませ、参照すべき断片へ誘導
 4. AIの指摘は `MAP.json` を使い、元ファイルの行番号へ戻して修正
+   - 例: "FooService#doWork のロジックが複雑" → `MAP.json` で `parts/FooService_doWork.java` へマッピング → 元ファイルのL210-L356を修正
+
+## Limitations / 既知の制限事項
+- 分割後のコードは**ビルド不可**（import補完なし）
+- **依存解析の正確性**: 静的解析のみ。動的ディスパッチ、リフレクションは考慮しない。
+- 初期実装: **Java** と **Python** のみサポート。他言語は今後の拡張で対応。
+- **意味的分割**: 初期段階ではクラス/メソッド単位のみ。処理フェーズ単位の分割は後続フェーズに実装予定。
 
 ---
 
 ## Roadmap / 今後やりたいこと
-- [ ] Java/Pythonのパーサ統合（ASTベースの分割）
+### Phase 1-4: 基本実装（6-8週間）
+- [ ] プロジェクト初期化、CLI基盤構築
+- [ ] Python/Javaパーサ実装（AST解析）
+- [ ] INDEX.md, parts/, MAP.json 生成ロジック
+- [ ] ユニット・統合テスト、ドキュメント完成
+
+### Phase 5+: 拡張
 - [ ] 「意味的まとまり」判定の強化（フェーズ分割、例外・I/O境界の抽出）
-- [ ] `INDEX.md` の品質向上（呼び出し関係、依存の推定）
-- [ ] GitHub Actionsでの自動生成（PRごとに索引生成）
-- [ ] 生成物の差分比較（どのシンボルの行範囲が変わったか）
+- [ ] `INDEX.md` の品質向上（呼び出し関係のグラフ化、依存の推定精度向上）
+- [ ] GitHub Actions での自動生成（PR ごとに索引生成）
+- [ ] 生成物の差分比較（どのシンボルの行範囲が変わったか、変更影響度の可視化）
+- [ ] C++, Go, Rust, TypeScript などの言語サポート拡張
+- [ ] Web UI: ブラウザ上での INDEX.md インタラクティブ閲覧
 
 ---
 
