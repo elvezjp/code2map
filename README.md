@@ -1,6 +1,6 @@
 # code2map
 **Transform large source code into semantic maps for AI-driven analysis and review.**  
-巨大なソースコードを、AI解析・レビュー向けの「意味的マップ（索引＋分割片）」に変換するツール。
+巨大なソースコードを、AI解析・レビュー向けの「意味的マップ（索引＋分割片）」に変換するツールです。
 
 ---
 
