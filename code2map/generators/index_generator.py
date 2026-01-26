@@ -23,10 +23,12 @@ def _detect_side_effects(text: str) -> List[str]:
         return []
     text_l = text.lower()
     rules = [
-        ("file io", ["open(", "file", "read(", "write(", "files."]),
+        ("file io", ["open(", "filewriter", "outputstream", "printwriter", "read(", "write(", "files.", "path", "shutil"]),
         ("stdout", ["print(", "system.out", "console.log", "stderr", "system.err"]),
-        ("network", ["http", "https", "socket", "request", "fetch("]),
-        ("db", ["jdbc", "select ", "insert ", "update ", "delete ", "execute("]),
+        ("logging", ["logging.", "logger.", "log."]),
+        ("network", ["http", "https", "socket", "request", "fetch(", "resttemplate", "webclient", "client", "post(", "put("]),
+        ("db", ["jdbc", "select ", "insert ", "update ", "delete ", "execute(", "save", "persist", "flush", "commit"]),
+        ("exceptions", ["throw new", "raise "]),
     ]
     effects: List[str] = []
     for name, keys in rules:

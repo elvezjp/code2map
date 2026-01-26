@@ -190,3 +190,64 @@ MAP.json の `checksum` フィールドは、分割されたコード片（ヘ�
 
 ### 拡張言語（Phase 5+）
 - C++, Go, Rust, TypeScript: Tree-sitter Grammar 追加で対応予定
+
+---
+
+## 実装評価 (v0.1.0)
+
+### 評価概要
+- **テスト**: 19/19 PASS（0.55秒）
+- **カバレッジ**: 87%（目標80%をクリア）
+- **対応言語**: Python, Java（仕様通り）
+- **出力物**: INDEX.md, parts/, MAP.json（全て生成確認済）
+
+### 仕様適合状況
+
+| 仕様項目 | 状態 | 備考 |
+|---------|------|------|
+| CLI `build` コマンド | ✅ 適合 | argparse によるサブコマンド実装 |
+| `--out`, `--lang`, `--verbose`, `--dry-run` | ✅ 適合 | 全オプション実装済 |
+| 終了コード (0/1/2) | ✅ 適合 | 正常=0, エラー=1, 警告あり=2 |
+| 言語自動検出 | ✅ 適合 | 拡張子テーブルで判定 |
+| INDEX.md 生成 | ✅ 適合 | Classes/Methods/Functions セクション、role/calls/side effects 欄 |
+| parts/ 生成 | ✅ 適合 | ヘッダ付き、命名規則準拠 |
+| MAP.json 生成 | ✅ 適合 | SHA-256 checksum 含む |
+| ネストクラス命名 | ✅ 適合 | `OuterClass_InnerClass` 形式 |
+| ネスト関数（Python） | ✅ 適合 | 親シンボルに含め個別分割しない |
+| パースエラー時の部分解析 | ⚠️ 一部 | エラー時に空リスト返却。既に抽出済みシンボルの返却は未実装 |
+| UTF-8 / エンコーディング | ✅ 適合 | `errors="replace"` + U+FFFD検出で警告 |
+| `--dry-run` 出力 | ✅ 適合 | シンボル一覧 + 生成予定ファイル一覧を stdout に出力 |
+| 出力ディレクトリ上書き動作 | ✅ 適合 | `mkdir(parents=True, exist_ok=True)` + ファイル上書き |
+| Checksum (SHA-256) | ✅ 適合 | ヘッダ除外の元ソース部分をハッシュ |
+| Role 欄抽出 | ✅ 適合 | docstring/Javadoc から最初の文を抽出、なければ省略 |
+
+### 仕様との乖離・改善点
+
+#### 1. パッケージ配布形式 (低リスク)
+- **仕様**: `pyproject.toml`（PEP 621）でエントリーポイント定義
+- **実装**: `setup.py` で定義（動作上は問題なし）
+- **影響**: 機能的に同等だが、現代のPythonパッケージング標準に合わせるため `pyproject.toml` への移行を推奨
+
+#### 2. Side Effects 検出キーワードの差異 (中リスク)
+- **仕様**: 言語別に細分化されたキーワードテーブル（DB操作、外部API、ファイルI/O、ログ出力、例外送出の5カテゴリ）
+- **実装**: 言語非依存の4カテゴリ（file io, stdout, network, db）で簡略化
+- **不足キーワード**: `save`, `persist`, `flush`, `commit`, `requests.`, `urllib`, `shutil`, `logging.`, `logger.`, `throw new`, `raise` 等
+- **影響**: 一部の副作用が検出されない可能性がある。Spec のキーワードテーブルに合わせた拡充を推奨
+
+#### 3. パース失敗時の部分解析 (低リスク)
+- **仕様**: パースエラー発生時、既に抽出されたシンボルで出力生成
+- **実装**: Python/Java パーサーともに、パースエラー時は空のシンボルリストを返却
+- **影響**: 構文エラーのあるファイルでは出力が空になる。MVP では許容範囲だが、将来的に部分抽出に対応すべき
+
+#### 4. 未実装のファイル (低リスク)
+- **`models/metadata.py`**: Plan に記載があるが未作成。Symbol クラスで代替しており実用上問題なし
+- **`utils/lang_detect.py`**: Plan に記載があるが、cli.py 内に `_detect_lang()` として直接実装。モジュール分割は将来のリファクタリングで対応可
+- **`CONTRIBUTING.md`**: Plan Phase 4 に記載があるが未作成
+
+#### 5. `_ignore_new_symbol` の未使用コード (極低リスク)
+- `python_parser.py:17` の `_ignore_new_symbol` フィールドが定義されているが、値を変更するコードがない
+- デッドコード。削除推奨
+
+#### 6. Java コンストラクタの呼び出し関係未抽出 (低リスク)
+- メソッドには `filter(MethodInvocation)` で calls を抽出しているが、コンストラクタ（`<init>`）には同処理がない
+- コンストラクタ内の呼び出し関係が INDEX.md に反映されない

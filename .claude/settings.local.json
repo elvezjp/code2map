@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest:*)",
+      "Bash(ls:*)",
+      "Bash(/Users/hdkworks/Projects/code2map/.venv/bin/pytest -v --tb=short)",
+      "Bash(/Users/hdkworks/Projects/code2map/.venv/bin/ruff check:*)",
+      "Bash(/Users/hdkworks/Projects/code2map/.venv/bin/mypy:*)",
+      "Bash(/Users/hdkworks/Projects/code2map/.venv/bin/pytest:*)"
+    ]
+  }
+}
