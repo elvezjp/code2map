@@ -2,17 +2,21 @@
 
 ## 概要
 code2map の実装を段階的に進める計画。主言語としてPythonを使用し、CLIツールとして開発。初期バージョンではJavaとPythonのソースコードを対象とする。
+- MVPは**単一ファイル**のみを対象とし、ディレクトリ/複数ファイル解析は後続フェーズで対応する。
 
 ## 必要な技術・ライブラリ
-- **言語**: Python 3.8+
+- **言語**: Python 3.9+
 - **CLI**: argparse (標準ライブラリ)
 - **AST解析**:
   - Python: ast (標準ライブラリ)
   - Java: javalang (外部ライブラリ、pip install javalang)
 - **ファイル操作**: os, pathlib (標準)
 - **JSON出力**: json (標準)
-- **Markdown生成**: 手動またはmarkdownライブラリ
-- **テスト**: unittest (標準) または pytest
+- **ハッシュ**: hashlib (標準、SHA-256)
+- **Markdown生成**: 文字列テンプレートで手動生成（外部ライブラリ不要）
+- **テスト**: pytest, pytest-cov
+- **型チェック**: mypy（開発時の品質管理）
+- **リンター/フォーマッター**: ruff（lint + format を一括管理）
 
 ## ファイル構造
 ```
@@ -45,8 +49,7 @@ code2map/
 │   │   ├── sample.java
 │   │   └── sample.py
 │   └── test_e2e.py         # 統合テスト
-├── requirements.txt        # 依存ライブラリ
-├── setup.py                # パッケージ設定
+├── pyproject.toml          # パッケージ設定・依存管理（PEP 621準拠）
 ├── .github/workflows/      # CI設定
 │   └── tests.yml
 ├── README.md               # プロジェクト説明
@@ -60,22 +63,30 @@ code2map/
 
 1. **プロジェクト初期化**
    - ディレクトリ構造作成（上記ファイル構造に従う）
-   - `requirements.txt` 作成: javalang, pytest, argparse等
-   - `setup.py` 作成: パッケージ化準備
-   - `main.py` のスケルトン: argparse で CLI引数処理
-   - `.gitignore` 作成: `*.pyc`, `__pycache__`, `dist/`, `*.egg-info/` など
+   - `pyproject.toml` 作成（PEP 621準拠）:
+     - `[project]`: name, version, dependencies（javalang）, requires-python >= 3.9
+     - `[project.scripts]`: `code2map = "code2map.main:main"` （CLIエントリーポイント）
+     - `[project.optional-dependencies]`: dev = ["pytest", "pytest-cov", "ruff", "mypy"]
+   - `main.py` のスケルトン: argparse で CLI引数処理（build サブコマンド、--out, --lang, --verbose, --dry-run）
+   - `.gitignore` 作成: `*.pyc`, `__pycache__`, `dist/`, `*.egg-info/`, `.mypy_cache/`, `.ruff_cache/` など
+   - 開発環境セットアップ手順の確立:
+     - `python -m venv .venv && source .venv/bin/activate`
+     - `pip install -e ".[dev]"`
 
 2. **共通基盤**
-   - `models/symbol.py`: Symbol クラス定義（name, type, start_line, end_line, dependencies等）
+   - `models/symbol.py`: Symbol データクラス定義（name, type, start_line, end_line, dependencies, role, calls, side_effects 等）。型ヒント必須。
    - `models/metadata.py`: 出力メタデータ構造
-   - `parsers/base_parser.py`: シンボル抽出の抽象基底クラス
-   - `utils/file_utils.py`: ファイル読み書き、指定行抽出
-   - `utils/logger.py`: ログ設定
+   - `parsers/base_parser.py`: シンボル抽出の抽象基底クラス（ABCで定義）
+   - `utils/file_utils.py`: ファイル読み書き（UTF-8）、指定行抽出、SHA-256チェックサム計算
+   - `utils/lang_detect.py`: ファイル拡張子から言語を自動検出するロジック（Spec.md 言語自動検出仕様に準拠）
+   - `utils/logger.py`: ログ設定（logging標準ライブラリ）
    - `tests/fixtures/`: テスト用サンプルコード配置
 
 **チェックリスト**:
-- [ ] `python main.py --help` でCLI表示
-- [ ] `python main.py build --dry-run` でエラーなく動作
+- [ ] `code2map --help` でCLI表示（エントリーポイント経由）
+- [ ] `code2map build sample.py --dry-run` でエラーなく動作
+- [ ] `mypy code2map/` が型エラーなしで通過
+- [ ] `ruff check code2map/` がlintエラーなしで通過
 
 ### Phase 2: パーサー実装 (2-3週間)
 **成果物**: Java/Python両言語のシンボル抽出完了
@@ -83,22 +94,32 @@ code2map/
 3. **Python パーサー** (`parsers/python_parser.py`)
    - ast モジュールでクラス/メソッド/関数抽出
    - 行番号取得（ast.Node の lineno、end_lineno利用）
+   - docstring 抽出（role欄用: 最初の行を使用、なければ省略）
    - 依存関係推定:
      - import文の解析
-     - メソッド/関数呼び出しの簡易抽出（正規表現 or AST訪問）
+     - メソッド/関数呼び出しの抽出（AST訪問のみ）
+   - Side Effects 検出: Spec.md キーワードテーブルに基づくヒューリスティック
+   - ネスト関数: 親関数のシンボルに含める（個別分割しない）
    - テスト: `tests/test_python_parser.py`
 
 4. **Java パーサー** (`parsers/java_parser.py`)
    - javalang で AST解析
    - クラス/メソッド/フィールド抽出
+   - Javadoc 抽出（role欄用: 最初の文を使用、なければ省略）
    - 行範囲と依存関係の取得:
      - import文
      - メソッド呼び出し
+   - Side Effects 検出: Spec.md キーワードテーブルに基づくヒューリスティック
+   - ネストクラス対応: `OuterClass_InnerClass` 形式の命名
+   - オーバーロード対応: パラメータ型情報またはハッシュで一意化
    - テスト: `tests/test_java_parser.py`
 
 **チェックリスト**:
 - [ ] `tests/fixtures/sample.py` パース成功 + シンボル3個以上抽出
 - [ ] `tests/fixtures/sample.java` パース成功 + シンボル3個以上抽出
+- [ ] ネストクラス / ネスト関数のテストケース PASS
+- [ ] docstring/Javadoc なしのケースでエラーにならないこと
+- [ ] オーバーロード（同名メソッド）のテストケース PASS
 - [ ] pytest で全テスト PASS
 
 ### Phase 3: 生成ロジック (2-3週間)
@@ -142,15 +163,18 @@ code2map/
    - テスト: `tests/test_e2e.py` で end-to-end実行
 
 9. **自動テスト環境構築** (`.github/workflows/tests.yml`)
-   - GitHub Actions で Python 3.9/3.10/3.11 で pytest 実行
+   - GitHub Actions で Python 3.9/3.10/3.11/3.12 で pytest 実行
    - カバレッジレポート生成（pytest-cov）
-   - lint チェック（flake8 or ruff）
+   - lint チェック（ruff check）
+   - フォーマットチェック（ruff format --check）
+   - 型チェック（mypy）
 
 10. **ドキュメント完成**
     - README.md: インストール、使用例、ワークフロー、既知制限を記載
     - Spec.md: 技術スタック確定、エラーハンドリング詳細化
     - Plan.md: 進捗状況、完了フェーズのまとめ
     - CONTRIBUTING.md: 開発ガイドライン（PR/Issues対応方法）
+    - 警告の出力先（MVP）は `INDEX.md` と `stderr` に限定し、`MAP.json` には含めない方針を明記
 
 **チェックリスト**:
 - [ ] `code2map build tests/fixtures/sample.java --out /tmp/test-out` 成功
@@ -187,12 +211,46 @@ code2map/
 - README/Spec 完成
 - GitHub リポジトリ公開準備完了
 
-## リスクと対策
-- **AST解析の複雑さ**: 各言語のドキュメント参照、テスト駆動開発。
-- **依存関係推定の不正確さ**: 初期はシンプルに、フィードバックで改善。
-- **パフォーマンス**: 大ファイルでメモリ使用監視、必要時最適化。
+## エッジケーステスト計画
+Phase 2-3 で以下のエッジケースをテストフィクスチャとして用意し、正しく動作することを確認する。
+
+| ケース | 期待動作 |
+|--------|---------|
+| 空ファイル（0行） | シンボル0個、空のINDEX.md / MAP.json を生成 |
+| コメントのみのファイル | シンボル0個、正常終了 |
+| 単一関数のみ（クラスなし）のPythonファイル | 関数シンボル1個を抽出 |
+| 構文エラーを含むファイル | 部分的解析続行、終了コード `2`、INDEX.md に `[WARNING]` |
+| オーバーロードされた同名メソッド（Java） | ハッシュ付きで一意なファイル名生成 |
+| 深いネスト（3階層以上のクラス） | 命名規則に従い正しくファイル生成 |
+| 非UTF-8エンコーディングファイル | 警告メッセージ + ベストエフォート処理 |
+| 出力先に既存ファイルがある場合 | 上書き動作、他ファイルは保持 |
+| 非対応拡張子（--lang未指定） | エラーメッセージ + 終了コード `1` |
+| 2000行超の大規模ファイル | 数秒以内に処理完了（パフォーマンス） |
+
+## 開発環境セットアップ
+```bash
+# リポジトリクローン
+git clone https://github.com/<org>/code2map.git
+cd code2map
+
+# 仮想環境の作成・有効化
+python -m venv .venv
+source .venv/bin/activate  # macOS/Linux
+# .venv\Scripts\activate   # Windows
+
+# 開発モードでインストール（依存含む）
+pip install -e ".[dev]"
+
+# 動作確認
+code2map --help
+pytest
+ruff check code2map/
+mypy code2map/
+```
 
 ## 拡張計画
 - 新言語追加（JavaScript: acorn, C++: clang）
 - 設定ファイル（分割粒度カスタム）
 - GitHub Actions統合（PRごと自動生成）
+- Side Effects キーワードリストのユーザーカスタマイズ対応
+- Tree-sitter への移行による精度・パフォーマンス向上

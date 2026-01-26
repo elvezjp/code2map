@@ -41,16 +41,16 @@ code2map は、ソースコードを **意味的にまとまった単位**に分
 ---
 
 ## What it does NOT do / やらないこと（重要）
-- ✅ 分割後のソースを **ビルド可能**にする  
-- ✅ 依存解決（import補完、参照先の自動統合）  
-- ✅ フォーマッタやLinterの代替  
-- ✅ 生成物を「正しい設計書」にする（※設計書は別途用意するのが前提）
+- ❌ 分割後のソースを **ビルド可能**にする  
+- ❌ 依存解決（import補完、参照先の自動統合）  
+- ❌ フォーマッタやLinterの代替  
+- ❌ 生成物を「正しい設計書」にする（※設計書は別途用意するのが前提）
 
 code2mapは「実行するための再構成」ではなく、**レビュー・解析のための再構成**です。
 
 ---
 
-## Output format / 出力フォーマット（案）
+## Output format / 出力フォーマット（例）
 ### `INDEX.md` 例（イメージ）
 ```md
 # Index: FooService.java
@@ -79,10 +79,12 @@ code2mapは「実行するための再構成」ではなく、**レビュー・�
 [
   {
     "symbol": "FooService#doWork",
+    "type": "method",
     "original_file": "FooService.java",
     "original_start_line": 210,
     "original_end_line": 356,
-    "part_file": "parts/FooService_doWork.java"
+    "part_file": "parts/FooService_doWork.java",
+    "checksum": "sha256_hash_of_content"
   }
 ]
 ```
@@ -97,69 +99,101 @@ code2mapは「実行するための再構成」ではなく、**レビュー・�
 ---
 
 ## Usage / 使い方（予定）
+CLIは `code2map build <input_file> --out <output_dir>` を想定しています（Spec/Planに準拠）。
+
 ## Status / 現在のステータス
-- ⚠️ **WIP (Work In Progress)**: 仕様・計画策定段階。実装未開始。
-- 実装予定: 2026年1月～3月（約6-8週間）
+- ✅ **v0.1.0 MVP Released**: 基本実装完了。Python・Java 両言語対応。
+- インストール可能: `pip install -e .` または `pip install -e ".[dev]"`
 
 ---
 
-## Installation / インストール（予定）
-> 実装後に記述予定。以下は想定フロー：
+## Installation / インストール
+
+### 前提条件
+- Python 3.9 以上
+
+### 本体インストール
 ```bash
 pip install code2map
 ```
 
-## Quick Start / クイックスタート（予定）
+### 開発環境セットアップ
 ```bash
-# 単一ファイルをマッピング
-code2map build path/to/BigFile.java --out ./code2map-out
+# リポジトリクローン
+git clone https://github.com/example/code2map.git
+cd code2map
 
-# 出力を確認
+# 仮想環境作成・有効化
+python -m venv .venv
+source .venv/bin/activate  # macOS/Linux
+# .venv\Scripts\activate   # Windows
+
+# 開発モードインストール（テスト・lint環境含む）
+pip install -e ".[dev]"
+
+# 動作確認
+code2map --help
+pytest
+```
+
+---
+
+## Quick Start / 使い方
+
+### 基本的な使用方法
+```bash
+# Python ファイルをマッピング
+code2map build path/to/LargeService.py --out ./code2map-out
+
+# Java ファイルをマッピング
+code2map build path/to/LargeService.java --out ./code2map-out
+
+# 出力確認
 cat code2map-out/INDEX.md
 ls code2map-out/parts/
 cat code2map-out/MAP.json
 ```
 
-### 想定出力構造
-```
-code2map-out/
-├── INDEX.md              # AI/人間向け索引（Markdown）
-├── MAP.json              # 機械可読な対応表
-└── parts/
-    ├── FooService.class.java      # クラス全体
-    ├── FooService_doWork.java     # メソッド単位
-    ├── FooService_validate.java
-    └── ...
+### オプション一覧
+```bash
+code2map build --help
+
+# 主なオプション:
+# --out <DIR>         出力ディレクトリ（デフォルト: ./code2map-out）
+# --lang {java,python} 言語明示指定（省略時は拡張子から自動検出）
+# --verbose           詳細ログ出力
+# --dry-run           ファイル生成せず計画表示のみ
 ```
 
 ### 具体例
 ```bash
-# 2000行のJavaファイルを処理
-code2map build ./src/main/java/com/example/LargeService.java --out ./docs/code-map
+# 1. ドライラン（何が生成されるか確認）
+code2map build src/main/java/OrderService.java --dry-run
 
-# 出力:
-# docs/code-map/INDEX.md - クラス/メソッド一覧、呼び出し関係、副作用情報
-# docs/code-map/parts/* - 分割されたコード片（各々にメタデータヘッダ付き）
-# docs/code-map/MAP.json - 行番号とファイルの対応表
+# 2. 詳細ログ付きで実行
+code2map build src/main/java/OrderService.java --out ./review --verbose
+
+# 3. 生成物確認
+cat review/INDEX.md           # 索引・役割・依存関係を表示
+ls review/parts/              # 分割されたコード片一覧
+cat review/MAP.json           # 行番号対応表（JSON形式）
 ```
+
+### 推奨ワークフロー（AIレビュー）
+1. `code2map build <file> --out ./review` で分割・索引生成
+2. `review/INDEX.md` をAIに読ませ、参照構造を理解させる
+3. 詳細な指摘は `review/MAP.json` で元ファイル行番号へマップ
+4. 指摘された行範囲を元ファイルで修正
 
 ---
 
-## Workflow / 推奨ワークフロー（AIレビュー）
-1. `code2map` で `INDEX.md` と `parts/` を生成
-   ```bash
-   code2map build src/main/java/YourService.java --out ./review
-   ```
-2. 先に「設計書Markdown」をAIに読ませる（目的・制約・不変条件・境界条件）
-3. 次に `INDEX.md` を読ませ、参照すべき断片へ誘導
-4. AIの指摘は `MAP.json` を使い、元ファイルの行番号へ戻して修正
-   - 例: "FooService#doWork のロジックが複雑" → `MAP.json` で `parts/FooService_doWork.java` へマッピング → 元ファイルのL210-L356を修正
-
-## Limitations / 既知の制限事項
+## Usage / 使い方（予定）
 - 分割後のコードは**ビルド不可**（import補完なし）
 - **依存解析の正確性**: 静的解析のみ。動的ディスパッチ、リフレクションは考慮しない。
 - 初期実装: **Java** と **Python** のみサポート。他言語は今後の拡張で対応。
 - **意味的分割**: 初期段階ではクラス/メソッド単位のみ。処理フェーズ単位の分割は後続フェーズに実装予定。
+- **入力スコープ**: MVPでは単一ファイルのみ。ディレクトリ単位の解析は後続フェーズ。
+- **警告の出力先**: MVPでは警告は `INDEX.md` と `stderr` のみに出力し、`MAP.json` には含めない。
 
 ---
 
