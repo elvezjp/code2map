@@ -8,101 +8,101 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/elvezjp/code2map?style=social)](https://github.com/elvezjp/code2map/stargazers)
 
-巨大なソースコードを、AI解析・レビュー向けの「意味的マップ（索引＋分割片）」に変換するCLIツールです。
+A CLI tool that transforms large source code into "semantic maps (index + code parts)" for AI analysis and review.
 
-## ユースケース
+## Use Cases
 
-- **AIコードレビュー**: 大規模ファイルをAIが理解しやすい単位に分割し、レビュー精度を向上
-- **コード構造の可視化**: クラス・メソッドの一覧と依存関係を索引として出力
-- **行番号マッピング**: AIの指摘箇所を元ファイルの行番号に確実に対応付け
-- **ドキュメント生成の補助**: コード構造を把握した上での設計書作成を支援
+- **AI Code Review**: Split large files into AI-friendly units to improve review accuracy
+- **Code Structure Visualization**: Output class/method lists and dependencies as an index
+- **Line Number Mapping**: Reliably map AI feedback to original file line numbers
+- **Documentation Assistance**: Support design document creation with code structure insights
 
-## 開発の背景
+## Background
 
-本ツールは、日本語の開発文書・仕様書を対象とした開発支援AI **IXV（イクシブ）** の開発過程で生まれた小さな実用品です。
+This tool is a small utility born from the development of **IXV**, an AI development assistant focused on Japanese development documents and specifications.
 
-IXVでは、システム開発における日本語の文書について、理解・構造化・活用という課題に取り組んでおり、本リポジトリでは、その一部を切り出して公開しています。
+IXV addresses the challenges of understanding, structuring, and utilizing Japanese documents in system development. This repository publishes a portion of that work.
 
-## 特徴
+## Features
 
-- **意味的な分割**: クラス・メソッド・関数単位でコードを分割（ビルド用ではなくレビュー用）
-- **Markdown索引生成**: 役割説明・呼び出し関係・副作用を含むINDEX.mdを自動生成
-- **行番号対応表**: 分割片と元ファイルの対応をMAP.json（機械可読）で提供
-- **Python・Java対応**: AST解析による正確なシンボル抽出
-- **ドライラン機能**: 実際の出力前に生成計画を確認可能
+- **Semantic Splitting**: Split code by class, method, and function units (for review, not build)
+- **Markdown Index Generation**: Auto-generate INDEX.md with role descriptions, call relationships, and side effects
+- **Line Number Mapping**: Provide correspondence between parts and original file in MAP.json (machine-readable)
+- **Python & Java Support**: Accurate symbol extraction via AST analysis
+- **Dry Run**: Preview generation plan before actual output
 
-## ドキュメント
+## Documentation
 
-- [CHANGELOG.md](CHANGELOG.md) - バージョン履歴
-- [CONTRIBUTING.md](CONTRIBUTING.md) - コントリビューション方法
-- [SECURITY.md](SECURITY.md) - セキュリティポリシー
-- [spec.md](spec.md) - 技術仕様書
+- [CHANGELOG.md](CHANGELOG.md) - Version history
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+- [SECURITY.md](SECURITY.md) - Security policy
+- [spec.md](spec.md) - Technical specification
 
-## セットアップ
+## Setup
 
-### 必要環境
+### Requirements
 
-- Python 3.9以上
-- [uv](https://docs.astral.sh/uv/)（推奨パッケージマネージャー）
+- Python 3.9 or higher
+- [uv](https://docs.astral.sh/uv/) (recommended package manager)
 
-### インストール
+### Installation
 
 ```bash
-# リポジトリをクローン
+# Clone the repository
 git clone https://github.com/elvezjp/code2map.git
 cd code2map
 
-# uvで依存関係をインストール（仮想環境も自動作成）
+# Install dependencies with uv (virtual environment created automatically)
 uv sync --all-extras
 
-# 動作確認
+# Verify installation
 uv run code2map --help
 ```
 
-## 使い方
+## Usage
 
-### 基本的な実行
+### Basic Execution
 
 ```bash
-# Pythonファイルを解析
+# Analyze a Python file
 uv run code2map build your_code.py --out ./output
 
-# Javaファイルを解析
+# Analyze a Java file
 uv run code2map build YourCode.java --out ./output
 ```
 
-### 出力の確認
+### Check Output
 
 ```bash
-# 索引を確認
+# View the index
 cat output/INDEX.md
 
-# 分割されたコード片を確認
+# View the split code parts
 ls output/parts/
 
-# 行番号対応表を確認
+# View the line number mapping
 cat output/MAP.json
 ```
 
-### ドライラン（プレビュー）
+### Dry Run (Preview)
 
 ```bash
-# ファイルを生成せずに計画を確認
+# Preview the plan without generating files
 uv run code2map build your_code.py --dry-run
 ```
 
-## 主要オプション
+## Main Options
 
-| オプション | デフォルト | 説明 |
-|-----------|-----------|------|
-| `--out <DIR>` | `./code2map-out` | 出力ディレクトリ |
-| `--lang {java,python}` | 自動検出 | 言語の明示指定 |
-| `--verbose` | false | 詳細ログを出力 |
-| `--dry-run` | false | ファイル生成せずプレビューのみ |
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--out <DIR>` | `./code2map-out` | Output directory |
+| `--lang {java,python}` | Auto-detect | Explicitly specify language |
+| `--verbose` | false | Output detailed logs |
+| `--dry-run` | false | Preview only, no file generation |
 
-詳細は `uv run code2map build --help` を参照してください。
+For details, see `uv run code2map build --help`.
 
-## 出力例
+## Output Examples
 
 ### INDEX.md
 
@@ -111,15 +111,15 @@ uv run code2map build your_code.py --dry-run
 
 ## Classes
 - UserManager (L10–L150) → parts/UserManager.class.py
-  - role: ユーザー管理を行うメインクラス
+  - role: Main class for user management
   - calls: Database.connect, Logger.info
-  - side effects: DB操作, ログ出力
+  - side effects: DB operations, logging
 
 ## Methods
 - UserManager#create_user (L45–L80) → parts/UserManager_create_user.py
-  - role: 新規ユーザーを作成する
+  - role: Create a new user
   - calls: validate_email, hash_password
-  - side effects: DB操作
+  - side effects: DB operations
 ```
 
 ### MAP.json
@@ -138,69 +138,70 @@ uv run code2map build your_code.py --dry-run
 ]
 ```
 
-## ディレクトリ構成
+## Directory Structure
 
 ```text
 code2map/
-├── code2map/              # メインパッケージ
-│   ├── cli.py             # CLIエントリーポイント
-│   ├── generators/        # 出力生成モジュール
-│   │   ├── index_generator.py   # INDEX.md生成
-│   │   ├── map_generator.py     # MAP.json生成
-│   │   └── parts_generator.py   # parts/生成
-│   ├── models/            # データモデル
-│   │   └── symbol.py      # シンボル情報クラス
-│   ├── parsers/           # 言語パーサー
-│   │   ├── base_parser.py     # 基底クラス
-│   │   ├── java_parser.py     # Javaパーサー
-│   │   └── python_parser.py   # Pythonパーサー
-│   └── utils/             # ユーティリティ
-│       ├── file_utils.py  # ファイル操作
-│       └── logger.py      # ログ設定
-├── tests/                 # テストコード
-│   ├── examples/          # テスト用サンプルファイル
-│   └── fixtures/          # テストフィクスチャ
-├── docs/                  # ドキュメント
-├── CHANGELOG.md           # 変更履歴
-├── CONTRIBUTING.md        # コントリビューションガイド
-├── README.md              # 本ファイル
-├── SECURITY.md            # セキュリティポリシー
-├── spec.md                # 技術仕様書
-└── pyproject.toml         # プロジェクト設定
+├── code2map/              # Main package
+│   ├── cli.py             # CLI entry point
+│   ├── generators/        # Output generation modules
+│   │   ├── index_generator.py   # INDEX.md generation
+│   │   ├── map_generator.py     # MAP.json generation
+│   │   └── parts_generator.py   # parts/ generation
+│   ├── models/            # Data models
+│   │   └── symbol.py      # Symbol information class
+│   ├── parsers/           # Language parsers
+│   │   ├── base_parser.py     # Base class
+│   │   ├── java_parser.py     # Java parser
+│   │   └── python_parser.py   # Python parser
+│   └── utils/             # Utilities
+│       ├── file_utils.py  # File operations
+│       └── logger.py      # Log configuration
+├── tests/                 # Test code
+│   ├── examples/          # Sample files for testing
+│   └── fixtures/          # Test fixtures
+├── docs/                  # Documentation
+├── CHANGELOG.md           # Change history
+├── CONTRIBUTING.md        # Contribution guide
+├── README.md              # This file (English)
+├── README_ja.md           # Japanese README
+├── SECURITY.md            # Security policy
+├── spec.md                # Technical specification
+└── pyproject.toml         # Project configuration
 ```
 
-## 制限事項
+## Limitations
 
-- **単一ファイル対応**: 現在は1ファイルずつの処理（ディレクトリ一括は今後対応予定）
-- **静的解析のみ**: 動的ディスパッチやリフレクションは検出不可
-- **対応言語**: Python、Javaのみ（他言語は今後拡張予定）
+- **Single File Processing**: Currently processes one file at a time (batch directory processing planned)
+- **Static Analysis Only**: Cannot detect dynamic dispatch or reflection
+- **Supported Languages**: Python and Java only (more languages planned)
 
-詳細は [spec.md](spec.md) を参照してください。
+For details, see [spec.md](spec.md).
 
-## セキュリティ
+## Security
 
-セキュリティに関する詳細は [SECURITY.md](SECURITY.md) を参照してください。
+For security details, see [SECURITY.md](SECURITY.md).
 
-- 信頼できないソースからのファイル処理には注意してください
-- 出力ファイルには元のソースコードが含まれます
+- Be cautious when processing files from untrusted sources
+- Output files contain the original source code
 
-## コントリビューション
+## Contributing
 
-コントリビューションを歓迎します。詳細は [CONTRIBUTING.md](CONTRIBUTING.md) を参照してください。
+Contributions are welcome. For details, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-- バグ報告・機能提案: [Issues](https://github.com/elvezjp/code2map/issues)
-- プルリクエスト: ブランチ命名規則 `{ユーザー名}/{日付}-{内容}`
+- Bug reports & feature requests: [Issues](https://github.com/elvezjp/code2map/issues)
+- Pull requests: Branch naming convention `{username}/{date}-{description}`
 
-## 変更履歴
+## Changelog
 
-詳細は [CHANGELOG.md](CHANGELOG.md) を参照してください。
+For details, see [CHANGELOG.md](CHANGELOG.md).
 
-## ライセンス
+## License
 
-MIT License - 詳細は [LICENSE](LICENSE) を参照してください。
+MIT License - For details, see [LICENSE](LICENSE).
 
-## 問い合わせ先
+## Contact
 
 - **Issues**: [GitHub Issues](https://github.com/elvezjp/code2map/issues)
-- **メール**: info@elvez.co.jp
-- **会社**: [株式会社エルブズ](https://elvez.co.jp/)
+- **Email**: info@elvez.co.jp
+- **Company**: [Elvez Inc.](https://elvez.co.jp/)
