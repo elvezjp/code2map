@@ -1,18 +1,18 @@
 # code2map
-**Transform large source code into semantic maps for AI-driven analysis and review.**  
+**Transform large source code into semantic maps for AI-driven analysis and review.**
 巨大なソースコードを、AI解析・レビュー向けの「意味的マップ（索引＋分割片）」に変換するツールです。
 
 ---
 
 ## Why / なぜ作るのか
-2000行を超えるような巨大ファイルは、人間にとってもAIにとっても「全体像を見失いやすい」形です。  
+2000行を超えるような巨大ファイルは、人間にとってもAIにとっても「全体像を見失いやすい」形です。
 code2map は、ソースコードを **意味的にまとまった単位**に分割し、**Markdownの索引（地図）**を生成することで、次を実現します。
 
 - AIが「どこに何があるか」を迷わず参照できる
 - 設計書（Markdown）→分割コードの順で読みやすくなる
 - 指摘箇所を **元ファイルの行番号**へ確実に戻せる
 
-> 分割されたコード片は **コンパイル/実行を目的としません**。  
+> 分割されたコード片は **コンパイル/実行を目的としません**。
 > 目的は「読みやすさ」と「レビュー精度」です。
 
 ---
@@ -33,17 +33,17 @@ code2map は、ソースコードを **意味的にまとまった単位**に分
 - 意味的なまとまり（クラス、メソッド群、処理フェーズなど）で分割
 
 ### 3) `MAP.json`（機械可読な対応表）
-- シンボル（例: `FooService#doWork`）  
-- 元ファイル名、開始/終了行  
-- 分割ファイル名  
+- シンボル（例: `FooService#doWork`）
+- 元ファイル名、開始/終了行
+- 分割ファイル名
 などの対応関係を出力します。
 
 ---
 
 ## What it does NOT do / やらないこと（重要）
-- ❌ 分割後のソースを **ビルド可能**にする  
-- ❌ 依存解決（import補完、参照先の自動統合）  
-- ❌ フォーマッタやLinterの代替  
+- ❌ 分割後のソースを **ビルド可能**にする
+- ❌ 依存解決（import補完、参照先の自動統合）
+- ❌ フォーマッタやLinterの代替
 - ❌ 生成物を「正しい設計書」にする（※設計書は別途用意するのが前提）
 
 code2mapは「実行するための再構成」ではなく、**レビュー・解析のための再構成**です。
@@ -99,41 +99,32 @@ code2mapは「実行するための再構成」ではなく、**レビュー・�
 ---
 
 ## Usage / 使い方（予定）
-CLIは `code2map build <input_file> --out <output_dir>` を想定しています（Spec/Planに準拠）。
+CLIは `uv run code2map build <input_file> --out <output_dir>` を想定しています（Spec/Planに準拠）。
 
 ## Status / 現在のステータス
 - ✅ **v0.1.0 MVP Released**: 基本実装完了。Python・Java 両言語対応。
-- インストール可能: `pip install -e .` または `pip install -e ".[dev]"`
+- インストール可能: `uv sync` または `uv sync --all-extras`
 
 ---
 
-## Installation / インストール
+## セットアップ
 
 ### 前提条件
 - Python 3.9 以上
+- [uv](https://docs.astral.sh/uv/) (推奨パッケージマネージャー)
 
-### 本体インストール
-```bash
-pip install code2map
-```
-
-### 開発環境セットアップ
+### インストール
 ```bash
 # リポジトリクローン
 git clone https://github.com/example/code2map.git
 cd code2map
 
-# 仮想環境作成・有効化
-python -m venv .venv
-source .venv/bin/activate  # macOS/Linux
-# .venv\Scripts\activate   # Windows
-
-# 開発モードインストール（テスト・lint環境含む）
-pip install -e ".[dev]"
+# uv で依存関係インストール（仮想環境も自動作成）
+uv sync --all-extras
 
 # 動作確認
-code2map --help
-pytest
+uv run code2map --help
+uv run pytest
 ```
 
 ---
@@ -143,10 +134,10 @@ pytest
 ### 基本的な使用方法
 ```bash
 # Python ファイルをマッピング
-code2map build path/to/LargeService.py --out ./code2map-out
+uv run code2map build path/to/LargeService.py --out ./code2map-out
 
 # Java ファイルをマッピング
-code2map build path/to/LargeService.java --out ./code2map-out
+uv run code2map build path/to/LargeService.java --out ./code2map-out
 
 # 出力確認
 cat code2map-out/INDEX.md
@@ -156,7 +147,7 @@ cat code2map-out/MAP.json
 
 ### オプション一覧
 ```bash
-code2map build --help
+uv run code2map build --help
 
 # 主なオプション:
 # --out <DIR>         出力ディレクトリ（デフォルト: ./code2map-out）
@@ -168,10 +159,10 @@ code2map build --help
 ### 具体例
 ```bash
 # 1. ドライラン（何が生成されるか確認）
-code2map build src/main/java/OrderService.java --dry-run
+uv run code2map build src/main/java/OrderService.java --dry-run
 
 # 2. 詳細ログ付きで実行
-code2map build src/main/java/OrderService.java --out ./review --verbose
+uv run code2map build src/main/java/OrderService.java --out ./review --verbose
 
 # 3. 生成物確認
 cat review/INDEX.md           # 索引・役割・依存関係を表示
@@ -180,7 +171,7 @@ cat review/MAP.json           # 行番号対応表（JSON形式）
 ```
 
 ### 推奨ワークフロー（AIレビュー）
-1. `code2map build <file> --out ./review` で分割・索引生成
+1. `uv run code2map build <file> --out ./review` で分割・索引生成
 2. `review/INDEX.md` をAIに読ませ、参照構造を理解させる
 3. 詳細な指摘は `review/MAP.json` で元ファイル行番号へマップ
 4. 指摘された行範囲を元ファイルで修正
@@ -215,7 +206,7 @@ cat review/MAP.json           # 行番号対応表（JSON形式）
 ---
 
 ## Contributing / コントリビュート
-PR / Issues歓迎です。  
+PR / Issues歓迎です。
 「このコードはこう分割したい」「この言語を追加したい」など、具体例があると助かります。
 
 ---

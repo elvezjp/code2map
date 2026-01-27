@@ -1,8 +1,0 @@
-# Production dependencies
-javalang>=0.13.0
-
-# Development dependencies
-pytest>=7.0.0
-pytest-cov>=4.0.0
-ruff>=0.1.0
-mypy>=1.0.0
