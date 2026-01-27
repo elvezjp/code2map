@@ -1,112 +1,62 @@
-# Changelog
+# 変更履歴
 
-All notable changes to this project will be documented in this file.
+このプロジェクトに対する注目すべき変更をこのファイルに記録します。
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
+このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
-## [0.1.0] - 2026-01-26
+## [0.1.0] - 2026-01-27
 
-### Added
+初回リリース。Python・Java両言語に対応したMVP版。
 
-#### CLI
-- `code2map build` コマンド実装
-- `--out` オプション（出力ディレクトリ指定）
-- `--lang` オプション（言語明示指定）
-- `--verbose` オプション（詳細ログ出力）
-- `--dry-run` オプション（ドライラン）
-- 言語自動検出（拡張子ベース）
-- 終了コード正規化（0=成功、1=エラー、2=警告あり）
+### 追加
 
-#### Parsers
-- **Python パーサー** (`ast` モジュールベース)
-  - クラス、メソッド、関数の抽出
-  - Docstring 抽出
-  - 呼び出し関係の推定
-  - Import 情報の収集
-  
-- **Java パーサー** (`javalang` ベース)
-  - クラス、メソッド、フィールドの抽出
-  - Javadoc 抽出
-  - 呼び出し関係の推定
-  - ネストクラス対応
-  - コンストラクタ対応
-  - オーバーロード検出（ハッシュベース一意化）
+- **CLIコマンド**: `code2map build` コマンドを実装
+  - `--out`: 出力ディレクトリを指定できるようになりました
+  - `--lang`: 言語を明示的に指定できるようになりました（省略時は拡張子から自動検出）
+  - `--verbose`: 詳細なログを出力できるようになりました
+  - `--dry-run`: 実際にファイルを生成せず、計画のみ表示できるようになりました
 
-#### Generators
-- **INDEX.md 生成**
-  - クラス/メソッド/関数の一覧表示
-  - 役割（Role）情報の記載
+- **Pythonパーサー**: `ast`モジュールを使用した解析機能
+  - クラス、メソッド、関数の抽出に対応
+  - Docstringの抽出に対応
+  - 呼び出し関係の推定に対応
+  - Import情報の収集に対応
+
+- **Javaパーサー**: `javalang`ライブラリを使用した解析機能
+  - クラス、メソッド、フィールドの抽出に対応
+  - Javadocの抽出に対応
+  - 呼び出し関係の推定に対応
+  - ネストクラス、コンストラクタ、オーバーロードに対応
+
+- **INDEX.md生成**: クラス/メソッド/関数の一覧と役割を記載したMarkdown索引
   - 呼び出し関係（Calls）の表示
   - 副作用（Side Effects）の検出・記載
   - 警告（`[WARNING]`）の埋め込み
 
-- **parts/ 生成**
-  - ソースコード分割（クラス/メソッド単位）
-  - メタデータヘッダ付与
+- **parts/生成**: ソースコードをクラス/メソッド単位で分割
+  - メタデータヘッダの付与
   - 言語別コメントプレフィックス対応
-  - ハッシュサフィックスによる名前衝突回避
+  - 名前衝突回避のためのハッシュサフィックス
 
-- **MAP.json 生成**
-  - 機械可読な対応表（JSON形式）
-  - SHA-256 チェックサム計算
+- **MAP.json生成**: 機械可読な対応表（JSON形式）
   - シンボル情報の完全なマッピング
+  - SHA-256チェックサムの計算
 
-#### Utilities
-- ファイル操作（UTF-8 読み書き）
-- ハッシュ計算（SHA-256）
-- ログ設定（標準 `logging` ライブラリ）
-- 行抽出・スライス
+- **テスト**: ユニットテスト、e2eテスト、エッジケーステストを整備
 
-#### Testing
-- ユニットテスト（Python/Java パーサー）
-- 生成ロジックテスト
-- e2e テスト（CLI 実行テスト）
-- エッジケーステスト（空ファイル、構文エラー、大規模ファイル）
+- **CI/CD**: GitHub Actionsによる自動テスト（Python 3.9〜3.12対応）
 
-#### CI/CD
-- GitHub Actions ワークフロー
-  - Python 3.9, 3.10, 3.11, 3.12 での自動テスト
-  - ruff lint チェック
-  - mypy 型チェック
-  - pytest + カバレッジレポート生成
-  - Codecov へのアップロード
+### 既知の制限事項
 
-#### Documentation
-- README.md（インストール・使い方・ワークフロー）
-- Spec.md（詳細仕様）
-- Plan.md（実装計画）
-- CHANGELOG.md（本ファイル）
+このバージョンには以下の制限があります：
 
-### Known Limitations
-- **入力スコープ**: 単一ファイルのみ対応。ディレクトリ単位の解析は未対応。
-- **依存解析**: 静的解析のみ。動的ディスパッチ、リフレクションは考慮しない。
-- **分割粒度**: クラス/メソッド単位のみ。処理フェーズ単位の分割は未対応。
-- **言語**: Java と Python のみサポート。
+- 単一ファイルのみ対応（ディレクトリ単位の解析は未対応）
+- 静的解析のみ対応（動的ディスパッチ、リフレクションは考慮しない）
+- クラス/メソッド単位の分割のみ（処理フェーズ単位の分割は未対応）
+- 対応言語はJavaとPythonのみ
 
-### Not Implemented
-- 複数ファイル/ディレクトリ解析
-- 設定ファイルのカスタマイズ
-- GitHub PR への自動コメント
-- Web UI
-- IDE プラグイン
-- C++/Go/Rust/TypeScript サポート
+## リンク
 
----
-
-## Roadmap
-
-### Phase 5 (v0.2.0)
-- [ ] ディレクトリ/複数ファイル対応
-- [ ] 設定ファイル（YAML/TOML）で分割粒度カスタマイズ
-- [ ] Tree-sitter への移行による精度向上
-
-### Phase 6 (v0.3.0)
-- [ ] C++/Go/Rust/TypeScript サポート
-- [ ] 世代比較・差分表示機能
-- [ ] 変更影響度の可視化
-
-### Phase 7 (v1.0.0)
-- [ ] Web UI（ブラウザベース INDEX.md ビューア）
-- [ ] GitHub Actions Integration
-- [ ] IDE プラグイン（VSCode, IntelliJ）
+- [リポジトリ](https://github.com/elvezjp/code2map)
+- [Issueトラッカー](https://github.com/elvezjp/code2map/issues)
