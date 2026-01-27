@@ -9,3 +9,6 @@ code2map-out/
 .coverage
 htmlcov/
 .DS_Store
+
+.vscode/
+.claude/
