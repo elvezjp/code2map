@@ -10,5 +10,9 @@ code2map-out/
 htmlcov/
 .DS_Store
 
+## IDE
 .vscode/
 .claude/
+
+## Example Output
+review/

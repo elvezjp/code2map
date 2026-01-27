@@ -134,10 +134,10 @@ uv run pytest
 ### 基本的な使用方法
 ```bash
 # Python ファイルをマッピング
-uv run code2map build path/to/LargeService.py --out ./code2map-out
+uv run code2map build tests/examples/user_management.py --out ./code2map-out
 
 # Java ファイルをマッピング
-uv run code2map build path/to/LargeService.java --out ./code2map-out
+uv run code2map build tests/examples/UserManagement.java --out ./code2map-out
 
 # 出力確認
 cat code2map-out/INDEX.md
@@ -159,10 +159,10 @@ uv run code2map build --help
 ### 具体例
 ```bash
 # 1. ドライラン（何が生成されるか確認）
-uv run code2map build src/main/java/OrderService.java --dry-run
+uv run code2map build tests/examples/user_management.py --dry-run
 
 # 2. 詳細ログ付きで実行
-uv run code2map build src/main/java/OrderService.java --out ./review --verbose
+uv run code2map build tests/examples/user_management.py --out ./review --verbose
 
 # 3. 生成物確認
 cat review/INDEX.md           # 索引・役割・依存関係を表示
@@ -171,10 +171,18 @@ cat review/MAP.json           # 行番号対応表（JSON形式）
 ```
 
 ### 推奨ワークフロー（AIレビュー）
-1. `uv run code2map build <file> --out ./review` で分割・索引生成
-2. `review/INDEX.md` をAIに読ませ、参照構造を理解させる
-3. 詳細な指摘は `review/MAP.json` で元ファイル行番号へマップ
-4. 指摘された行範囲を元ファイルで修正
+```bash
+# 1. 分割・索引生成
+uv run code2map build tests/examples/user_management.py --out ./review
+
+# 2. INDEX.md をAIに読ませ、参照構造を理解させる
+cat review/INDEX.md
+
+# 3. 詳細な指摘は MAP.json で元ファイル行番号へマップ
+cat review/MAP.json
+
+# 4. 指摘された行範囲を元ファイルで修正
+```
 
 ---
 
