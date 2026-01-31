@@ -10,6 +10,8 @@
 
 A CLI tool that transforms large source code into "semantic maps (index + code parts)" for AI analysis and review.
 
+![Input/Output Example](docs/assets/example.png)
+
 ## Use Cases
 
 - **AI Code Review**: Split large files into AI-friendly units to improve review accuracy
@@ -37,6 +39,7 @@ IXV addresses the challenges of understanding, structuring, and utilizing Japane
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
 - [SECURITY.md](SECURITY.md) - Security policy
 - [spec.md](spec.md) - Technical specification
+- [docs/examples/](docs/examples/) - Usage examples and sample I/O
 
 ## Setup
 
@@ -158,9 +161,9 @@ code2map/
 │       ├── file_utils.py  # File operations
 │       └── logger.py      # Log configuration
 ├── tests/                 # Test code
-│   ├── examples/          # Sample files for testing
 │   └── fixtures/          # Test fixtures
 ├── docs/                  # Documentation
+│   └── examples/          # Usage examples and sample I/O
 ├── CHANGELOG.md           # Change history
 ├── CONTRIBUTING.md        # Contribution guide
 ├── README.md              # This file (English)

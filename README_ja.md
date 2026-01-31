@@ -10,6 +10,8 @@
 
 巨大なソースコードを、AI解析・レビュー向けの「意味的マップ（索引＋分割片）」に変換するCLIツールです。
 
+![Input/Output Example](docs/assets/example.png)
+
 ## ユースケース
 
 - **AIコードレビュー**: 大規模ファイルをAIが理解しやすい単位に分割し、レビュー精度を向上
@@ -37,6 +39,7 @@ IXVでは、システム開発における日本語の文書について、理�
 - [CONTRIBUTING.md](CONTRIBUTING.md) - コントリビューション方法
 - [SECURITY.md](SECURITY.md) - セキュリティポリシー
 - [spec.md](spec.md) - 技術仕様書
+- [docs/examples/](docs/examples/) - 使用例とサンプル入出力
 
 ## セットアップ
 
@@ -158,9 +161,9 @@ code2map/
 │       ├── file_utils.py  # ファイル操作
 │       └── logger.py      # ログ設定
 ├── tests/                 # テストコード
-│   ├── examples/          # テスト用サンプルファイル
 │   └── fixtures/          # テストフィクスチャ
 ├── docs/                  # ドキュメント
+│   └── examples/          # 使用例とサンプル入出力
 ├── CHANGELOG.md           # 変更履歴
 ├── CONTRIBUTING.md        # コントリビューションガイド
 ├── README.md              # 英語版README
