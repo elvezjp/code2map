@@ -10,6 +10,8 @@
 
 A CLI tool that transforms large source code into "semantic maps (index + code parts)" for AI analysis and review.
 
+![Input/Output Example](docs/assets/example.png)
+
 ## Use Cases
 
 - **AI Code Review**: Split large files into AI-friendly units to improve review accuracy
