@@ -11,6 +11,7 @@ versions/
 ├── v0.1.1/          # pyproject.toml の version = "0.1.1" 時点のスナップショット
 │   ├── code2map/
 │   ├── tests/
+│   ├── examples/
 │   ├── main.py
 │   ├── pyproject.toml
 │   ├── spec.md
