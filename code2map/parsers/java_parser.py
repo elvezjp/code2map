@@ -150,14 +150,14 @@ class JavaParser(BaseParser):
                 ctor_end = _find_brace_block_end(lines, ctor_start)
                 ctor_role = _extract_javadoc(lines, ctor_start)
                 ctor_symbol = Symbol(
-                    name="<init>",
+                    name="new",
                     kind="method",
                     start_line=ctor_start,
                     end_line=ctor_end,
                     original_file=file_path,
                     language="java",
                     parent=display_parent,
-                    qualname=f"{qualname}#<init>",
+                    qualname=f"{qualname}#new",
                     role=ctor_role,
                     signature=signature,
                 )
