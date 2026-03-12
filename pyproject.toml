@@ -16,7 +16,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "javalang>=0.13.0",
+    "tree-sitter>=0.21.0",
+    "tree-sitter-java>=0.21.0",
 ]
 
 [project.optional-dependencies]
