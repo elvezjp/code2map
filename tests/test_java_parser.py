@@ -26,3 +26,18 @@ def test_java8_syntax_constructor_extracted():
     symbols, _ = parser.parse("tests/fixtures/java8_syntax.java")
     names = {(s.kind, s.display_name()) for s in symbols}
     assert ("method", "Java8Syntax_Status#<init>") in names
+
+
+def test_java_syntax_error_returns_warning():
+    # 構文エラーがある場合、warnings にメッセージが返ること
+    parser = JavaParser()
+    _, warnings = parser.parse("tests/fixtures/java_syntax_error.java")
+    assert len(warnings) >= 1
+    assert warnings[0] != ""
+
+
+def test_java_syntax_error_warning_contains_location():
+    # 構文エラーの warning に行番号が含まれること
+    parser = JavaParser()
+    _, warnings = parser.parse("tests/fixtures/java_syntax_error.java")
+    assert any("line" in w for w in warnings)
