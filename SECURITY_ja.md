@@ -9,7 +9,7 @@
 | バージョン | サポート状況       |
 | ---------- | ------------------ |
 | 0.2.0      | :white_check_mark: |
-| 0.1.3 <    | :x:                |
+| < 0.2.0    | :x:                |
 
 ## 脆弱性の報告
 
@@ -23,7 +23,7 @@
    - [Security Advisories](https://github.com/elvezjp/code2map/security/advisories/new) から非公開で報告できます
 
 2. **メール**
-   - セキュリティチームへ直接連絡: security@elvez.jp
+   - セキュリティチームへ直接連絡: info@elvez.co.jp
 
 ### 報告に含めるべき情報
 

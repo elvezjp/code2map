@@ -9,7 +9,7 @@ Security updates are provided for the following versions. We recommend using the
 | Version | Supported          |
 | ------- | ------------------ |
 | 0.2.0   | :white_check_mark: |
-| < 0.1.3 | :x:                |
+| < 0.2.0 | :x:                |
 
 ## Reporting a Vulnerability
 
@@ -23,7 +23,7 @@ Please report via one of the following methods:
    - Report privately via [Security Advisories](https://github.com/elvezjp/code2map/security/advisories/new)
 
 2. **Email**
-   - Contact the security team directly: security@elvez.jp
+   - Contact the security team directly: info@elvez.co.jp
 
 ### Information to Include
 
