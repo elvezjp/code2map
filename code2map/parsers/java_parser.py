@@ -77,7 +77,10 @@ class JavaParser(BaseParser):
         try:
             tree = javalang.parse.parse(source)
         except (javalang.parser.JavaSyntaxError, IndexError) as exc:
-            warnings.append(f"Java parse error: {exc}")
+            if hasattr(exc, 'description') and hasattr(exc, 'at'):
+                warnings.append(f"Java parse error: {exc.description} (at {exc.at})")
+            else:
+                warnings.append(f"Java parse error: {exc}")
             return [], warnings
 
         imports = [imp.path for imp in tree.imports]

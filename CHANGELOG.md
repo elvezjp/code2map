@@ -5,6 +5,24 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
+## [0.1.3] - 2026-03-12
+
+### 修正
+
+- **Javaパースエラーメッセージ改善**: Java 8+構文を含むファイルのパースが失敗した際、エラーメッセージが空になっていた問題を修正（[#9](https://github.com/elvezjp/code2map/issues/9)）
+  - `JavaSyntaxError` の `description` 属性と `at` 属性を使用し、エラーの原因と発生箇所を出力するように変更
+  - 修正前: `"Java parse error: "`（空）
+  - 修正後: `"Java parse error: Expected '.' (at Keyword "new" line N, position M)"`
+
+### 追加
+
+- **テスト**: Javaパースエラーメッセージに関するテストケースを3件追加
+- **テストフィクスチャ**: Java 8+構文（メソッドリファレンス `Type[]::new`）を含むJavaファイルを追加
+
+### 変更
+
+- v0.1.2 のスナップショットを `versions/v0.1.2/` に保存
+
 ## [0.1.2] - 2026-02-25
 
 ### 修正
