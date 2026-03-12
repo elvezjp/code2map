@@ -333,4 +333,4 @@ public class Java8Syntax {
 - [x] `docs/examples/v0.1.2/` に旧サンプル出力（Java・Python）が保存されている
 - [x] `docs/examples/v0.2.0/` に v0.2.0 のサンプル出力（Java・Python）が生成されている
 - [x] `README.md` が v0.2.0 の内容に更新されている
-- [ ] PR が作成されレビュー依頼されている
+- [x] PR が作成されレビュー依頼されている
