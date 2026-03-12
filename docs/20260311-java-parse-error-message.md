@@ -330,7 +330,7 @@ public class Java8Syntax {
 - [x] `code2map/__init__.py` の `__version__` が `"0.2.0"` に更新されている
 - [x] `CHANGELOG.md` に v0.2.0 のエントリが追加されている
 - [x] `spec.md` が tree-sitter ベースの実装と一致している
-- [ ] `docs/examples/java/output_v0.1.2/` に旧サンプル出力が保存されている
-- [ ] `docs/examples/java/output/` に v0.2.0 のサンプル出力が生成されている
+- [x] `docs/examples/v0.1.2/` に旧サンプル出力（Java・Python）が保存されている
+- [x] `docs/examples/v0.2.0/` に v0.2.0 のサンプル出力（Java・Python）が生成されている
 - [ ] `README.md` が v0.2.0 の内容に更新されている
 - [ ] PR が作成されレビュー依頼されている
