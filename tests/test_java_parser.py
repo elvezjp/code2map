@@ -10,22 +10,19 @@ def test_java_parser_extracts_symbols():
     assert ("method", "Sample#work") in names
 
 
-def test_java_parse_error_message_not_empty():
+def test_java8_syntax_parses_successfully():
+    # tree-sitter は Java 8+構文を正常にパースできる
     parser = JavaParser()
     symbols, warnings = parser.parse("tests/fixtures/java8_syntax.java")
-    assert symbols == []
-    assert len(warnings) == 1
-    assert warnings[0] != ""
-    assert warnings[0] != "Java parse error: "
+    assert warnings == []
+    names = {(s.kind, s.display_name()) for s in symbols}
+    assert ("class", "Java8Syntax") in names
+    assert ("class", "Java8Syntax_Status") in names
+    assert ("method", "Java8Syntax_Status#getKeys") in names
 
 
-def test_java_parse_error_contains_description():
+def test_java8_syntax_constructor_extracted():
     parser = JavaParser()
-    _, warnings = parser.parse("tests/fixtures/java8_syntax.java")
-    assert any("Expected" in w for w in warnings)
-
-
-def test_java_parse_error_contains_location():
-    parser = JavaParser()
-    _, warnings = parser.parse("tests/fixtures/java8_syntax.java")
-    assert any("line" in w for w in warnings)
+    symbols, _ = parser.parse("tests/fixtures/java8_syntax.java")
+    names = {(s.kind, s.display_name()) for s in symbols}
+    assert ("method", "Java8Syntax_Status#<init>") in names
