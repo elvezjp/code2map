@@ -293,7 +293,23 @@ public class Java8Syntax {
 2. `code2map/__init__.py` の `__version__` を `"0.2.0"` に更新
 3. `CHANGELOG.md` に v0.2.0 のエントリを追加
 
-### Task 6: PR 作成・レビュー
+### Task 6: 仕様書の更新
+
+1. `spec.md` を tree-sitter ベースの実装に合わせて更新
+   - 依存ライブラリの記述（`javalang` → `tree-sitter` + `tree-sitter-java`）
+   - パーサーの動作説明を実装と一致するよう修正
+
+### Task 7: サンプル出力の更新
+
+1. `docs/examples/java/output/` を `docs/examples/java/output_v0.1.2/` にリネームして保存
+2. v0.2.0 でサンプルJavaファイルを再実行し、`docs/examples/java/output/` に出力を生成
+
+### Task 8: 公開用ドキュメントの更新
+
+1. `README.md` のバージョン・依存関係・機能説明を v0.2.0 に合わせて更新
+2. `SECURITY.md` 等、その他の公開ドキュメントを確認し必要に応じて更新
+
+### Task 9: PR 作成・レビュー
 
 1. ブランチを作成（命名規則に従う）
 2. 変更をコミット
@@ -301,16 +317,20 @@ public class Java8Syntax {
 
 ## 完了チェックリスト
 
-- [ ] `versions/v0.1.3/` に v0.1.3 コードのスナップショットが保存されている
-- [ ] `pyproject.toml` の依存関係が `tree-sitter` + `tree-sitter-java` に変更されている
-- [ ] `java_parser.py` が tree-sitter ベースに書き直されている
-- [ ] `javalang` への依存が完全に除去されている
-- [ ] 既存テストが全て PASS していること（デグレなし）
-- [ ] Java 8+構文を含むファイルが正常にパースされること（テスト PASS）
-- [ ] メソッド呼び出し抽出（`calls`）が動作すること
-- [ ] Javadoc抽出（`role`）が動作すること
-- [ ] ネストクラスが正しく抽出されること
-- [ ] `pyproject.toml` の version が `"0.2.0"` に更新されている
-- [ ] `code2map/__init__.py` の `__version__` が `"0.2.0"` に更新されている
-- [ ] `CHANGELOG.md` に v0.2.0 のエントリが追加されている
+- [x] `versions/v0.1.3/` に v0.1.3 コードのスナップショットが保存されている
+- [x] `pyproject.toml` の依存関係が `tree-sitter` + `tree-sitter-java` に変更されている
+- [x] `java_parser.py` が tree-sitter ベースに書き直されている
+- [x] `javalang` への依存が完全に除去されている
+- [x] 既存テストが全て PASS していること（デグレなし）
+- [x] Java 8+構文を含むファイルが正常にパースされること（テスト PASS）
+- [x] メソッド呼び出し抽出（`calls`）が動作すること
+- [x] Javadoc抽出（`role`）が動作すること
+- [x] ネストクラスが正しく抽出されること
+- [x] `pyproject.toml` の version が `"0.2.0"` に更新されている
+- [x] `code2map/__init__.py` の `__version__` が `"0.2.0"` に更新されている
+- [x] `CHANGELOG.md` に v0.2.0 のエントリが追加されている
+- [x] `spec.md` が tree-sitter ベースの実装と一致している
+- [ ] `docs/examples/java/output_v0.1.2/` に旧サンプル出力が保存されている
+- [ ] `docs/examples/java/output/` に v0.2.0 のサンプル出力が生成されている
+- [ ] `README.md` が v0.2.0 の内容に更新されている
 - [ ] PR が作成されレビュー依頼されている
