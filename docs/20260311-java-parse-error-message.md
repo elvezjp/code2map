@@ -161,16 +161,16 @@ public class Java8Syntax {
 
 ## 完了チェックリスト
 
-- [ ] `versions/v0.1.2/` に現行コードのスナップショットが保存されている
-- [ ] `tests/fixtures/java8_syntax.java` が作成されている
-- [ ] `java_parser.py` のエラーメッセージが `exc.description` と `exc.at` を使用している
-- [ ] パースエラー時の warnings メッセージが空でないこと（テスト PASS）
-- [ ] パースエラー時の warnings メッセージにエラー箇所の情報が含まれること（テスト PASS）
-- [ ] 既存テストが全て PASS していること（デグレなし）
-- [ ] `pyproject.toml` の version が `"0.1.3"` に更新されている
-- [ ] `code2map/__init__.py` の `__version__` が `"0.1.3"` に更新されている
-- [ ] `CHANGELOG.md` に v0.1.3 のエントリが追加されている
-- [ ] PR が作成されレビュー依頼されている
+- [x] `versions/v0.1.2/` に現行コードのスナップショットが保存されている
+- [x] `tests/fixtures/java8_syntax.java` が作成されている
+- [x] `java_parser.py` のエラーメッセージが `exc.description` と `exc.at` を使用している
+- [x] パースエラー時の warnings メッセージが空でないこと（テスト PASS）
+- [x] パースエラー時の warnings メッセージにエラー箇所の情報が含まれること（テスト PASS）
+- [x] 既存テストが全て PASS していること（デグレなし）
+- [x] `pyproject.toml` の version が `"0.1.3"` に更新されている
+- [x] `code2map/__init__.py` の `__version__` が `"0.1.3"` に更新されている
+- [x] `CHANGELOG.md` に v0.1.3 のエントリが追加されている
+- [x] PR が作成されレビュー依頼されている
 
 ---
 
