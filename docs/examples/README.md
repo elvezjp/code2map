@@ -6,7 +6,7 @@ code2mapの使用例です。各言語のサンプルファイルと、その出
 
 ```
 examples/
-├── v0.2.0/                             # 最新バージョンの出力
+├── v0.2.1/                             # 最新バージョンの出力
 │   ├── java/
 │   │   ├── UserManagementService.java  # 入力ファイル
 │   │   └── output/                     # 出力結果
@@ -19,6 +19,9 @@ examples/
 │           ├── INDEX.md
 │           ├── MAP.json
 │           └── parts/
+├── v0.2.0/                             # 旧バージョンの出力（参照用）
+│   ├── java/
+│   └── python/
 └── v0.1.2/                             # 旧バージョンの出力（参照用）
     ├── java/
     └── python/
@@ -30,14 +33,14 @@ examples/
 
 ```bash
 # リポジトリルートから実行
-uv run code2map build docs/examples/v0.2.0/java/UserManagementService.java --out docs/examples/v0.2.0/java/output
+uv run code2map build docs/examples/v0.2.1/java/UserManagementService.java --out docs/examples/v0.2.1/java/output
 ```
 
 ### Python
 
 ```bash
 # リポジトリルートから実行
-uv run code2map build docs/examples/v0.2.0/python/user_management_service.py --out docs/examples/v0.2.0/python/output
+uv run code2map build docs/examples/v0.2.1/python/user_management_service.py --out docs/examples/v0.2.1/python/output
 ```
 
 ## Sample Files
