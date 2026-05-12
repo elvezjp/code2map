@@ -16,6 +16,18 @@
   - CI matrix を `["3.9", "3.12"]` → `["3.11", "3.13"]` に更新
   - README / CONTRIBUTING / spec.md の要件を Python 3.11+ に更新
 
+### 追加
+
+- **PyPI 公開向けパッケージメタデータ**（[#12](https://github.com/elvezjp/code2map/issues/12)）
+  - `[project]` 拡充: `authors` に連絡先、`keywords`、`classifiers` 追加（`Development Status :: 3 - Alpha`、`Intended Audience :: Developers`、`Topic :: Software Development :: *`、`Python :: 3 :: Only`）
+  - `[project.urls]` に `Homepage` / `Documentation` / `Changelog` / `Issues` を追加
+  - `[project.optional-dependencies].dev` に `build` / `twine` を追加
+  - `[tool.hatch.build.targets.wheel]` と `[tool.hatch.build.targets.sdist]` を設定し、`versions/`、`docs/`、`main.py`、`.github/` を配布物から除外
+
+### 修正
+
+- `code2map.__version__` を `pyproject.toml` の version に追従（`"0.2.0"` のままだったのを修正）
+
 ### セキュリティ
 
 - **Dependabot アラート [#2](https://github.com/elvezjp/code2map/security/dependabot/2) を解消**: pytest が 9.0.3 に解決されるようになった（CVE-2025-71176, Medium 6.8 を修正）。従来は `requires-python = ">=3.9"` のため、pytest 9.x が Python 3.10+ を要求する関係で脆弱な pytest 8.4.2 に固定されていた。
