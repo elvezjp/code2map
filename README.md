@@ -5,7 +5,7 @@
 [![Elvez](https://img.shields.io/badge/Elvez-Product-3F61A7?style=flat-square)](https://elvez.co.jp/)
 [![IXV Ecosystem](https://img.shields.io/badge/IXV-Ecosystem-3F61A7?style=flat-square)](https://elvez.co.jp/ixv/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/elvezjp/code2map?style=social)](https://github.com/elvezjp/code2map/stargazers)
 
 A CLI tool that transforms large source code into "semantic maps (index + code parts)" for AI analysis and review.
@@ -45,7 +45,7 @@ IXV addresses the challenges of understanding, structuring, and utilizing Japane
 
 ### Requirements
 
-- Python 3.9 or higher
+- Python 3.11 or higher
 - [uv](https://docs.astral.sh/uv/) (recommended package manager)
 
 ### Installation

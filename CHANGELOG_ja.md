@@ -7,6 +7,23 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
+## [0.2.1] - 2026-05-12
+
+### 変更
+
+- **Python 最低バージョンを 3.9 から 3.11 に引き上げ**（[#14](https://github.com/elvezjp/code2map/issues/14)）
+  - `pyproject.toml`: `requires-python = ">=3.11"`、classifiers から `Python :: 3.9` / `Python :: 3.10` を削除
+  - CI matrix を `["3.9", "3.12"]` → `["3.11", "3.13"]` に更新
+  - README / CONTRIBUTING / spec.md の要件を Python 3.11+ に更新
+
+### セキュリティ
+
+- **Dependabot アラート [#2](https://github.com/elvezjp/code2map/security/dependabot/2) を解消**: pytest が 9.0.3 に解決されるようになった（CVE-2025-71176, Medium 6.8 を修正）。従来は `requires-python = ">=3.9"` のため、pytest 9.x が Python 3.10+ を要求する関係で脆弱な pytest 8.4.2 に固定されていた。
+
+### 備考
+
+- v0.2.0 のスナップショットを `versions/v0.2.0/` に保存
+
 ## [0.2.0] - 2026-03-12
 
 ### 変更
