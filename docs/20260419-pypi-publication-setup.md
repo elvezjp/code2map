@@ -1,7 +1,9 @@
 # 20260419 PyPI 公開構成整備 修正計画書
 
 関連 Issue: [#12 PyPIへのパッケージ公開](https://github.com/elvezjp/code2map/issues/12)
-対象バージョン: `code2map` v0.2.0 (最新)
+対象バージョン: `code2map` v0.2.1 (最新)
+
+> 注: 本計画書は当初 v0.2.0 を対象として作成されたが、PR #15 (Issue #14) のマージにより v0.2.1 にバンプされたため、本 PR で v0.2.1 として再対応する。
 
 ## 1. 目的
 
@@ -12,12 +14,12 @@ PyPI 公開に耐える状態へ整える。
 ## 2. 現状の整理
 
 - ビルドバックエンド: `hatchling` (`pyproject.toml` 設定済み)
-- 最新バージョン: `0.2.0` (`pyproject.toml` / `code2map/__init__.py`)
+- 最新バージョン: `0.2.1` (`pyproject.toml` / `code2map/__init__.py`)
 - パッケージ本体: ルート直下の `code2map/` パッケージ
   - `code2map.cli:main` を CLI エントリーポイントとして提供済み
 - ランタイム依存: `tree-sitter>=0.21.0`, `tree-sitter-java>=0.21.0`
 - 開発依存 (optional): `pytest`, `pytest-cov`, `ruff`, `mypy`
-- Python 対応バージョン: `>=3.9`
+- Python 対応バージョン: `>=3.11`
 - ライセンス: MIT (`LICENSE` あり)
 - README: `README.md` (英語、`README_ja.md` も並存)
 - `versions/v0.1.1 .. v0.1.3/` に旧バージョンのスナップショットが同梱
@@ -29,10 +31,10 @@ PyPI 公開に耐える状態へ整える。
 ### 3.1 パッケージメタデータ (`[project]`)
 
 - `name`: `code2map`
-- `version`: `0.2.0` (Issue 指示により今回バージョンは据え置き)
+- `version`: `0.2.1`
 - `description`: 現行のまま
 - `readme`: `README.md` (英語を PyPI の説明として採用)
-- `requires-python`: `>=3.9`
+- `requires-python`: `>=3.11`
 - `license`: `MIT` (SPDX 表記 `license = { text = "MIT" }` を維持)
 - `authors`: `code2map developers <info@elvez.co.jp>`
 - `keywords`: `code`, `map`, `ast`, `tree-sitter`, `code-review`, `llm`, `static-analysis`
@@ -43,10 +45,9 @@ PyPI 公開に耐える状態へ整える。
   - `Operating System :: OS Independent`
   - `Programming Language :: Python :: 3`
   - `Programming Language :: Python :: 3 :: Only`
-  - `Programming Language :: Python :: 3.9`
-  - `Programming Language :: Python :: 3.10`
   - `Programming Language :: Python :: 3.11`
   - `Programming Language :: Python :: 3.12`
+  - `Programming Language :: Python :: 3.13`
   - `Topic :: Software Development`
   - `Topic :: Software Development :: Code Generators`
   - `Topic :: Software Development :: Libraries :: Python Modules`
@@ -84,7 +85,7 @@ PyPI 公開に耐える状態へ整える。
 ### 3.6 インポート動作の確認
 
 - `import code2map` が成功する
-- `from code2map import __version__` が `"0.2.0"` を返す
+- `from code2map import __version__` が `"0.2.1"` を返す
 - `python -m code2map` は現状 CLI として定義されていないため、対象外
   (今回は `code2map` コンソールスクリプト経由を公式手段とする)
 
@@ -129,8 +130,8 @@ PyPI 公開に耐える状態へ整える。
 
 ### T3. ビルド確認
 
-- `uv run python -m build` で `dist/code2map-0.2.0-py3-none-any.whl` と
-  `dist/code2map-0.2.0.tar.gz` が生成されることを確認
+- `uv run python -m build` で `dist/code2map-0.2.1-py3-none-any.whl` と
+  `dist/code2map-0.2.1.tar.gz` が生成されることを確認
 - 生成された成果物に `versions/` が含まれていないこと、
   `code2map/` パッケージ本体が含まれていることを確認
 
@@ -157,8 +158,8 @@ PyPI 公開に耐える状態へ整える。
 - [ ] `[tool.hatch.build.targets.sdist]` で `versions/`, `main.py`, `docs/` などが
       除外され、必要なファイルのみ含まれる
 - [ ] `uv.lock` がコミット済みで、最新の依存関係を反映している
-- [ ] `python -m build` により `dist/code2map-0.2.0-py3-none-any.whl` と
-      `dist/code2map-0.2.0.tar.gz` がエラーなく生成できる
+- [ ] `python -m build` により `dist/code2map-0.2.1-py3-none-any.whl` と
+      `dist/code2map-0.2.1.tar.gz` がエラーなく生成できる
 - [ ] 生成した wheel / sdist を解凍し、`code2map/` と必要なメタファイルのみが入って
       いる (旧バージョンが含まれていない)
 - [ ] `pytest` が全件 PASS する
@@ -168,7 +169,7 @@ PyPI 公開に耐える状態へ整える。
 
 ## 7. 実装記録
 
-### 実施内容 (2026-04-19)
+### 実施内容 (2026-04-19, v0.2.0 として実施)
 
 - `pyproject.toml` を更新
   - `[project]`: `authors` に連絡先を追加 (`info@elvez.co.jp`)、`keywords` を追加、
@@ -190,6 +191,26 @@ PyPI 公開に耐える状態へ整える。
 - `uv run twine check dist/*` が両成果物で `PASSED`
 - 別の空 venv で `pip install dist/code2map-0.2.0-py3-none-any.whl` を実行し、
   `code2map --help` の CLI 動作および `import code2map; code2map.__version__ == "0.2.0"` を確認
+- `uv run pytest` を実行、30 件すべて PASS
+
+### v0.2.1 への再対応 (2026-05-12)
+
+PR #15 (Issue #14: Python 最低バージョンを 3.11 に引き上げ) のマージにより main がバージョン 0.2.1 となったため、本ブランチを main に rebase し、以下を反映して v0.2.1 として再対応した。
+
+- `pyproject.toml` の競合を解消
+  - `version = "0.2.1"`、`requires-python = ">=3.11"` を維持
+  - classifiers から `Python :: 3.9` / `Python :: 3.10` を削除し、`Python :: 3.13` を追加
+- `code2map/__init__.py` の `__version__` を `"0.2.0"` → `"0.2.1"` に更新（PR #15 で漏れていた追従）
+- `uv.lock` を再生成 (pytest 9.0.3 単一解決を維持)
+- `uv run python -m build` で v0.2.1 成果物を再生成
+  - `dist/code2map-0.2.1-py3-none-any.whl` (16,189 bytes)
+  - `dist/code2map-0.2.1.tar.gz` (43,138 bytes)
+- 生成物を解凍して中身を検証
+  - wheel: `code2map/` パッケージ + `dist-info` のみ。`versions/`, `main.py`, `docs/`, `.github/` を含まない
+  - sdist: `code2map/`, `tests/`, ルートの README / LICENSE / CHANGELOG / CONTRIBUTING / SECURITY / spec / pyproject のみ。`versions/`, `main.py`, `docs/`, `.github/` を含まない
+- `uv run twine check dist/*` → 両成果物で `PASSED`
+- 別の空 venv で `pip install dist/code2map-0.2.1-py3-none-any.whl` を実行し、
+  `code2map --help` の CLI 動作および `import code2map; code2map.__version__ == "0.2.1"` を確認
 - `uv run pytest` を実行、30 件すべて PASS
 
 ## 8. 残タスク (本 PR スコープ外)

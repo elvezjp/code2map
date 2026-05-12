@@ -16,6 +16,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - CI matrix updated: `["3.9", "3.12"]` → `["3.11", "3.13"]`
   - README / CONTRIBUTING / spec.md updated to require Python 3.11+
 
+### Added
+
+- **PyPI packaging metadata** ([#12](https://github.com/elvezjp/code2map/issues/12))
+  - Extended `[project]`: contact email in `authors`, `keywords`, additional `classifiers` (`Development Status :: 3 - Alpha`, `Intended Audience :: Developers`, `Topic :: Software Development :: *`, `Python :: 3 :: Only`)
+  - Added `[project.urls]`: `Homepage`, `Documentation`, `Changelog`, `Issues`
+  - Added `build` / `twine` to `[project.optional-dependencies].dev`
+  - Configured `[tool.hatch.build.targets.wheel]` and `[tool.hatch.build.targets.sdist]` with explicit include/exclude (excludes `versions/`, `docs/`, `main.py`, `.github/`)
+
+### Fixed
+
+- Aligned `code2map.__version__` with `pyproject.toml` version (was left at `"0.2.0"`)
+
 ### Security
 
 - **Resolved Dependabot alert [#2](https://github.com/elvezjp/code2map/security/dependabot/2)**: pytest now resolves to 9.0.3 (fixes CVE-2025-71176, Medium 6.8). Previously, with `requires-python = ">=3.9"`, pytest 8.4.2 was pinned because pytest 9.x requires Python 3.10+.
