@@ -5,7 +5,7 @@
 [![Elvez](https://img.shields.io/badge/Elvez-Product-3F61A7?style=flat-square)](https://elvez.co.jp/)
 [![IXV Ecosystem](https://img.shields.io/badge/IXV-Ecosystem-3F61A7?style=flat-square)](https://elvez.co.jp/ixv/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/elvezjp/code2map?style=social)](https://github.com/elvezjp/code2map/stargazers)
 
 巨大なソースコードを、AI解析・レビュー向けの「意味的マップ（索引＋分割片）」に変換するCLIツールです。
@@ -45,7 +45,7 @@ IXVでは、システム開発における日本語の文書について、理�
 
 ### 必要環境
 
-- Python 3.9以上
+- Python 3.11以上
 - [uv](https://docs.astral.sh/uv/)（推奨パッケージマネージャー）
 
 ### インストール

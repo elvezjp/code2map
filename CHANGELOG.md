@@ -7,6 +7,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-05-12
+
+### Changed
+
+- **Bumped minimum Python version from 3.9 to 3.11** ([#14](https://github.com/elvezjp/code2map/issues/14))
+  - `pyproject.toml`: `requires-python = ">=3.11"`, removed `Python :: 3.9` / `Python :: 3.10` from classifiers
+  - CI matrix updated: `["3.9", "3.12"]` → `["3.11", "3.13"]`
+  - README / CONTRIBUTING / spec.md updated to require Python 3.11+
+
+### Security
+
+- **Resolved Dependabot alert [#2](https://github.com/elvezjp/code2map/security/dependabot/2)**: pytest now resolves to 9.0.3 (fixes CVE-2025-71176, Medium 6.8). Previously, with `requires-python = ">=3.9"`, pytest 8.4.2 was pinned because pytest 9.x requires Python 3.10+.
+
+### Notes
+
+- Saved v0.2.0 snapshot to `versions/v0.2.0/`
+
 ## [0.2.0] - 2026-03-12
 
 ### Changed

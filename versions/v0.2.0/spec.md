@@ -451,7 +451,7 @@ MAP.json 生成（対応表作成）
 
 | 項目 | 要件 |
 |------|------|
-| Python バージョン | 3.11 以上 |
+| Python バージョン | 3.9 以上 |
 | 外部依存 | `tree-sitter`、`tree-sitter-java`（Java パース用） |
 | OS | クロスプラットフォーム（Windows / macOS / Linux） |
 
