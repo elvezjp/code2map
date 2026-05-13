@@ -21,9 +21,9 @@ A CLI tool that transforms large source code into "semantic maps (index + code p
 
 ## Background
 
-This tool is a small utility born from the development of **IXV**, an AI development assistant focused on Japanese development documents and specifications.
+This tool is a small utility born from the development of **IXV**, an AI development ecosystem designed for Japanese engineering teams.
 
-IXV addresses the challenges of understanding, structuring, and utilizing Japanese documents in system development. This repository publishes a portion of that work.
+IXV delivers a methodology and OSS that put AI to practical use in real development workflows. This repository publishes a portion of that work.
 
 ## Features
 
