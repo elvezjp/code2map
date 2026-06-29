@@ -46,6 +46,12 @@ dev = [
     "twine>=5.0.0",
 ]
 
+[tool.uv]
+# Security: raise the floor of the transitive dependency `cryptography`
+# (pulled in via twine -> keyring -> SecretStorage on Linux). Versions < 48.0.1
+# bundle a vulnerable OpenSSL in their wheels (GHSA-537c-gmf6-5ccf).
+constraint-dependencies = ["cryptography>=48.0.1"]
+
 [project.scripts]
 code2map = "code2map.cli:main"
 
