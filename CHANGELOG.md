@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Security
+
+- Raised the floor of the transitive development dependency `cryptography` to
+  `>= 48.0.1` to address [GHSA-537c-gmf6-5ccf](https://github.com/pyca/cryptography/security/advisories/GHSA-537c-gmf6-5ccf)
+  (vulnerable OpenSSL bundled in `cryptography` wheels `< 48.0.1`)
+  - Added a `[tool.uv]` `constraint-dependencies` entry in `pyproject.toml`
+  - Regenerated `uv.lock` (`cryptography` 48.0.0 → 49.0.0)
+  - The runtime is unaffected: `cryptography` is only pulled in via `twine` (dev) on Linux
+
 ## [0.2.1] - 2026-05-12
 
 ### Changed

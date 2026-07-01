@@ -7,6 +7,17 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
+## [未リリース]
+
+### セキュリティ
+
+- 推移的な開発依存パッケージ `cryptography` の下限を `>= 48.0.1` に引き上げ、
+  [GHSA-537c-gmf6-5ccf](https://github.com/pyca/cryptography/security/advisories/GHSA-537c-gmf6-5ccf)
+  に対応（`cryptography` の wheel `< 48.0.1` に脆弱な OpenSSL が同梱されている問題）
+  - `pyproject.toml` に `[tool.uv]` の `constraint-dependencies` を追加
+  - `uv.lock` を再生成（`cryptography` 48.0.0 → 49.0.0）
+  - ランタイムには影響なし: `cryptography` は Linux 上で `twine`（開発依存）経由でのみ導入される
+
 ## [0.2.1] - 2026-05-12
 
 ### 変更
