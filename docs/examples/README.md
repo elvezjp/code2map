@@ -6,7 +6,7 @@ code2mapの使用例です。各言語のサンプルファイルと、その出
 
 ```
 examples/
-├── v0.2.1/                             # 最新バージョンの出力
+├── v0.3.0/                             # 最新バージョンの出力
 │   ├── java/
 │   │   ├── UserManagementService.java  # 入力ファイル
 │   │   └── output/                     # 出力結果
@@ -19,6 +19,9 @@ examples/
 │           ├── INDEX.md
 │           ├── MAP.json
 │           └── parts/
+├── v0.2.1/                             # 旧バージョンの出力（参照用）
+│   ├── java/
+│   └── python/
 ├── v0.2.0/                             # 旧バージョンの出力（参照用）
 │   ├── java/
 │   └── python/
@@ -33,15 +36,23 @@ examples/
 
 ```bash
 # リポジトリルートから実行
-uv run code2map build docs/examples/v0.2.1/java/UserManagementService.java --out docs/examples/v0.2.1/java/output
+uv run code2map build docs/examples/v0.3.0/java/UserManagementService.java --out docs/examples/v0.3.0/java/output
 ```
 
 ### Python
 
 ```bash
 # リポジトリルートから実行
-uv run code2map build docs/examples/v0.2.1/python/user_management_service.py --out docs/examples/v0.2.1/python/output
+uv run code2map build docs/examples/v0.3.0/python/user_management_service.py --out docs/examples/v0.3.0/python/output
 ```
+
+## 再生成についての補足
+
+出力は入力が同じであれば常に同じ結果になります（静的解析のみで、LLM は使用していません）。出力ファイルに生成日時は含まれません。
+
+そのため、バージョン間で出力が変わるのは解析ロジックに変更があった場合のみです。v0.2.1 と v0.3.0 の出力は、`parts/` の各ファイル冒頭にある `original:` 行（入力ファイルのパス）を除いて完全に一致します。`INDEX.md` と `MAP.json` はバイト単位で同一です。
+
+旧バージョンの出力を再生成する場合は、対応する git tag を checkout した実装を使用してください。
 
 ## Sample Files
 

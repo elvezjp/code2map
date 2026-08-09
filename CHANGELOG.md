@@ -33,6 +33,12 @@ Addresses two advisories for the transitive development dependency `cryptography
   - Added a "Version Management" section to the README (EN/JA) and updated the Dependabot alert policy in SECURITY (EN/JA)
 - Removed `/versions` from the sdist exclude list in `pyproject.toml`
 
+### Added
+
+- **Output samples for v0.3.0** under `docs/examples/v0.3.0/` (Java and Python), regenerated with this version
+  - Identical to the v0.2.1 samples apart from the `original:` line in each `parts/` file, which records the input path. `INDEX.md` and `MAP.json` are byte-for-byte identical, confirming that this release does not change the output
+  - Added a note to `docs/examples/README.md` explaining that output is deterministic (static analysis only, no LLM, no timestamps in the output)
+
 ## [0.2.1] - 2026-05-12
 
 ### Changed
