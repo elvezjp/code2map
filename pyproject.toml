@@ -91,7 +91,6 @@ include = [
     "/pyproject.toml",
 ]
 exclude = [
-    "/versions",
     "/docs",
     "/main.py",
     "/.github",

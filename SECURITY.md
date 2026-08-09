@@ -89,16 +89,13 @@ Add normalization of the input path and validation that it resides within an all
 
 ### Dependabot Alert Policy
 
-This repository keeps snapshots of older versions under `versions/`, so Dependabot alerts may also fire against those archived lockfiles. Given this, we operate Dependabot alerts according to the following policy.
+We operate Dependabot alerts according to the following policy.
 
 **Malware tab**: Always remediate, regardless of where the alert originates.
 
-**Vulnerable**: Follow the table below.
+**Vulnerable**: **Remediate** (update dependencies / open a PR).
 
-| Target | Action |
-|--------|--------|
-| Latest version (repository root) | **Remediate** (update dependencies / open a PR) |
-| Older versions (`versions/`) | **Dismiss**. Review impact and close |
+**Note**: Up to v0.2.1, the repository kept snapshots of older versions under `versions/`, and Dependabot alerts also fired against those archived lockfiles. That directory was removed in 0.3.0 (version management moved to git tags; see the README), so alerts now only fire against manifests at the repository root. Any remaining alerts originating from the removed directory are dismissed and closed after reviewing their impact.
 
 A dismissed alert will not recur for the exact same combination of "manifest × package × CVE", but a new CVE published against the same package will trigger a new alert.
 
