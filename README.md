@@ -168,7 +168,6 @@ code2map/
 │   ├── assets/            # Images and assets
 │   ├── examples/          # Usage examples and sample I/O
 │   └── tests/             # Test plans and results
-├── versions/              # Past version snapshots
 ├── CHANGELOG.md           # Change history
 ├── CONTRIBUTING.md        # Contribution guide
 ├── README.md              # This file (English)
@@ -177,6 +176,24 @@ code2map/
 ├── spec.md                # Technical specification
 └── pyproject.toml         # Project configuration
 ```
+
+## Version Management
+
+Only the latest code is kept at the repository root. Versions are managed with git tags.
+
+- The `main` branch accumulates changes for the next version under the `## [Unreleased]` heading in [CHANGELOG.md](CHANGELOG.md)
+- On release, the version in `pyproject.toml` is confirmed, the heading date is finalized, and a `vX.Y.Z` tag is created
+
+### Using Old Versions
+
+Old versions (v0.1.1–v0.2.0) were previously kept as snapshots under a `versions/` directory. That layout is preserved in the `v0.2.1` tag:
+
+```bash
+git checkout v0.2.1
+# Old versions are under versions/
+```
+
+**Note**: The `v0.2.1` tag serves as the archive reference point for the old layout. Do not delete or move it.
 
 ## Limitations
 

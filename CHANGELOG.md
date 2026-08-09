@@ -24,9 +24,14 @@ Addresses two advisories for the transitive development dependency `cryptography
 - **The runtime is unaffected by either advisory**: `cryptography` is only pulled in via `twine` → `keyring` → `SecretStorage` on Linux, all of which are development dependencies. code2map itself depends only on `tree-sitter` and `tree-sitter-java`, and does not use the PKCS#7 APIs
   - The alert is reported against `uv.lock`, which resolves the full development environment. Users installing code2map do not receive `cryptography`
 
-### Notes
+### Changed
 
-- Retiring the `versions/` directory ([#17](https://github.com/elvezjp/code2map/issues/17)) is part of this release and lands in a separate pull request. No snapshot was added under `versions/` for the change above
+- **Moved version management to git tags** ([#17](https://github.com/elvezjp/code2map/issues/17)): Removed the `versions/` directory that kept snapshots of older versions; only the latest code is now kept at the repository root
+  - Snapshots of old versions (v0.1.1–v0.2.0) are preserved under `versions/` in the `v0.2.1` tag. That tag is the archive reference point for the old layout and must not be deleted or moved
+  - Resolves duplicate Dependabot alerts caused by lockfiles under `versions/`, where the same advisory was reported once per archived manifest
+  - No tags were created retroactively for v0.1.1–v0.2.0. The version recorded in `pyproject.toml` moves back and forth across the history (for example `0.2.0` at `61b5887` predates `0.1.2` at `03448d7`), so the commit corresponding to each release cannot be identified reliably
+  - Added a "Version Management" section to the README (EN/JA) and updated the Dependabot alert policy in SECURITY (EN/JA)
+- Removed `/versions` from the sdist exclude list in `pyproject.toml`
 
 ## [0.2.1] - 2026-05-12
 

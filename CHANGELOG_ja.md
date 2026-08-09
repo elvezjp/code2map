@@ -24,9 +24,14 @@
 - **いずれのアドバイザリもランタイムには影響しません**: `cryptography` は Linux 上で `twine` → `keyring` → `SecretStorage` 経由でのみ導入され、これらはすべて開発依存です。code2map 自体の依存は `tree-sitter` と `tree-sitter-java` のみで、PKCS#7 の API は使用していません
   - アラートは開発環境全体を解決する `uv.lock` に対して報告されたものです。code2map を利用するだけのユーザーに `cryptography` は導入されません
 
-### 補足
+### 変更
 
-- `versions/` ディレクトリの廃止（[#17](https://github.com/elvezjp/code2map/issues/17)）は本リリースに含まれますが、別の PR で対応します。上記の変更について `versions/` へのスナップショット追加は行っていません
+- **バージョン管理を git tag へ移行**（[#17](https://github.com/elvezjp/code2map/issues/17)）: 旧バージョンのスナップショットを保持していた `versions/` ディレクトリを削除し、リポジトリのルートで最新コードのみを管理する方針に変更
+  - 旧バージョン（v0.1.1〜v0.2.0）のスナップショットは `v0.2.1` タグの `versions/` 配下に保存されています。同タグは旧構成のアーカイブ参照点であり、削除・付け替えを行わないでください
+  - `versions/` 配下の lockfile に起因していた Dependabot アラートの重複通知を解消（同一のアドバイザリがアーカイブされた manifest の数だけ報告されていました）
+  - v0.1.1〜v0.2.0 のタグは遡って作成していません。`pyproject.toml` に記録されたバージョンが履歴上で前後しており（例: `61b5887` の `0.2.0` が `03448d7` の `0.1.2` より前）、各リリースに対応するコミットを確実に特定できないためです
+  - README（日英）に「バージョン管理」セクションを追加し、SECURITY（日英）の Dependabot アラート運用方針を更新
+- `pyproject.toml` の sdist 除外リストから `/versions` を削除
 
 ## [0.2.1] - 2026-05-12
 
