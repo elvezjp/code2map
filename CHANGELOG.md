@@ -9,14 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-09
+
+Addresses two advisories for the transitive development dependency `cryptography`, and retires the `versions/` directory in favour of git tags ([#17](https://github.com/elvezjp/code2map/issues/17)). There are no changes to the implementation or to the output of any command.
+
 ### Security
 
-- Raised the floor of the transitive development dependency `cryptography` to
-  `>= 48.0.1` to address [GHSA-537c-gmf6-5ccf](https://github.com/pyca/cryptography/security/advisories/GHSA-537c-gmf6-5ccf)
-  (vulnerable OpenSSL bundled in `cryptography` wheels `< 48.0.1`)
+- **Raised the floor of `cryptography` to `>= 50.0.0`** to address [GHSA-g6cj-pr64-35w5](https://github.com/pyca/cryptography/security/advisories/GHSA-g6cj-pr64-35w5) / [CVE-2026-69247](https://nvd.nist.gov/vuln/detail/CVE-2026-69247) (High): PKCS#7 `EnvelopedData` decryption reported failures in distinguishable ways, exposing a Bleichenbacher oracle against the content-encryption key. Affects `>= 44.0.0, < 50.0.0`
+  - Resolves Dependabot alert #13
+  - Regenerated `uv.lock` (`cryptography` 49.0.0 → 50.0.0)
+- Previously recorded under `[Unreleased]`: raised the floor of `cryptography` to `>= 48.0.1` to address [GHSA-537c-gmf6-5ccf](https://github.com/pyca/cryptography/security/advisories/GHSA-537c-gmf6-5ccf) (vulnerable OpenSSL bundled in `cryptography` wheels `< 48.0.1`)
   - Added a `[tool.uv]` `constraint-dependencies` entry in `pyproject.toml`
-  - Regenerated `uv.lock` (`cryptography` 48.0.0 → 49.0.0)
-  - The runtime is unaffected: `cryptography` is only pulled in via `twine` (dev) on Linux
+  - Superseded by the `>= 50.0.0` constraint above; both advisories are covered by the single constraint now in place
+- **The runtime is unaffected by either advisory**: `cryptography` is only pulled in via `twine` → `keyring` → `SecretStorage` on Linux, all of which are development dependencies. code2map itself depends only on `tree-sitter` and `tree-sitter-java`, and does not use the PKCS#7 APIs
+  - The alert is reported against `uv.lock`, which resolves the full development environment. Users installing code2map do not receive `cryptography`
+
+### Notes
+
+- Retiring the `versions/` directory ([#17](https://github.com/elvezjp/code2map/issues/17)) is part of this release and lands in a separate pull request. No snapshot was added under `versions/` for the change above
 
 ## [0.2.1] - 2026-05-12
 
@@ -179,6 +189,8 @@ This version has the following limitations:
 - [Repository](https://github.com/elvezjp/code2map)
 - [Issue Tracker](https://github.com/elvezjp/code2map/issues)
 
+[0.3.0]: https://github.com/elvezjp/code2map/compare/v0.2.1...v0.3.0
+[0.2.1]: https://github.com/elvezjp/code2map/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/elvezjp/code2map/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/elvezjp/code2map/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/elvezjp/code2map/compare/v0.1.1...v0.1.2

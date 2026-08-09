@@ -9,14 +9,24 @@
 
 ## [未リリース]
 
+## [0.3.0] - 2026-08-09
+
+推移的な開発依存パッケージ `cryptography` の 2 件のアドバイザリに対応し、あわせて `versions/` ディレクトリを廃止して git tag によるバージョン管理へ移行しました（[#17](https://github.com/elvezjp/code2map/issues/17)）。実装および各コマンドの出力に変更はありません。
+
 ### セキュリティ
 
-- 推移的な開発依存パッケージ `cryptography` の下限を `>= 48.0.1` に引き上げ、
-  [GHSA-537c-gmf6-5ccf](https://github.com/pyca/cryptography/security/advisories/GHSA-537c-gmf6-5ccf)
-  に対応（`cryptography` の wheel `< 48.0.1` に脆弱な OpenSSL が同梱されている問題）
+- **`cryptography` の下限を `>= 50.0.0` に引き上げ**、[GHSA-g6cj-pr64-35w5](https://github.com/pyca/cryptography/security/advisories/GHSA-g6cj-pr64-35w5) / [CVE-2026-69247](https://nvd.nist.gov/vuln/detail/CVE-2026-69247)（High）に対応。PKCS#7 `EnvelopedData` の復号処理が失敗内容を区別可能な形で返しており、コンテンツ暗号化鍵に対する Bleichenbacher オラクルとなる問題です。影響範囲は `>= 44.0.0, < 50.0.0`
+  - Dependabot アラート #13 を解消
+  - `uv.lock` を再生成（`cryptography` 49.0.0 → 50.0.0）
+- `[未リリース]` に記録していた分: `cryptography` の下限を `>= 48.0.1` に引き上げ、[GHSA-537c-gmf6-5ccf](https://github.com/pyca/cryptography/security/advisories/GHSA-537c-gmf6-5ccf)（`cryptography` の wheel `< 48.0.1` に脆弱な OpenSSL が同梱されている問題）に対応
   - `pyproject.toml` に `[tool.uv]` の `constraint-dependencies` を追加
-  - `uv.lock` を再生成（`cryptography` 48.0.0 → 49.0.0）
-  - ランタイムには影響なし: `cryptography` は Linux 上で `twine`（開発依存）経由でのみ導入される
+  - 上記 `>= 50.0.0` の制約に包含されるため、現在は 1 つの制約で両方のアドバイザリをカバーしています
+- **いずれのアドバイザリもランタイムには影響しません**: `cryptography` は Linux 上で `twine` → `keyring` → `SecretStorage` 経由でのみ導入され、これらはすべて開発依存です。code2map 自体の依存は `tree-sitter` と `tree-sitter-java` のみで、PKCS#7 の API は使用していません
+  - アラートは開発環境全体を解決する `uv.lock` に対して報告されたものです。code2map を利用するだけのユーザーに `cryptography` は導入されません
+
+### 補足
+
+- `versions/` ディレクトリの廃止（[#17](https://github.com/elvezjp/code2map/issues/17)）は本リリースに含まれますが、別の PR で対応します。上記の変更について `versions/` へのスナップショット追加は行っていません
 
 ## [0.2.1] - 2026-05-12
 
@@ -179,6 +189,8 @@
 - [リポジトリ](https://github.com/elvezjp/code2map)
 - [Issueトラッカー](https://github.com/elvezjp/code2map/issues)
 
+[0.3.0]: https://github.com/elvezjp/code2map/compare/v0.2.1...v0.3.0
+[0.2.1]: https://github.com/elvezjp/code2map/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/elvezjp/code2map/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/elvezjp/code2map/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/elvezjp/code2map/compare/v0.1.1...v0.1.2
