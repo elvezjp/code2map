@@ -1,6 +1,6 @@
 [project]
 name = "code2map"
-version = "0.2.1"
+version = "0.3.0"
 description = "Transform large source code into semantic maps for AI-driven analysis and review"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -48,9 +48,11 @@ dev = [
 
 [tool.uv]
 # Security: raise the floor of the transitive dependency `cryptography`
-# (pulled in via twine -> keyring -> SecretStorage on Linux). Versions < 48.0.1
-# bundle a vulnerable OpenSSL in their wheels (GHSA-537c-gmf6-5ccf).
-constraint-dependencies = ["cryptography>=48.0.1"]
+# (pulled in via twine -> keyring -> SecretStorage on Linux).
+#   - < 48.0.1 bundles a vulnerable OpenSSL in its wheels (GHSA-537c-gmf6-5ccf)
+#   - < 50.0.0 exposes a Bleichenbacher oracle in PKCS#7 EnvelopedData
+#     decryption (GHSA-g6cj-pr64-35w5 / CVE-2026-69247)
+constraint-dependencies = ["cryptography>=50.0.0"]
 
 [project.scripts]
 code2map = "code2map.cli:main"
