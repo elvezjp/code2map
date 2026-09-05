@@ -4,7 +4,6 @@ from pathlib import Path
 from code2map.generators.index_generator import generate_index
 from code2map.generators.map_generator import generate_map
 from code2map.generators.parts_generator import generate_parts
-from code2map.models.symbol import Symbol
 from code2map.parsers.python_parser import PythonParser
 from code2map.utils.file_utils import read_lines
 

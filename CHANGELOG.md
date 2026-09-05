@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Development version 0.4.0: a language-neutral source snapshot, structural hierarchy and lexical dependency graph, exposed through reusable Python APIs.
+- `index`, `pack`, `check`, `tree`, and `show` commands for deterministic whole-source partitioning with enclosing context and explicit budget/parse statuses.
+- PL/SQL, Python AST, and Java Tree-sitter context adapters; mixed-language directory input, strict encoding selection, source coverage and context integrity checks.
+- Adapter and budget-counter protocols, context documentation, and regression tests. The existing `build` CLI and generated output contract are preserved.
+
+### Changed
+
+- Added `python -m code2map` and `--version` entry points.
+- Excluded deliberately non-executable generated fragments and malformed parser fixtures from Ruff checks.
+
+
 ## [0.3.0] - 2026-08-09
 
 Addresses two advisories for the transitive development dependency `cryptography`, and retires the `versions/` directory in favour of git tags ([#17](https://github.com/elvezjp/code2map/issues/17)). There are no changes to the implementation or to the output of any command.

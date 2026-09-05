@@ -12,6 +12,23 @@ A CLI tool that transforms large source code into "semantic maps (index + code p
 
 ![Input/Output Example](docs/assets/example.png)
 
+## Context-aware partitioning (0.4.0 development)
+
+The next version adds a reusable engine that indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, and Java, including directories with mixed languages. The existing `build` command and its output format remain available.
+
+```bash
+uv run code2map index examples --output output/index.json
+uv run code2map tree output/index.json --depth 3
+uv run code2map pack output/index.json --output output/pack.json --budget-bytes 16000
+uv run code2map check output/index.json --pack output/pack.json
+```
+
+Each packet carries an exact target range, enclosing headers, lexical dependency candidates, and exception-region references. Targets reconstruct every indexed source exactly once; supporting context is separate. No source execution, LLM, or database connection is needed.
+
+The CLI budget counts the **entire payload in UTF-8 bytes**, not model tokens. A custom model counter can be supplied through the Python API. Indivisible oversized regions and parse failures are reported explicitly. A `ready` packet fits the budget; it does not imply complete semantic analysis.
+
+See the [context engine guide](docs/context/README.md) for the API, extension contracts, limitations, and migration from 0.3.0.
+
 ## Use Cases
 
 - **AI Code Review**: Split large files into AI-friendly units to improve review accuracy
@@ -197,7 +214,7 @@ git checkout v0.2.1
 
 ## Limitations
 
-- **Single File Processing**: Currently processes one file at a time (batch directory processing planned)
+- **`build` processes a single file**: Use `index` for directory-wide context indexing
 - **Static Analysis Only**: Cannot detect dynamic dispatch or reflection
 - **Supported Languages**: Python and Java only (more languages planned)
 

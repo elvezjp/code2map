@@ -12,6 +12,23 @@
 
 ![Input/Output Example](docs/assets/example.png)
 
+## 文脈付き分割（0.4.0 開発版）
+
+次版では、原文全体を先に索引化し、予算に応じて文脈付きの入力を組み立てる共通エンジンを追加しました。PL/SQL・Python・Java、およびこれらが混在するディレクトリに対応します。既存の`build`コマンドと出力形式も継続して利用できます。
+
+```bash
+uv run code2map index examples --output output/index.json
+uv run code2map tree output/index.json --depth 3
+uv run code2map pack output/index.json --output output/pack.json --budget-bytes 16000
+uv run code2map check output/index.json --pack output/pack.json
+```
+
+各packetは対象原文、外側の条件・宣言、依存候補、例外領域の参照を持ちます。対象範囲を連結すると全原文を重複・欠落なく復元できます。補足文脈は対象とは別に保持します。入力ソースの実行、LLMやDBへの接続は行いません。
+
+CLIの予算は**payload全文のUTF-8バイト数**です。モデルのトークン数ではありません。Python APIではモデル固有のカウンターへ差し替えられます。分割不能な巨大範囲や解析不能範囲は状態として明示します。`ready`は予算内という意味で、完全な意味解析を保証しません。
+
+[共通エンジンの利用ガイド](docs/context/README.md)、[設計](docs/context/architecture.md)、[データ契約](docs/context/contracts.md)、[対応範囲](docs/context/limitations.md)を参照してください。
+
 ## ユースケース
 
 - **AIコードレビュー**: 大規模ファイルをAIが理解しやすい単位に分割し、レビュー精度を向上
@@ -195,7 +212,7 @@ git checkout v0.2.1
 
 **注意**: `v0.2.1` タグは旧構成のアーカイブ参照点のため、削除・付け替えを行わないでください。
 
-## 制限事項
+## `build`コマンドの制限事項
 
 - **単一ファイル対応**: 現在は1ファイルずつの処理（ディレクトリ一括は今後対応予定）
 - **静的解析のみ**: 動的ディスパッチやリフレクションは検出不可

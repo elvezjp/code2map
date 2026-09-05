@@ -1,6 +1,6 @@
 [project]
 name = "code2map"
-version = "0.3.0"
+version = "0.4.0"
 description = "Transform large source code into semantic maps for AI-driven analysis and review"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -88,13 +88,18 @@ include = [
     "/SECURITY.md",
     "/SECURITY_ja.md",
     "/spec.md",
+    "/docs/context",
+    "/examples",
     "/pyproject.toml",
 ]
 exclude = [
-    "/docs",
     "/main.py",
     "/.github",
     "/.claude",
     "**/__pycache__",
     "**/*.pyc",
 ]
+
+[tool.ruff]
+# Fragments and parser-error fixtures are intentionally not standalone Python.
+extend-exclude = ["docs/examples", "tests/fixtures"]

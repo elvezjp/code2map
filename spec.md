@@ -1,3 +1,5 @@
+> 0.4.0開発版: この文書は既存の`build`コマンドの仕様です。新しい`index` / `pack` / `check` / `tree` / `show`とPython APIの仕様は[共通エンジンガイド](docs/context/README.md)と[データ契約](docs/context/contracts.md)を参照してください。両者のJSON形式は異なり、旧`MAP.json`を`pack`に渡すことはできません。
+
 # code2map 仕様書
 
 ## 1. 概要

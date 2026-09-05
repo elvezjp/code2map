@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 from typing import List
 
+from code2map.context.cli import add_commands, run as run_context
+from code2map._version import __version__
 from code2map.generators.index_generator import generate_index
 from code2map.generators.map_generator import generate_map
 from code2map.generators.parts_generator import generate_parts
@@ -37,6 +39,7 @@ def _parser_for(lang: str):
 
 def _build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="code2map")
+    parser.add_argument("--version", action="version", version=f"code2map {__version__}")
     sub = parser.add_subparsers(dest="command")
 
     build = sub.add_parser("build", help="Generate INDEX.md, parts, and MAP.json")
@@ -47,6 +50,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     build.add_argument("--verbose", action="store_true")
     build.add_argument("--dry-run", action="store_true")
 
+    add_commands(sub)
     return parser
 
 
@@ -61,9 +65,13 @@ def _print_dry_run(symbols, parts: List[str], input_file: str) -> None:
     print("- MAP.json")
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> int:
+    """Run the CLI, preserving build command exit behavior."""
     parser = _build_arg_parser()
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+
+    if args.command in {"index", "pack", "check", "show", "tree"}:
+        return run_context(args)
 
     if args.command != "build":
         parser.print_help()
@@ -114,4 +122,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
