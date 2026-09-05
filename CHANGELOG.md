@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Completed paired English/Japanese context documentation and build specifications; corrected command scope, development-branch setup, checksum definitions and CLI reference details.
+
 - Added `python -m code2map` and `--version` entry points.
 - Excluded deliberately non-executable generated fragments and malformed parser fixtures from Ruff checks.
 

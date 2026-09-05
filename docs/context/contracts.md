@@ -1,45 +1,54 @@
-# データ契約と拡張
+# Data contracts and extensions
 
-## 位置
+[English](contracts.md) | [日本語](contracts_ja.md)
 
-全ての`start`／`end`は、デコード後の原文に対する**Unicode文字オフセット、0始まり、終端を含まない範囲**。バイト位置ではない。表示用の行番号は1始まり。CRLFは2文字として原文に保持する。日本語を含むPython ASTのバイト列位置は文字位置に変換する。
+## Positions
+
+All `start` and `end` fields are **zero-based Unicode character offsets into decoded source, with an exclusive end**. They are not byte offsets. Displayed line numbers are one-based. CRLF remains two characters. Python AST and Java CST byte offsets are converted to character offsets.
 
 ## Index schema 1
 
-| 項目 | 内容 |
+| Field | Contents |
 | --- | --- |
-| `generator`, `runtime`, `adapters` | 生成器・実行環境・アダプターの版 |
+| `schema_version` | `1`, independently of the package version |
+| `generator`, `runtime`, `adapters` | Generator, Python runtime and adapter versions |
 | `sources` | `id`, `path`, `encoding`, `original_sha256`, `text_sha256`, `text`, `adapter` |
-| `nodes` | `id`, `source_id`, `parent_id`, `kind`, `name`, `symbol`, `start`, `end`, `header_end`, 行番号, `confidence` |
-| `edges` | `owner_id`, `source_id`, 根拠範囲, `kind`, `symbol`, `target_ids`, `resolution`, `evidence` |
-| `diagnostics` | ソースID、範囲、コード、説明 |
+| `nodes` | `id`, `source_id`, `parent_id`, `kind`, `name`, `symbol`, `start`, `end`, `header_end`, `start_line`, `end_line`, `confidence` |
+| `edges` | `id`, `owner_id`, `source_id`, `start`, `end`, `kind`, `symbol`, `target_ids`, `resolution`, `evidence` |
+| `diagnostics` | `source_id`, `start`, `end`, `code`, `message` |
 
-各ソースに全文を覆うfileノードが1つある。兄弟ノードは重複しない。子は親の範囲に含まれる。子ノードの間の空白やコメントを木に登録する必要はなく、分割器が隙間を保存する。
+Each source has one covering file root. Siblings do not overlap and children lie within their parent. Adapters need not register whitespace or comments as nodes; the partitioner preserves those gaps.
 
-辺の`kind`は初版では`call`、`reference`、`jump`。`resolution`は`candidate`（候補1つ）、`ambiguous`（候補複数）、`unresolved`。元コードの参照位置を保持する。名前の一致は意味解析や到達性の証明ではない。
+`original_sha256` hashes the original bytes; `text_sha256` hashes the decoded text encoded as UTF-8. For example, decoding with `utf-8-sig` removes the BOM from stored text. Text reconstruction therefore preserves the decoded source, not necessarily the original encoded bytes.
+
+Edge kinds are `call`, `reference` and `jump`. Resolution is `candidate` for one target, `ambiguous` for multiple targets, and `unresolved` for none. Source evidence ranges are retained. Unresolved calls/jumps are retained; ordinary references without candidates are omitted from the graph. Name matching is not semantic resolution or proof of reachability.
 
 ## Pack schema 1
 
-`policy`はアルゴリズム版、カウンターID、予算、予約枠、依存文脈数上限を持つ。
+The top level contains `schema_version`, `index_sha256`, `policy`, `packets` and `summary`. `policy` records algorithm, counter identity, budget, reserve and dependency excerpt limit. The package version and these schema versions are independent.
 
-各packetは対象範囲、ID、状態、使用量、payloadハッシュ、`payload`文字列、`omitted_context`を持つ。
+Each packet has `id`, `source_id`, `start`, `end`, `status`, `budget_used`, `payload_sha256`, a serialized `payload` string and `omitted_context`.
 
-payload内の項目：
+Payload fields:
 
-- `target`：解析対象の原文。全packetを通して欠落なく一度ずつ担当する。
-- `enclosing_context`：対象が属する構造の原文ヘッダー。
-- `relations`：対象内に根拠位置を持つ依存候補。同じkind・symbol・target_ids・resolutionの辺をまとめ、`occurrences`に全ての`[start, end]`を保持する。予算の都合で削らない。
-- `exception_regions`：外側の例外領域への参照。適用の詳細は利用側で確認する。
-- `dependency_context`：追加で添付した宣言やシグネチャ。呼出先全文が含まれるとは限らない。
-- `diagnostics`：対象と交差する解析不能範囲。
+- `index_sha256`: identifies the locked input snapshot.
+- `instruction`: states the target scope and interpretation limits.
+- `target`: exact source excerpt; targets cover every indexed source once.
+- `enclosing_context`: original headers of structures enclosing the target.
+- `relations`: candidates with evidence positions inside the target. Edges with equal kind, symbol, target IDs and resolution are grouped; `occurrences` retains every `[start, end]`. Relations are not removed to save budget.
+- `exception_regions`: references to enclosing exception regions; consumers must assess applicability.
+- `dependency_context`: optional declarations or signatures; a callee's full body is not necessarily attached.
+- `diagnostics`: reported parse problems intersecting the target.
 
-状態は`ready`、`opaque`、`oversized`。サイズ超過と構造不明が重なる場合、状態は`oversized`になり、構造不明はpayloadのdiagnosticsに残る。
+Statuses are `ready`, `opaque` and `oversized`. If a region is both unknown and too large, its status is `oversized`, with parse problems still recorded in payload diagnostics. `ready` means no reported diagnostic intersects the target and the payload fits; it does not establish complete semantic understanding.
 
-payloadハッシュは文字列そのもののSHA-256。整形し直すと変わる。予算もこの文字列全体に対して検証する。
+`omitted_context` is outside the payload. It records `node_id` and `reason` (`budget` or `dependency_limit`). Consumers should inspect it along with relations before sending a payload to an LLM. `summary` counts packets and each status.
 
-## 言語アダプター
+`payload_sha256` hashes the exact payload string. Reformatting changes it. Budget validation measures that same complete string. `index_sha256` hashes the canonical index serialization: sorted JSON keys, two-space indentation, unescaped Unicode and a final LF.
 
-`code2map.context.Adapter` Protocolを満たすオブジェクトを`build_index(..., adapters=[...])`へ渡す。
+## Language adapters
+
+Pass objects implementing `code2map.context.Adapter` to `build_index(..., adapters=[...])`. This list replaces the built-ins.
 
 ```python
 from code2map.context import Node, Parsed
@@ -58,12 +67,12 @@ class WholeFileAdapter:
                                     "start": 0, "end": len(text)}])
 ```
 
-構文対応後は、位置を持つchildrenと`Reference(kind, symbol, start, end)`を返す。スコープとして扱う共通kindは`file`, `package_body`, `package_spec`, `function`, `procedure`, `class`, `block`。その他のkindは範囲の階層を表す。
+Once syntax is supported, return positioned children and `Reference(kind, symbol, start, end)`. Common scope kinds are `file`, `package_body`, `package_spec`, `function`, `procedure`, `class` and `block`. Other kinds express interval hierarchy.
 
-`header_end`は周辺文脈として必要なヘッダーの終端。本文全体を指定すると、分割後の文脈が巨大になるので注意する。認識不能な範囲は`opaque`とdiagnosticsの両方を返す。
+`header_end` marks the end of source needed as enclosing context. Including an entire body can make every split payload large. Unrecognized regions must have both an `opaque` node and diagnostics.
 
-外部アダプターは信頼されたPythonコードとして動く。code2mapはその実装をサンドボックス化しない。
+Custom adapters execute as trusted Python code; code2map does not sandbox them.
 
-## カウンター
+## Counters
 
-`identity: str`と`count(text) -> int`を実装する。返す値は0以上の整数。カウンターの挙動は決定論的でなければならない。検査時も同じ実装を渡す。異なるカウンターIDでの検査は拒否する。
+Implement `identity: str` and `count(text) -> int`, returning a nonnegative integer. Behavior must be deterministic. Include implementation, vocabulary revision and configuration in the identity, and supply the same implementation during validation. A different identity is rejected. The default `UTF8Bytes` counter counts UTF-8 bytes; it is not a token estimate.

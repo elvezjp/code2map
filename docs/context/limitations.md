@@ -1,45 +1,47 @@
-# 対応範囲と残課題
+# Supported behavior and remaining work
 
-## 初版で確かめられること
+[English](limitations.md) | [日本語](limitations_ja.md)
 
-- 原文の保存、構造に沿った分割、対象範囲の欠落・重複の検査
-- 固定した環境・アダプター・設定・カウンターからの再生成一致
-- 入力サイズに収まるか、分割不能な範囲が残るか
-- どの原文ヘッダー・依存先の宣言を添付したか
-- どの呼出しが未解決／曖昧か、どの依存文脈が省略されたか
+## What this version can establish
+
+- Source preservation, structural partitioning and detection of target gaps/overlaps
+- Reproducible output with a fixed environment, adapters, settings and counter
+- Whether a payload fits or an indivisible oversized region remains
+- Which original headers and dependency declarations were attached
+- Which calls are unresolved/ambiguous and which supporting excerpts were omitted
 
 ## PL/SQL
 
-字句解析と手続き構造のスキャナーであり、Oracleコンパイラではない。SQL文の内部はセミコロンまでの一単位として扱う。Oracleの全バージョン・全構文を受理する保証はない。
+The adapter is a lexical/procedural structure scanner, not the Oracle compiler. SQL statements are treated as units up to their terminator. Support for every Oracle version and grammar construct is not guaranteed.
 
-SQL*Plusコマンド、条件付きコンパイル、Java外部手続き、特殊なDDL／トリガー、SQL内のローカル関数等は対応対象外。失敗を検知したスクリプト単位は原文を`opaque`として残す。構文を受理できた場合でも`structural`という確度を持ち、Oracleでの妥当性や意味を保証しない。
+SQL*Plus commands, conditional compilation, external Java procedures, specialized DDL/triggers and local functions inside SQL are outside the supported scope. When a failure is detected, the affected script unit is preserved as `opaque`. Accepted structures use `structural` confidence; acceptance does not prove Oracle validity or semantics.
 
-参照候補は名前と字句スコープから探す。括弧を伴う識別子が型・配列アクセスである場合もcall候補になり得る。オーバーロード、シノニム、DBリンク、動的呼出し、権限、パッケージ状態の実行時変化は解決しない。PL/Scope取込みはまだない。
+Candidates come from names and lexical scopes. An identifier followed by parentheses can be a type or array access and still appear as a call candidate. Overloads, synonyms, database links, dynamic calls, privileges and runtime changes in package state are not resolved. PL/Scope import is not implemented.
 
 ## Python
 
-実行中のPythonが解析できる構文を標準ASTで扱う。import先の実ロード、動的属性、デコレーターの効果、モンキーパッチ、型推論は行わない。変数の参照は字句上の候補であり、代入順序やglobal／nonlocalの完全な意味解析ではない。
+The running interpreter's standard AST handles the syntax it supports. Imports are not loaded; dynamic attributes, decorator effects, monkey-patching and type inference are not analyzed. Variable references are lexical candidates, not complete assignment-order or `global`/`nonlocal` binding analysis.
 
 ## Java
 
-Tree-sitter CSTでクラス、メソッド、コンストラクター、引数、ブロック、IF／ELSE、ループ、switch文、catch／finallyを扱う。構文エラーを含むファイルは全体を`opaque`として保持する。
+Tree-sitter CST handles classes, methods, constructors, parameters, blocks, IF/ELSE, loops, switch statements and catch/finally. A file with syntax errors is preserved entirely as `opaque`.
 
-型解決、継承、動的ディスパッチ、import先の探索は行わない。`this.method()`等の修飾呼出しやジェネリック型のコンストラクターは未解決になり得る。ラムダや式中のswitch、匿名クラス等の内部は独立した分割対象にしない。do-whileは末尾条件を失わないよう全体を分割不能な単位として扱う。巨大なら`oversized`になる。
+The adapter does not resolve types, inheritance, dynamic dispatch or imported files. Qualified calls such as `this.method()` and generic constructor types can remain unresolved. Lambdas, switch expressions nested inside expressions and anonymous classes are not independently partitioned. Do-while is indivisible so its trailing condition is retained; a large one is `oversized`.
 
-JavaのTree-sitter本体と文法パッケージの版を索引へ記録する。再現実行にはPython版・依存パッケージ・入力・設定の固定が必要。
+The index records Tree-sitter and Java grammar versions. Reproduction requires fixed Python, dependency versions, input and settings.
 
-## 文脈・意味理解
+## Context and semantic understanding
 
-依存先は主に宣言やシグネチャを添付する。関数が何を更新し、何を送出するかの要約は生成しない。元ソースに材料がなければ外部依存は未解決のまま。
+Supporting excerpts are mainly declarations and signatures. The engine does not generate summaries of callee updates or thrown exceptions. External dependencies remain unresolved when supporting source is unavailable.
 
-例外領域への参照は構造上の包含に基づく候補。内側の例外捕捉・再送出を含む正確な適用関係は別の検証が必要。
+Exception references are based on structural containment. Exact applicability, including inner handlers and rethrows, requires additional analysis.
 
-`ready`でも添付できなかった依存文脈はあり得る。利用側が`omitted_context`とrelationsを確認し、必要なら`show`または索引の原文から追加取得する。追加取得による予算管理は利用側で行う。
+Even `ready` packets may omit supporting excerpts. Consumers should inspect `omitted_context` and relations, then use `show` or the snapshot for additional source when needed. Consumers are responsible for budgeting any additional retrieval.
 
-## 次の優先順位
+## Next priorities
 
-1. 実PL/SQLの互換性コーパスを増やし、認識不能範囲と境界誤認を減らす。
-2. PL/Scope／コンパイラ根拠を受け付け、字句候補と区別して共存させる。
-3. ブロック間のread/writeと制御フローを別の辺として追加する。
-4. 利用側のブロック説明・全体統合を実測し、文脈の選択順序を改善する。
-5. 公開API／schemaの安定化、実案件の評価コーパスと利用例の拡充。
+1. Expand real PL/SQL compatibility corpora to reduce unrecognized regions and incorrect boundaries.
+2. Accept PL/Scope/compiler evidence alongside, and distinctly from, lexical candidates.
+3. Add read/write and control-flow relationships between blocks.
+4. Evaluate downstream block explanations and whole-program synthesis to improve context selection.
+5. Stabilize public APIs/schemas and expand evaluation corpora and usage examples.

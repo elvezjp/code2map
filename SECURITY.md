@@ -4,6 +4,8 @@
 
 ## Supported Versions
 
+Version 0.4.0 is currently unreleased on a development branch. The table below describes released versions.
+
 Security updates are provided for the following versions. We recommend using the latest version.
 
 | Version | Supported          |

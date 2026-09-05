@@ -1,52 +1,54 @@
-# 設計
+# Architecture
 
-## 共通の地図を先に作る
+[English](architecture.md) | [日本語](architecture_ja.md)
 
-分割器を巨大関数への応急処置にしない。入力全体の原文・構造・依存候補を共通索引に保存し、関数単位、ブロック単位、複数ファイル間の関係を同じIDで参照する。
+## Build a common map first
 
-レイヤーは次の4つ。
+The partitioner works from a common index of the entire input: source snapshots, structural hierarchy and dependency candidates. Functions, blocks and cross-file relationships use the same node IDs.
 
-1. **言語アダプター**：ソースを読み、位置付きの木と参照候補を返す。
-2. **共通索引**：相対パス、原文ハッシュ、安定ID、階層、依存候補の照合を管理する。
-3. **入力の組立て**：構造に沿って分割し、祖先の条件・依存先の宣言・例外領域を添える。
-4. **検査**：木の整合性、原文一致、全範囲の網羅、予算を検証する。
+There are four layers:
 
-LLM、埋め込み、ベクトルDB、特定の推論APIに依存しない。共通索引の木と辺は、将来コンパイラ由来のアダプターからも供給できる。
+1. **Language adapters** read source and return a tree with positions and reference candidates.
+2. **The common index** manages relative paths, source hashes, reproducible IDs, hierarchy and lexical candidate matching.
+3. **Packing** partitions at structural boundaries and adds enclosing headers, dependency declarations and exception-region references.
+4. **Validation** checks tree consistency, exact source excerpts, target coverage and budgets.
 
-## 決定論の範囲
+The engine has no dependency on an LLM, embeddings, a vector database or a particular inference API. Future compiler-backed adapters can supply the same tree and edge representation.
 
-索引には時刻・絶対パスを入れない。ソースの相対パスと原文ハッシュでsource IDを作り、source ID・種別・範囲・名前でnode IDを作る。ソースが変わればそのソースのID群は変わる。編集をまたぐID追跡は保証しない。
+## Scope of determinism
 
-Python ASTは実行環境に依存するためPythonの版を記録する。アダプターの実装版、トークナイザーの語彙・設定、分割設定も固定する。これらが同じなら出力はバイト単位で再現する。
+The index excludes timestamps and absolute paths. Source IDs depend on the relative path and decoded-text hash. Node IDs depend on source ID, kind, range and name. Editing a source changes its IDs; tracking identities across edits is not guaranteed.
 
-ハッシュは材料の同一性を確認するもので、誰が作ったかを証明する署名ではない。
+Python AST behavior depends on the interpreter, so its version is recorded. Java records Tree-sitter and grammar versions. Fix source bytes, encoding, relative paths, runtime and adapter implementations, tokenizer vocabulary/options and packing settings to reproduce output byte for byte. Custom adapters and counters must themselves behave deterministically.
 
-## 分割の規則
+Hashes establish content consistency, not authorship or authenticity.
 
-1. ノード全体と必要な文脈が入力予算に収まれば、そのまま候補にする。
-2. 収まらなければ子ノードと、その前後の原文の隙間に分けて再帰する。
-3. 子を持たない範囲は切り刻まない。予算超過なら`oversized`として返す。
-4. 隣接する候補を先頭から貪欲にまとめ、まとめ直したpayload全文のサイズで判定する。
-5. 余力があれば依存先の宣言やシグネチャを付ける。件数・予算で省略したものはIDと理由を残す。
+## Partitioning rules
 
-隙間にはコメント、空白、構造の開始・終了、SQL*Plus区切りなどが含まれる。すべて保存し、全packetの対象範囲を連結すると原文が完全に復元される。補足文脈は対象の網羅性に数えない。
+1. If a whole node and mandatory context fit the input budget, keep that range as a candidate.
+2. Otherwise recurse through its children, preserving the source gaps before, between and after them.
+3. Do not cut a range with no children into arbitrary pieces. Return `oversized` if it exceeds the budget.
+4. Greedily merge adjacent candidates from left to right, measuring the entire rebuilt payload each time.
+5. Use remaining space for dependency declarations or signatures. Record the node ID and reason for every excerpt omitted by budget or count.
 
-巨大な単一SQL、長い文字列、巨大なヘッダーや認識不能領域は上限を超え得る。その場合にサイズを偽って成功扱いにしない。
+Gaps include comments, whitespace, opening/closing syntax and SQL*Plus separators. Concatenating packet targets in source order reconstructs each decoded source completely. Supporting context does not count toward target coverage.
 
-## 文脈と依存関係
+A single large SQL statement, literal, header or unrecognized region can exceed the budget. Such a range is retained with an explicit status.
 
-対象範囲が祖先ノードの一部なら、祖先の原文ヘッダーを添える。IFのELSE側でも外側のIF条件とELSEの位置を失わない。例外領域は参照を必ず残し、全文が収まれば追加する。
+## Context and dependencies
 
-依存辺は字句から抽出するため、実行時の到達性、呼出先のオーバーロード、変数の最終代入元、例外の伝播を確定しない。`candidate`であっても意味的な解決完了ではない。変数名が一致したことをデータフローの証明にしない。
+When a target covers only part of an ancestor, its source header is attached. A split inside an ELSE branch retains the enclosing IF condition and ELSE position. Applicable structural exception-region references are retained; handler source is added when budget and dependency-count limits permit.
 
-局所的な「更新なし」「例外なし」をファイル全体の性質へ一般化しない。入力payloadにも解析範囲を明記する。最終的な全体理解は、利用側が複数ブロックの結果と必要な原文を再確認して行う。
+Lexical edges do not establish runtime reachability, overload selection, a variable's reaching definition or exception propagation. Even a single `candidate` is not a resolved semantic binding. Matching variable names is not proof of data flow.
 
-## 後から拡張する境界
+Do not generalize a local finding such as “no updates” or “no exceptions” to the whole file. The payload states the target scope. Consumers must combine block results and re-examine source as needed for whole-program understanding.
 
-- コンパイラ／Tree-sitter等によるアダプターへの置換
-- PL/Scope等の外部根拠に基づく辺の追加
-- read/write、reaching definitions、制御フロー、トランザクション情報
-- APIでの予算付きの原文追加取得と、目的ごとの依存先優先順位
-- 差分索引と編集をまたぐノード対応付け
+## Extension boundaries
 
-これらは初版の成果物と区別し、実装前にschema／アダプターの版を更新する。
+- Additional compiler-backed or Tree-sitter adapters
+- Edges supported by external evidence such as PL/Scope
+- Read/write, reaching definitions, control flow and transaction information
+- Budgeted source retrieval and task-specific dependency priorities
+- Incremental indexing and node correspondence across edits
+
+These are future extensions. Version schema or adapter changes as appropriate before introducing incompatible behavior.
