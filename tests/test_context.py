@@ -115,6 +115,36 @@ class MapTest(unittest.TestCase):
                     self.assertNotRegex(line, r"^\s+$", "packet keeps a whitespace-only line")
         self.assertGreater(max(counts), 1, "the small budgets must actually split the procedure")
 
+    def test_aligned_span_is_used_for_the_fit_decision(self):
+        # The raw keyword span of a child can fit the budget while its line-aligned
+        # span (indentation plus a trailing comment) does not. The fit decision must
+        # use the aligned span, so such a child is split into its own children
+        # instead of being emitted whole as an oversized packet (elvezjp/code2map#27).
+        from code2map.context.packing import _payload_builder
+
+        body = "".join(f"        x := x + {n};  -- step {n}\n" for n in range(40))
+        text = (
+            "create or replace package body pkg is\n"
+            "    procedure p is\n        x number := 0;\n    begin\n"
+            + body
+            + "    end p;  -- " + "trailing note " * 20 + "\n"
+            + "end pkg;\n/\n"
+        )
+        i = self.index_text(text)
+        base_payload = _payload_builder(i)[0]
+        proc = next(n for n in i["nodes"] if n["kind"] == "procedure")
+        raw_cost = len(canonical(base_payload(proc["source_id"], proc["start"], proc["end"])).encode("utf-8"))
+        reserve = 100
+        p = pack_index(i, budget=raw_cost + reserve, reserve=reserve)
+        validate_pack(i, p)
+        assert_line_aligned(self, i, p)
+        self.assertEqual(p["summary"]["oversized"], 0, "a splittable child must not be emitted oversized")
+        inside = [
+            k for k in p["packets"]
+            if k["start"] < proc["end"] and proc["start"] < k["end"]
+        ]
+        self.assertGreater(len(inside), 1, "the procedure must be split into line-aligned packets")
+
     def test_split_preserves_enclosing_guards_and_else(self):
         text = (
             "BEGIN\nFOR i IN 1..10 LOOP\nIF i > 5 THEN\n"
