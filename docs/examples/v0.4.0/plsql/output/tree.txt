@@ -1,0 +1,18 @@
+file accounting.sql L1-37 [syntax] 472f3ab66f3ea6a73f88f585
+  package_spec ACCOUNTING L1-5 [structural] 62ecf10bfdb4cdc5b86480f4
+    declaration G_TOTAL L2-2 [structural] 3c9afccc8e4de7de1dd87f59
+    declaration ADJUSTED L3-3 [structural] 6b7ce3ca8c657148e4216eae
+    declaration CALCULATE L4-4 [structural] 3c4f0aa84761bc534b395c3f
+  package_body ACCOUNTING L7-36 [structural] af5167aa8b45309c7b6ba52a
+    declaration G_TOTAL L8-8 [structural] 2bc64c7cce5afc0aa96c6630
+    function ADJUSTED L10-13 [structural] bfb88b756ff69f1e569c2f2d
+      statement RETURN L12-12 [structural] acf20eca15d4183c12f3af45
+    procedure CALCULATE L15-33 [structural] 2419888b5548c934d6ab0ad2
+      declaration V_AMOUNT L16-16 [structural] 8e874c4f90b4e7a6e50269f7
+      statement G_TOTAL L18-18 [structural] f07e0b7c983cd370f27e1444
+      control FOR L19-26 [structural] 553a9f9041887eed849d56af
+      statement INSERT L27-27 [structural] 16dafc10260a16975eedd85b
+      statement COMMIT L28-28 [structural] 0a71db010a2f29db180bb2d0
+      exception EXCEPTION L29-32 [structural] 511efda908d4f3a2680e22dc
+    initialization initialization L34-36 [structural] 2189964cc457400ce4a06a34
+      statement G_TOTAL L35-35 [structural] c6273778cd9cd34ddf316a22

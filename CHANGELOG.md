@@ -11,16 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Development version 0.4.0: a language-neutral source snapshot, structural hierarchy and lexical dependency graph, exposed through reusable Python APIs.
+- 0.4.0: a language-neutral source snapshot, structural hierarchy and lexical dependency graph, exposed through reusable Python APIs.
 - `index`, `pack`, `check`, `tree`, and `show` commands for deterministic whole-source partitioning with enclosing context and explicit budget/parse statuses.
 - PL/SQL, Python AST, and Java Tree-sitter context adapters; mixed-language directory input, strict encoding selection, source coverage and context integrity checks.
 - Adapter and budget-counter protocols, context documentation, and regression tests. The existing `build` CLI and generated output contract are preserved.
+- **Output samples for v0.4.0** under `docs/examples/v0.4.0/`. The Java and Python `build` outputs match v0.3.0 apart from the `original:` line, with `INDEX.md` and `MAP.json` byte-for-byte identical; the PL/SQL sample records the context engine (`index` / `pack` / `tree` / `check`) output.
 
 ### Changed
 
 - Packet boundaries produced by `pack_index` are aligned to whole lines: a child span that begins after indentation or ends before a trailing comment no longer leaves a partial line in the neighbouring packet ([#27](https://github.com/elvezjp/code2map/issues/27)). Packet identities change for sources where a boundary moved.
 
-- Completed paired English/Japanese context documentation and build specifications; corrected command scope, development-branch setup, checksum definitions and CLI reference details.
+- Completed paired English/Japanese context documentation and build specifications; corrected command scope, setup steps, checksum definitions and CLI reference details.
 
 - Added `python -m code2map` and `--version` entry points.
 - Excluded deliberately non-executable generated fragments and malformed parser fixtures from Ruff checks.

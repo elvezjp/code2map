@@ -12,9 +12,9 @@ A Python library and CLI that indexes source structure and assembles context-awa
 
 ![Input/Output Example](docs/assets/example.png)
 
-## Context-aware partitioning (0.4.0 development)
+## Context-aware partitioning (0.4.0, unreleased)
 
-Development version 0.4.0 on branch `codex/20260905-context-partitioning` adds a reusable engine that indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, and Java, including directories with mixed languages. The existing `build` command and its output format remain available.
+The unreleased version 0.4.0 adds a reusable engine that indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, and Java, including directories with mixed languages. The existing `build` command and its output format remain available.
 
 Run at the repository root after [setup](#setup).
 
@@ -65,7 +65,7 @@ IXV delivers a methodology and OSS that put AI to practical use in real developm
 - [SECURITY.md](SECURITY.md) - Security policy
 - [spec_en.md](spec_en.md) - Existing `build` specification
 - [examples/](examples/) - PL/SQL, Python and Java context-engine samples
-- [docs/examples/](docs/examples/) - `build` I/O samples from previous releases
+- [docs/examples/](docs/examples/) - Sample inputs and outputs for `build` and the context engine, per release
 
 ## Setup
 
@@ -80,9 +80,6 @@ IXV delivers a methodology and OSS that put AI to practical use in real developm
 # Clone the repository
 git clone https://github.com/elvezjp/code2map.git
 cd code2map
-
-# Select the unreleased 0.4.0 development branch
-git switch codex/20260905-context-partitioning
 
 # Install dependencies with uv (virtual environment created automatically)
 uv sync --locked --all-extras
@@ -140,7 +137,7 @@ For details, see `uv run code2map build --help`.
 
 ### INDEX.md
 
-This is a schematic formatting example. See [previous-release samples](docs/examples/) for generated output.
+This is a schematic formatting example. See the [samples](docs/examples/) for generated output.
 
 ```markdown
 # Index: user_management.py

@@ -1,4 +1,4 @@
-# 0.4.0開発ブランチの検証記録
+# 0.4.0の検証記録
 
 [English](validation.md) | [日本語](validation_ja.md)
 

@@ -2,7 +2,7 @@
 
 [English](spec_en.md) | [日本語](spec.md)
 
-This document describes the existing `build` workflow retained in the 0.4.0 development version. For `index` / `pack` / `check` / `tree` / `show` and the Python API, see the [context guide](docs/context/README.md) and [data contracts](docs/context/contracts.md). A legacy `MAP.json` cannot be used as input to `pack`.
+This document describes the existing `build` workflow retained in version 0.4.0. For `index` / `pack` / `check` / `tree` / `show` and the Python API, see the [context guide](docs/context/README.md) and [data contracts](docs/context/contracts.md). A legacy `MAP.json` cannot be used as input to `pack`.
 
 ## 1. Purpose and scope
 

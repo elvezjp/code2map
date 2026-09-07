@@ -2,7 +2,7 @@
 
 [English](spec_en.md) | [日本語](spec.md)
 
-この文書は0.4.0開発版に継承した`build`の仕様です。新しい`index`／`pack`／`check`／`tree`／`show`とPython APIは[共通エンジンガイド](docs/context/README_ja.md)および[データ契約](docs/context/contracts_ja.md)を参照してください。旧`MAP.json`は`pack`の入力には使えません。
+この文書は0.4.0に継承した`build`の仕様です。新しい`index`／`pack`／`check`／`tree`／`show`とPython APIは[共通エンジンガイド](docs/context/README_ja.md)および[データ契約](docs/context/contracts_ja.md)を参照してください。旧`MAP.json`は`pack`の入力には使えません。
 
 ## 1. 目的と範囲
 

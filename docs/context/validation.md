@@ -1,4 +1,4 @@
-# Validation record for the 0.4.0 development branch
+# Validation record for 0.4.0
 
 [English](validation.md) | [日本語](validation_ja.md)
 
