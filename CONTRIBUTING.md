@@ -225,7 +225,7 @@ uv run pytest -v
 uv run pytest tests/test_python_parser.py
 
 # Run a specific test function
-uv run pytest tests/test_python_parser.py::test_parse_class
+uv run pytest tests/test_python_parser.py::test_python_parser_extracts_symbols
 
 # Run with coverage
 uv run pytest --cov=code2map
@@ -251,6 +251,9 @@ open htmlcov/index.html
 
 ### Documentation
 
+- Update English and Japanese root/context documents together. Context docs use `NAME.md` for English and `NAME_ja.md` for Japanese; the existing build specification uses `spec_en.md` and `spec.md`.
+- Keep language-switch links and same-language navigation working. Check examples, options, exit codes and supported behavior against the implementation.
+- Verify new documents are included in the source distribution. Context API/schema changes must update the guide and data contracts too.
 - Add docstrings to public functions and classes
 - Google-style docstrings are recommended
 
@@ -275,7 +278,7 @@ def parse_file(file_path: str, language: str | None = None) -> ParseResult:
 
 ### When to bump the version
 
-Bump the version when there is a meaningful change to the repository — new features, bug fixes, or significant documentation additions. Dependency-only updates (e.g. routine security patches from Dependabot) do **not** trigger a version bump on their own; record them in `[Unreleased]` and include them in the next release that has a meaningful change.
+Bump the version when there is a meaningful change to the repository — new features, bug fixes, or significant documentation additions. Dependency-only updates (e.g. routine security patches from Dependabot) do **not** trigger a version bump on their own; record them under the heading of the next, not yet released version (`## [x.y.z] - Unreleased`) and include them in the next release that has a meaningful change.
 
 ### Tagging a release
 

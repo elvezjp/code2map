@@ -8,13 +8,32 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/elvezjp/code2map?style=social)](https://github.com/elvezjp/code2map/stargazers)
 
-A CLI tool that transforms large source code into "semantic maps (index + code parts)" for AI analysis and review.
+A Python library and CLI that indexes source structure and assembles context-aware inputs for AI analysis and review. Existing symbol extraction remains available.
 
 ![Input/Output Example](docs/assets/example.png)
 
+## Context-aware partitioning
+
+Version 0.4.0 adds a reusable engine that indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, and Java, including directories with mixed languages. The existing `build` command and its output format remain available.
+
+Run at the repository root after [setup](#setup).
+
+```bash
+uv run code2map index examples --output output/index.json
+uv run code2map tree output/index.json --depth 3
+uv run code2map pack output/index.json --output output/pack.json --budget-bytes 16000
+uv run code2map check output/index.json --pack output/pack.json
+```
+
+Each packet carries an exact target range, enclosing headers, lexical dependency candidates, and exception-region references. Targets reconstruct every indexed source exactly once; supporting context is separate. No source execution, LLM, or database connection is needed.
+
+The CLI budget counts the **entire payload in UTF-8 bytes**, not model tokens. A custom model counter can be supplied through the Python API. Indivisible oversized regions and parse failures are reported explicitly. A `ready` packet fits the budget; it does not imply complete semantic analysis.
+
+See the [context engine guide](docs/context/README.md) for the API, extension contracts, limitations, and migration from 0.3.0.
+
 ## Use Cases
 
-- **AI Code Review**: Split large files into AI-friendly units to improve review accuracy
+- **AI Code Review**: Split large files at structural boundaries to support focused reviews
 - **Code Structure Visualization**: Output class/method lists and dependencies as an index
 - **Line Number Mapping**: Reliably map AI feedback to original file line numbers
 - **Documentation Assistance**: Support design document creation with code structure insights
@@ -25,21 +44,28 @@ This tool is a small utility born from the development of **IXV**, an AI develop
 
 IXV delivers a methodology and OSS that put AI to practical use in real development workflows. This repository publishes a portion of that work.
 
-## Features
+## `build` Features
 
 - **Semantic Splitting**: Split code by class, method, and function units (for review, not build)
 - **Markdown Index Generation**: Auto-generate INDEX.md with role descriptions, call relationships, and side effects
 - **Line Number Mapping**: Provide correspondence between parts and original file in MAP.json (machine-readable)
-- **Python & Java Support**: Accurate symbol extraction via AST (Python) and tree-sitter CST (Java, supports Java 8+ syntax)
+- **Python & Java Support**: Structural symbol extraction via AST (Python) and tree-sitter CST (Java, supports Java 8+ syntax)
 - **Dry Run**: Preview generation plan before actual output
 
 ## Documentation
 
+- [Context engine guide](docs/context/README.md) - Migration, all CLI options, exit codes, Python API
+- [Architecture](docs/context/architecture.md) - Determinism and context assembly
+- [Data contracts](docs/context/contracts.md) - Schemas and extension interfaces
+- [Supported behavior and limitations](docs/context/limitations.md) - Implemented features and remaining work
+- [Validation record](docs/context/validation.md) - Tests and verified environments
+
 - [CHANGELOG.md](CHANGELOG.md) - Version history
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
 - [SECURITY.md](SECURITY.md) - Security policy
-- [spec.md](spec.md) - Technical specification
-- [docs/examples/](docs/examples/) - Usage examples and sample I/O
+- [spec_en.md](spec_en.md) - Existing `build` specification
+- [examples/](examples/) - PL/SQL, Python and Java context-engine samples
+- [docs/examples/](docs/examples/) - Sample inputs and outputs for `build` and the context engine, per release
 
 ## Setup
 
@@ -56,13 +82,14 @@ git clone https://github.com/elvezjp/code2map.git
 cd code2map
 
 # Install dependencies with uv (virtual environment created automatically)
-uv sync --all-extras
+uv sync --locked --all-extras
 
 # Verify installation
+uv run code2map --version
 uv run code2map --help
 ```
 
-## Usage
+## `build` Usage
 
 ### Basic Execution
 
@@ -94,7 +121,7 @@ cat output/MAP.json
 uv run code2map build your_code.py --dry-run
 ```
 
-## Main Options
+## `build` Options
 
 | Option | Default | Description |
 |--------|---------|-------------|
@@ -106,18 +133,17 @@ uv run code2map build your_code.py --dry-run
 
 For details, see `uv run code2map build --help`.
 
-## Output Examples
+## `build` Output Examples
 
 ### INDEX.md
+
+This is a schematic formatting example. See the [samples](docs/examples/) for generated output.
 
 ```markdown
 # Index: user_management.py
 
 ## Classes
 - [CD1] UserManager (L10–L150) → parts/UserManager.class.py
-  - role: Main class for user management
-  - calls: Database.connect, Logger.info
-  - side effects: DB operations, logging
 
 ## Methods
 - [CD2] UserManager#create_user (L45–L80) → parts/UserManager_create_user.py
@@ -149,6 +175,8 @@ For details, see `uv run code2map build --help`.
 code2map/
 ├── code2map/              # Main package
 │   ├── cli.py             # CLI entry point
+│   ├── context/           # Source index, context packing and validation
+│   │   └── adapters/      # PL/SQL, Python and Java adapters
 │   ├── generators/        # Output generation modules
 │   │   ├── index_generator.py   # INDEX.md generation
 │   │   ├── map_generator.py     # MAP.json generation
@@ -162,9 +190,11 @@ code2map/
 │   └── utils/             # Utilities
 │       ├── file_utils.py  # File operations
 │       └── logger.py      # Log configuration
+├── examples/              # Synthetic context-engine inputs
 ├── tests/                 # Test code
 │   └── fixtures/          # Test fixtures
 ├── docs/                  # Documentation
+│   ├── context/           # Context-engine docs (English/Japanese)
 │   ├── assets/            # Images and assets
 │   ├── examples/          # Usage examples and sample I/O
 │   └── tests/             # Test plans and results
@@ -173,7 +203,8 @@ code2map/
 ├── README.md              # This file (English)
 ├── README_ja.md           # Japanese README
 ├── SECURITY.md            # Security policy
-├── spec.md                # Technical specification
+├── spec.md                # build specification (Japanese)
+├── spec_en.md             # build specification (English)
 └── pyproject.toml         # Project configuration
 ```
 
@@ -181,7 +212,7 @@ code2map/
 
 Only the latest code is kept at the repository root. Versions are managed with git tags.
 
-- The `main` branch accumulates changes for the next version under the `## [Unreleased]` heading in [CHANGELOG.md](CHANGELOG.md)
+- The `main` branch accumulates changes for the next version under the heading of the next version, marked `Unreleased` in place of the date, in [CHANGELOG.md](CHANGELOG.md)
 - On release, the version in `pyproject.toml` is confirmed, the heading date is finalized, and a `vX.Y.Z` tag is created
 
 ### Using Old Versions
@@ -197,11 +228,11 @@ git checkout v0.2.1
 
 ## Limitations
 
-- **Single File Processing**: Currently processes one file at a time (batch directory processing planned)
-- **Static Analysis Only**: Cannot detect dynamic dispatch or reflection
-- **Supported Languages**: Python and Java only (more languages planned)
+- `build` extracts symbols from one Python/Java file. Fragments overlap and have no enforced input budget.
+- `index` accepts PL/SQL, Python and Java files/directories; `pack` partitions along source structure. Indivisible regions can exceed the budget.
+- Calls and variable references are static candidates. Complete data flow and runtime bindings are not resolved.
 
-For details, see [spec.md](spec.md).
+See the [build specification](spec_en.md) and [context-engine limitations](docs/context/limitations.md).
 
 ## Security
 

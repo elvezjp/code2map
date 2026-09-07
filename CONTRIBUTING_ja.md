@@ -225,7 +225,7 @@ uv run pytest -v
 uv run pytest tests/test_python_parser.py
 
 # 特定のテスト関数を実行
-uv run pytest tests/test_python_parser.py::test_parse_class
+uv run pytest tests/test_python_parser.py::test_python_parser_extracts_symbols
 
 # カバレッジ付きで実行
 uv run pytest --cov=code2map
@@ -251,6 +251,9 @@ open htmlcov/index.html
 
 ### ドキュメント
 
+- ルートの文書と`docs/context/`は日英を同じ変更で更新してください。共通エンジン文書は英語が`NAME.md`、日本語が`NAME_ja.md`です。従来のbuild仕様書は`spec_en.md`と`spec.md`です。
+- 言語切替リンクと同じ言語の文書への導線を維持し、実行例、オプション、終了コード、対応範囲を実装と照合してください。
+- 新しい文書がソース配布物に含まれることを確認してください。共通エンジンのAPI／schemaを変える場合は利用ガイドとデータ契約も更新します。
 - 公開関数・クラスにはdocstringを記載してください
 - Google形式のdocstringを推奨します
 
@@ -275,7 +278,7 @@ def parse_file(file_path: str, language: str | None = None) -> ParseResult:
 
 ### バージョンを上げるタイミング
 
-リポジトリに意味のある変更（新機能・バグ修正・ドキュメントの大きな追加や変更など）があったときにバージョンを上げます。依存ライブラリの更新のみ（Dependabot によるセキュリティパッチなど）ではバージョンを上げません。その場合は `[Unreleased]` に記録しておき、次に意味のある変更をリリースする際にまとめて含めてください。
+リポジトリに意味のある変更（新機能・バグ修正・ドキュメントの大きな追加や変更など）があったときにバージョンを上げます。依存ライブラリの更新のみ（Dependabot によるセキュリティパッチなど）ではバージョンを上げません。その場合は次の未リリースのバージョン見出し（`## [x.y.z] - 未リリース`）の下に記録しておき、次に意味のある変更をリリースする際にまとめて含めてください。
 
 ### タグを打つ手順
 

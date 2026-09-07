@@ -7,7 +7,25 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
-## [未リリース]
+## [0.4.0] - 未リリース
+
+### 追加
+
+- 0.4.0: 原文スナップショット、構造階層、字句上の依存候補を保持する汎用エンジンとPython API。
+- 文脈を保つ決定論的分割のための`index`、`pack`、`check`、`tree`、`show`コマンド。
+- PL/SQL・Python AST・Java Tree-sitterのアダプター、複数言語のディレクトリ入力、文字コード指定、網羅性・文脈整合性検査。
+- 言語アダプター／予算カウンターの拡張契約、文書、回帰テスト。既存の`build`コマンドと生成形式は維持。
+- **v0.4.0 の出力サンプル**を `docs/examples/v0.4.0/` に追加。Java・Python の `build` 出力は v0.3.0 と `original:` 行以外同一で、`INDEX.md`・`MAP.json` はバイト単位で一致。共通エンジン（`index`／`pack`／`tree`／`check`）の出力を Java・Python・PL/SQL の各 `context/` に収録。
+
+### 変更
+
+- `pack_index` の packet 境界を行単位に揃えた。字下げの後で始まる子ノードや、行末コメントの前で終わる子ノードが、隣の packet に行の断片を残さない（[#27](https://github.com/elvezjp/code2map/issues/27)）。境界が動いたソースでは packet の ID が変わる。
+
+- 共通エンジン文書とbuild仕様書を日英で整備。コマンドの対応範囲、導入手順、チェックサム定義、CLIの説明を実装に合わせて修正。
+
+- `python -m code2map`と`--version`を追加。
+- 意図的に実行不能な生成断片と構文エラーのテスト素材をRuffの検査対象から除外。
+
 
 ## [0.3.0] - 2026-08-09
 
@@ -200,6 +218,7 @@
 - [リポジトリ](https://github.com/elvezjp/code2map)
 - [Issueトラッカー](https://github.com/elvezjp/code2map/issues)
 
+[0.4.0]: https://github.com/elvezjp/code2map/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/elvezjp/code2map/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/elvezjp/code2map/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/elvezjp/code2map/compare/v0.1.3...v0.2.0

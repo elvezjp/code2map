@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import ast
-from typing import Dict, List, Tuple
+from typing import List, Tuple
 
 from code2map.models.symbol import Symbol
 from code2map.parsers.base_parser import BaseParser
