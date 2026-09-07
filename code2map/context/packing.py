@@ -168,23 +168,50 @@ def pack_index(index, *, budget=16000, reserve=0, counter=None, dependency_limit
 
     ranges = []
 
-    def split(node):
-        sid, start, end = node["source_id"], node["start"], node["end"]
-        if cost(base_payload(sid, start, end)) <= limit or not children.get(node["id"]):
+    def line_start(sid, offset):
+        """Offset of the first character of the line containing ``offset``."""
+        return sources[sid]["text"].rfind("\n", 0, offset) + 1
+
+    def line_end(sid, offset):
+        """Offset just past the newline that ends the line containing ``offset``."""
+        text = sources[sid]["text"]
+        if offset >= len(text) or (offset > 0 and text[offset - 1] == "\n"):
+            return offset
+        newline = text.find("\n", offset)
+        return len(text) if newline < 0 else newline + 1
+
+    def split(node, start, end):
+        """Partition ``[start, end)``, the node's span already aligned to whole
+        lines by the caller, into budget-sized ranges.
+
+        The fit decision uses the aligned span, never the raw keyword span, so a
+        range is returned whole only when exactly that range fits the budget.
+        """
+        sid = node["source_id"]
+        kids = children.get(node["id"])
+        if cost(base_payload(sid, start, end)) <= limit or not kids:
             return [(sid, start, end)]
         output = []
         cursor = start
-        for child in children[node["id"]]:
-            if child["start"] > cursor:
-                output.append((sid, cursor, child["start"]))
-            output.extend(split(child))
-            cursor = child["end"]
+        for child in kids:
+            # Child spans begin at a keyword and end at a terminator, so cutting
+            # exactly there leaves indentation or a trailing comment as a partial
+            # line in the neighbouring packet. Align each boundary to whole lines;
+            # when two children share a line, the earlier one keeps that line.
+            child_start = max(cursor, line_start(sid, child["start"]))
+            child_end = min(end, max(child_start, line_end(sid, child["end"])))
+            if child_end <= child_start:
+                continue
+            if child_start > cursor:
+                output.append((sid, cursor, child_start))
+            output.extend(split(child, child_start, child_end))
+            cursor = child_end
         if cursor < end:
             output.append((sid, cursor, end))
         return output
 
     for root in sorted(children[None], key=lambda n: sources[n["source_id"]]["path"]):
-        parts = split(root)
+        parts = split(root, root["start"], root["end"])
         # Stable left-to-right greedy coalescing, measuring the merged payload anew.
         merged = []
         for part in parts:

@@ -18,6 +18,8 @@
 
 ### 変更
 
+- `pack_index` の packet 境界を行単位に揃えた。字下げの後で始まる子ノードや、行末コメントの前で終わる子ノードが、隣の packet に行の断片を残さない（[#27](https://github.com/elvezjp/code2map/issues/27)）。境界が動いたソースでは packet の ID が変わる。
+
 - 共通エンジン文書とbuild仕様書を日英で整備。コマンドの対応範囲、開発ブランチの取得手順、チェックサム定義、CLIの説明を実装に合わせて修正。
 
 - `python -m code2map`と`--version`を追加。

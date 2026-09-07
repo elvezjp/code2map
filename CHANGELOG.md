@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Packet boundaries produced by `pack_index` are aligned to whole lines: a child span that begins after indentation or ends before a trailing comment no longer leaves a partial line in the neighbouring packet ([#27](https://github.com/elvezjp/code2map/issues/27)). Packet identities change for sources where a boundary moved.
+
 - Completed paired English/Japanese context documentation and build specifications; corrected command scope, development-branch setup, checksum definitions and CLI reference details.
 
 - Added `python -m code2map` and `--version` entry points.
