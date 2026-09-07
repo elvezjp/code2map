@@ -1,4 +1,4 @@
-# 共通エンジン — 0.4.0開発版
+# 共通エンジン（0.4.0）
 
 [English](README.md) | [日本語](README_ja.md)
 
@@ -16,7 +16,7 @@ code2mapは、**原文全体の索引化**と**対象範囲に文脈を添える
 
 ## CLI
 
-[ルートREADMEの手順](../../README_ja.md)で開発ブランチを取得し、リポジトリのルートで実行します。`NODE_ID`は`tree`が各行の末尾に表示するIDに置き換えてください。
+[ルートREADMEの手順](../../README_ja.md)でセットアップし、リポジトリのルートで実行します。`NODE_ID`は`tree`が各行の末尾に表示するIDに置き換えてください。
 
 ```bash
 uv sync --locked --all-extras

@@ -1,0 +1,612 @@
+{
+  "adapters": {
+    "plsql-structural": "1"
+  },
+  "diagnostics": [],
+  "edges": [
+    {
+      "end": 168,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e9c610486d3ccf1c4b090925",
+      "kind": "reference",
+      "owner_id": "62ecf10bfdb4cdc5b86480f4",
+      "resolution": "ambiguous",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 158,
+      "symbol": "ACCOUNTING",
+      "target_ids": [
+        "62ecf10bfdb4cdc5b86480f4",
+        "af5167aa8b45309c7b6ba52a"
+      ]
+    },
+    {
+      "end": 344,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "52ecccd2587fecd1ec737003",
+      "kind": "reference",
+      "owner_id": "bfb88b756ff69f1e569c2f2d",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 336,
+      "symbol": "ADJUSTED",
+      "target_ids": [
+        "bfb88b756ff69f1e569c2f2d"
+      ]
+    },
+    {
+      "end": 433,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5287048ca52bd25d8e70d6cc",
+      "kind": "reference",
+      "owner_id": "f07e0b7c983cd370f27e1444",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 426,
+      "symbol": "G_TOTAL",
+      "target_ids": [
+        "2bc64c7cce5afc0aa96c6630"
+      ]
+    },
+    {
+      "end": 483,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "9f4408c2d35631e249812aa9",
+      "kind": "reference",
+      "owner_id": "e09ca8a6471fa7759d5b31b5",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 475,
+      "symbol": "V_AMOUNT",
+      "target_ids": [
+        "8e874c4f90b4e7a6e50269f7"
+      ]
+    },
+    {
+      "end": 495,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a76d71af77cdcfd116297cc1",
+      "kind": "call",
+      "owner_id": "e09ca8a6471fa7759d5b31b5",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 487,
+      "symbol": "ADJUSTED",
+      "target_ids": [
+        "bfb88b756ff69f1e569c2f2d"
+      ]
+    },
+    {
+      "end": 517,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "6c471f6484afdf3b42977dfe",
+      "kind": "reference",
+      "owner_id": "9a2753735548920167322d4f",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 509,
+      "symbol": "V_AMOUNT",
+      "target_ids": [
+        "8e874c4f90b4e7a6e50269f7"
+      ]
+    },
+    {
+      "end": 543,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a16cd94756bb2f4606a851a8",
+      "kind": "reference",
+      "owner_id": "323373c084d2cb9ce2cc3a3f",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 536,
+      "symbol": "G_TOTAL",
+      "target_ids": [
+        "2bc64c7cce5afc0aa96c6630"
+      ]
+    },
+    {
+      "end": 554,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "ce4c6e1f96be7b00bc5a8fbd",
+      "kind": "reference",
+      "owner_id": "323373c084d2cb9ce2cc3a3f",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 547,
+      "symbol": "G_TOTAL",
+      "target_ids": [
+        "2bc64c7cce5afc0aa96c6630"
+      ]
+    },
+    {
+      "end": 565,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "67d884ed5f92fb76c8e1593a",
+      "kind": "reference",
+      "owner_id": "323373c084d2cb9ce2cc3a3f",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 557,
+      "symbol": "V_AMOUNT",
+      "target_ids": [
+        "8e874c4f90b4e7a6e50269f7"
+      ]
+    },
+    {
+      "end": 593,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e9516deb1cd980309dfb932b",
+      "kind": "reference",
+      "owner_id": "cff4d63300b511f68f667b28",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 586,
+      "symbol": "G_TOTAL",
+      "target_ids": [
+        "2bc64c7cce5afc0aa96c6630"
+      ]
+    },
+    {
+      "end": 650,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "2cd526e6b30bc5397e5ebb50",
+      "kind": "call",
+      "owner_id": "16dafc10260a16975eedd85b",
+      "resolution": "unresolved",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 644,
+      "symbol": "TOTALS",
+      "target_ids": []
+    },
+    {
+      "end": 674,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "54bae09595e437ba89fb15d6",
+      "kind": "reference",
+      "owner_id": "16dafc10260a16975eedd85b",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 667,
+      "symbol": "G_TOTAL",
+      "target_ids": [
+        "2bc64c7cce5afc0aa96c6630"
+      ]
+    },
+    {
+      "end": 749,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "50312cc6ff661c403c04550d",
+      "kind": "call",
+      "owner_id": "38162d47d354f1bc011d59ac",
+      "resolution": "unresolved",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 744,
+      "symbol": "RAISE",
+      "target_ids": []
+    },
+    {
+      "end": 766,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "2390a0511bbe323d5e4976ee",
+      "kind": "reference",
+      "owner_id": "2419888b5548c934d6ab0ad2",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 757,
+      "symbol": "CALCULATE",
+      "target_ids": [
+        "2419888b5548c934d6ab0ad2"
+      ]
+    },
+    {
+      "end": 783,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "81d853137e5a38df2f7b1c46",
+      "kind": "reference",
+      "owner_id": "c6273778cd9cd34ddf316a22",
+      "resolution": "candidate",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 776,
+      "symbol": "G_TOTAL",
+      "target_ids": [
+        "2bc64c7cce5afc0aa96c6630"
+      ]
+    },
+    {
+      "end": 804,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "df5c3ca3c626eb29133bd3b2",
+      "kind": "reference",
+      "owner_id": "2189964cc457400ce4a06a34",
+      "resolution": "ambiguous",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 794,
+      "symbol": "ACCOUNTING",
+      "target_ids": [
+        "62ecf10bfdb4cdc5b86480f4",
+        "af5167aa8b45309c7b6ba52a"
+      ]
+    }
+  ],
+  "generator": "code2map/0.4.0",
+  "nodes": [
+    {
+      "confidence": "syntax",
+      "end": 808,
+      "end_line": 37,
+      "header_end": 0,
+      "id": "472f3ab66f3ea6a73f88f585",
+      "kind": "file",
+      "name": "accounting.sql",
+      "parent_id": null,
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 0,
+      "start_line": 1,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 169,
+      "end_line": 5,
+      "header_end": 39,
+      "id": "62ecf10bfdb4cdc5b86480f4",
+      "kind": "package_spec",
+      "name": "ACCOUNTING",
+      "parent_id": "472f3ab66f3ea6a73f88f585",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 0,
+      "start_line": 1,
+      "symbol": "ACCOUNTING"
+    },
+    {
+      "confidence": "structural",
+      "end": 62,
+      "end_line": 2,
+      "header_end": 62,
+      "id": "3c9afccc8e4de7de1dd87f59",
+      "kind": "declaration",
+      "name": "G_TOTAL",
+      "parent_id": "62ecf10bfdb4cdc5b86480f4",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 42,
+      "start_line": 2,
+      "symbol": "G_TOTAL"
+    },
+    {
+      "confidence": "structural",
+      "end": 114,
+      "end_line": 3,
+      "header_end": 114,
+      "id": "6b7ce3ca8c657148e4216eae",
+      "kind": "declaration",
+      "name": "ADJUSTED",
+      "parent_id": "62ecf10bfdb4cdc5b86480f4",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 65,
+      "start_line": 3,
+      "symbol": "ADJUSTED"
+    },
+    {
+      "confidence": "structural",
+      "end": 153,
+      "end_line": 4,
+      "header_end": 153,
+      "id": "3c4f0aa84761bc534b395c3f",
+      "kind": "declaration",
+      "name": "CALCULATE",
+      "parent_id": "62ecf10bfdb4cdc5b86480f4",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 117,
+      "start_line": 4,
+      "symbol": "CALCULATE"
+    },
+    {
+      "confidence": "structural",
+      "end": 805,
+      "end_line": 36,
+      "header_end": 216,
+      "id": "af5167aa8b45309c7b6ba52a",
+      "kind": "package_body",
+      "name": "ACCOUNTING",
+      "parent_id": "472f3ab66f3ea6a73f88f585",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 172,
+      "start_line": 7,
+      "symbol": "ACCOUNTING"
+    },
+    {
+      "confidence": "structural",
+      "end": 239,
+      "end_line": 8,
+      "header_end": 239,
+      "id": "2bc64c7cce5afc0aa96c6630",
+      "kind": "declaration",
+      "name": "G_TOTAL",
+      "parent_id": "af5167aa8b45309c7b6ba52a",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 219,
+      "start_line": 8,
+      "symbol": "G_TOTAL"
+    },
+    {
+      "confidence": "structural",
+      "end": 345,
+      "end_line": 13,
+      "header_end": 294,
+      "id": "bfb88b756ff69f1e569c2f2d",
+      "kind": "function",
+      "name": "ADJUSTED",
+      "parent_id": "af5167aa8b45309c7b6ba52a",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 243,
+      "start_line": 10,
+      "symbol": "ADJUSTED"
+    },
+    {
+      "confidence": "structural",
+      "end": 329,
+      "end_line": 12,
+      "header_end": 329,
+      "id": "acf20eca15d4183c12f3af45",
+      "kind": "statement",
+      "name": "RETURN",
+      "parent_id": "bfb88b756ff69f1e569c2f2d",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 307,
+      "start_line": 12,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 767,
+      "end_line": 33,
+      "header_end": 387,
+      "id": "2419888b5548c934d6ab0ad2",
+      "kind": "procedure",
+      "name": "CALCULATE",
+      "parent_id": "af5167aa8b45309c7b6ba52a",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 349,
+      "start_line": 15,
+      "symbol": "CALCULATE"
+    },
+    {
+      "confidence": "structural",
+      "end": 413,
+      "end_line": 16,
+      "header_end": 413,
+      "id": "8e874c4f90b4e7a6e50269f7",
+      "kind": "declaration",
+      "name": "V_AMOUNT",
+      "parent_id": "2419888b5548c934d6ab0ad2",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 392,
+      "start_line": 16,
+      "symbol": "V_AMOUNT"
+    },
+    {
+      "confidence": "structural",
+      "end": 439,
+      "end_line": 18,
+      "header_end": 439,
+      "id": "f07e0b7c983cd370f27e1444",
+      "kind": "statement",
+      "name": "G_TOTAL",
+      "parent_id": "2419888b5548c934d6ab0ad2",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 426,
+      "start_line": 18,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 627,
+      "end_line": 26,
+      "header_end": 468,
+      "id": "553a9f9041887eed849d56af",
+      "kind": "control",
+      "name": "FOR",
+      "parent_id": "2419888b5548c934d6ab0ad2",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 444,
+      "start_line": 19,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 499,
+      "end_line": 20,
+      "header_end": 499,
+      "id": "e09ca8a6471fa7759d5b31b5",
+      "kind": "statement",
+      "name": "V_AMOUNT",
+      "parent_id": "553a9f9041887eed849d56af",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 475,
+      "start_line": 20,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 613,
+      "end_line": 25,
+      "header_end": 527,
+      "id": "9a2753735548920167322d4f",
+      "kind": "control",
+      "name": "IF",
+      "parent_id": "553a9f9041887eed849d56af",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 506,
+      "start_line": 21,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 566,
+      "end_line": 22,
+      "header_end": 566,
+      "id": "323373c084d2cb9ce2cc3a3f",
+      "kind": "statement",
+      "name": "G_TOTAL",
+      "parent_id": "9a2753735548920167322d4f",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 536,
+      "start_line": 22,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 599,
+      "end_line": 24,
+      "header_end": 577,
+      "id": "10b2699af155e596909713b0",
+      "kind": "branch",
+      "name": "ELSE",
+      "parent_id": "9a2753735548920167322d4f",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 573,
+      "start_line": 23,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 599,
+      "end_line": 24,
+      "header_end": 599,
+      "id": "cff4d63300b511f68f667b28",
+      "kind": "statement",
+      "name": "G_TOTAL",
+      "parent_id": "10b2699af155e596909713b0",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 586,
+      "start_line": 24,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 676,
+      "end_line": 27,
+      "header_end": 676,
+      "id": "16dafc10260a16975eedd85b",
+      "kind": "statement",
+      "name": "INSERT",
+      "parent_id": "2419888b5548c934d6ab0ad2",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 632,
+      "start_line": 27,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 688,
+      "end_line": 28,
+      "header_end": 688,
+      "id": "0a71db010a2f29db180bb2d0",
+      "kind": "statement",
+      "name": "COMMIT",
+      "parent_id": "2419888b5548c934d6ab0ad2",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 681,
+      "start_line": 28,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 750,
+      "end_line": 32,
+      "header_end": 700,
+      "id": "511efda908d4f3a2680e22dc",
+      "kind": "exception",
+      "name": "EXCEPTION",
+      "parent_id": "2419888b5548c934d6ab0ad2",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 691,
+      "start_line": 29,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 750,
+      "end_line": 32,
+      "header_end": 721,
+      "id": "d40a75cbe50304073a104c09",
+      "kind": "handler",
+      "name": "WHEN",
+      "parent_id": "511efda908d4f3a2680e22dc",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 705,
+      "start_line": 30,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 737,
+      "end_line": 31,
+      "header_end": 737,
+      "id": "cb3ab675ce1a7bd30fa6d522",
+      "kind": "statement",
+      "name": "ROLLBACK",
+      "parent_id": "d40a75cbe50304073a104c09",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 728,
+      "start_line": 31,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 750,
+      "end_line": 32,
+      "header_end": 750,
+      "id": "38162d47d354f1bc011d59ac",
+      "kind": "statement",
+      "name": "RAISE",
+      "parent_id": "d40a75cbe50304073a104c09",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 744,
+      "start_line": 32,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 805,
+      "end_line": 36,
+      "header_end": 773,
+      "id": "2189964cc457400ce4a06a34",
+      "kind": "initialization",
+      "name": "initialization",
+      "parent_id": "af5167aa8b45309c7b6ba52a",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 768,
+      "start_line": 34,
+      "symbol": ""
+    },
+    {
+      "confidence": "structural",
+      "end": 789,
+      "end_line": 35,
+      "header_end": 789,
+      "id": "c6273778cd9cd34ddf316a22",
+      "kind": "statement",
+      "name": "G_TOTAL",
+      "parent_id": "2189964cc457400ce4a06a34",
+      "source_id": "7fbd65916199e49aa97fdcf9",
+      "start": 776,
+      "start_line": 35,
+      "symbol": ""
+    }
+  ],
+  "runtime": {
+    "python": "3.11.13"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "adapter": "plsql-structural",
+      "encoding": "utf-8",
+      "id": "7fbd65916199e49aa97fdcf9",
+      "original_sha256": "ddcb9a7939c2297593ca49a726052db0e4fbce2d994755fba7d515f12dfdd8f7",
+      "path": "accounting.sql",
+      "text": "CREATE OR REPLACE PACKAGE accounting AS\n  g_total NUMBER := 0;\n  FUNCTION adjusted(p_amount NUMBER) RETURN NUMBER;\n  PROCEDURE calculate(p_count NUMBER);\nEND accounting;\n/\nCREATE OR REPLACE PACKAGE BODY accounting AS\n  g_total NUMBER := 0;\n\n  FUNCTION adjusted(p_amount NUMBER) RETURN NUMBER IS\n  BEGIN\n    RETURN p_amount * 1.1;\n  END adjusted;\n\n  PROCEDURE calculate(p_count NUMBER) IS\n    v_amount NUMBER := 0;\n  BEGIN\n    g_total := 0;\n    FOR i IN 1..p_count LOOP\n      v_amount := adjusted(i);\n      IF v_amount > 10 THEN\n        g_total := g_total + v_amount;\n      ELSE\n        g_total := 0;\n      END IF;\n    END LOOP;\n    INSERT INTO totals(amount) VALUES (g_total);\n    COMMIT;\n  EXCEPTION\n    WHEN OTHERS THEN\n      ROLLBACK;\n      RAISE;\n  END calculate;\nBEGIN\n  g_total := 0;\nEND accounting;\n/\n",
+      "text_sha256": "ddcb9a7939c2297593ca49a726052db0e4fbce2d994755fba7d515f12dfdd8f7"
+    }
+  ]
+}

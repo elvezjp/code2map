@@ -1,4 +1,4 @@
-# Context engine — 0.4.0 development
+# Context engine (0.4.0)
 
 [English](README.md) | [日本語](README_ja.md)
 
@@ -16,7 +16,7 @@ code2map now separates **indexing the entire source** from **packing a portion w
 
 ## CLI
 
-Check out the development branch using the [root README](../../README.md), then run these commands at the repository root. Replace `NODE_ID` with an ID printed at the end of a `tree` output line.
+Set up the repository as described in the [root README](../../README.md), then run these commands at the repository root. Replace `NODE_ID` with an ID printed at the end of a `tree` output line.
 
 ```bash
 uv sync --locked --all-extras

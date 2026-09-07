@@ -12,9 +12,9 @@
 
 ![Input/Output Example](docs/assets/example.png)
 
-## 文脈付き分割（0.4.0 開発版）
+## 文脈付き分割（0.4.0・未リリース）
 
-開発ブランチ`codex/20260905-context-partitioning`の0.4.0で、原文全体を先に索引化し、予算に応じて文脈付きの入力を組み立てる共通エンジンを追加しました。PL/SQL・Python・Java、およびこれらが混在するディレクトリに対応します。既存の`build`コマンドと出力形式も継続して利用できます。
+未リリースの0.4.0で、原文全体を先に索引化し、予算に応じて文脈付きの入力を組み立てる共通エンジンを追加しました。PL/SQL・Python・Java、およびこれらが混在するディレクトリに対応します。既存の`build`コマンドと出力形式も継続して利用できます。
 
 [セットアップ](#セットアップ)後、リポジトリのルートで実行します。
 
@@ -65,7 +65,7 @@ IXVでは、開発方法論とOSSを提供することで、AI活用を現場に
 - [SECURITY_ja.md](SECURITY_ja.md) - セキュリティポリシー
 - [spec.md](spec.md) - 従来の`build`仕様書
 - [examples/](examples/) - 共通エンジン用のPL/SQL・Python・Javaサンプル
-- [docs/examples/](docs/examples/) - 旧リリースの`build`入出力例
+- [docs/examples/](docs/examples/) - `build`と共通エンジンのバージョン別の入出力例
 
 ## セットアップ
 
@@ -80,9 +80,6 @@ IXVでは、開発方法論とOSSを提供することで、AI活用を現場に
 # リポジトリをクローン
 git clone https://github.com/elvezjp/code2map.git
 cd code2map
-
-# 未リリースの0.4.0開発ブランチを選択
-git switch codex/20260905-context-partitioning
 
 # uvで依存関係をインストール（仮想環境も自動作成）
 uv sync --locked --all-extras
@@ -140,7 +137,7 @@ uv run code2map build your_code.py --dry-run
 
 ### INDEX.md
 
-以下は書式を示す模式例です。実際の出力例は[旧リリースのサンプル](docs/examples/)を参照してください。
+以下は書式を示す模式例です。実際の出力例は[サンプル](docs/examples/)を参照してください。
 
 ```markdown
 # Index: user_management.py
