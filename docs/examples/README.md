@@ -9,14 +9,16 @@ examples/
 ├── vX.Y.Z/                             # 最新バージョンの出力
 │   ├── java/
 │   │   ├── UserManagementService.java  # 入力ファイル
-│   │   └── output/                     # build の出力（INDEX.md, MAP.json, parts/）
+│   │   ├── output/                     # build の出力（INDEX.md, MAP.json, parts/）
+│   │   └── context/                    # 共通エンジンの出力（index.json, pack.json, tree.txt, check.json）
 │   ├── python/
 │   │   ├── user_management_service.py  # 入力ファイル
-│   │   └── output/                     # build の出力（INDEX.md, MAP.json, parts/）
+│   │   ├── output/                     # build の出力（INDEX.md, MAP.json, parts/）
+│   │   └── context/                    # 共通エンジンの出力（index.json, pack.json, tree.txt, check.json）
 │   └── plsql/
 │       ├── accounting.sql              # 入力ファイル
-│       └── output/                     # 共通エンジンの出力（index.json, pack.json, tree.txt, check.json）
-└── （旧バージョン）/                    # 参照用。plsql/ は共通エンジンを持つバージョンにのみある
+│       └── context/                    # 共通エンジンの出力（build は PL/SQL 非対応）
+└── （旧バージョン）/                    # 参照用。context/ と plsql/ は共通エンジンを持つバージョンにのみある
 ```
 
 ## Usage
@@ -27,30 +29,32 @@ examples/
 EX=docs/examples/v0.4.0
 ```
 
-### Java
+### build（Java・Python）
 
 ```bash
 uv run code2map build $EX/java/UserManagementService.java --out $EX/java/output
-```
-
-### Python
-
-```bash
 uv run code2map build $EX/python/user_management_service.py --out $EX/python/output
 ```
 
-### PL/SQL（共通エンジン）
+### 共通エンジン（Java・Python・PL/SQL）
 
-`build` は Java と Python のみ対応です。PL/SQL は共通エンジン（`index` / `pack` / `check` / `tree` / `show`）で扱います。索引に記録されるパスは入力ファイルからの相対パスなので、実行するディレクトリによって出力は変わりません。
+`index` で索引を作り、`pack` で予算に応じた packet に分割し、`tree` で構造木、`check` で整合性検査の結果を保存します。索引に記録されるパスは入力ファイルからの相対パスなので、実行するディレクトリによって出力は変わりません。`build` は PL/SQL に対応していないため、PL/SQL は共通エンジンの出力だけを収録しています。
 
 ```bash
-uv run code2map index $EX/plsql/accounting.sql --output $EX/plsql/output/index.json
-uv run code2map pack $EX/plsql/output/index.json --output $EX/plsql/output/pack.json --budget-bytes 3000 --reserve-bytes 0
-uv run code2map tree $EX/plsql/output/index.json > $EX/plsql/output/tree.txt
-uv run code2map check $EX/plsql/output/index.json --pack $EX/plsql/output/pack.json > $EX/plsql/output/check.json
+for lang in java python plsql; do
+  case $lang in
+    java)   src=$EX/java/UserManagementService.java;   budget=6000 ;;
+    python) src=$EX/python/user_management_service.py; budget=6000 ;;
+    plsql)  src=$EX/plsql/accounting.sql;              budget=3000 ;;
+  esac
+  uv run code2map index $src --output $EX/$lang/context/index.json
+  uv run code2map pack $EX/$lang/context/index.json --output $EX/$lang/context/pack.json --budget-bytes $budget --reserve-bytes 0
+  uv run code2map tree $EX/$lang/context/index.json > $EX/$lang/context/tree.txt
+  uv run code2map check $EX/$lang/context/index.json --pack $EX/$lang/context/pack.json > $EX/$lang/context/check.json
+done
 ```
 
-予算 3000 バイトは、この小さなサンプルが複数の `ready` な packet に分かれる値として選んでいます。既定の 16000 バイトでは 1 packet に収まります。
+予算は、各サンプルが複数の `ready` な packet に分かれる値として選んでいます。既定の 16000 バイトでは、いずれも 1〜2 packet に収まります。
 
 ## 再生成についての補足
 
@@ -96,4 +100,10 @@ Javaサンプルと同等の機能をPythonで実装したもの。以下の機�
   - `adjusted`: 金額に係数を掛けて返す関数
   - `calculate`: ループと IF 分岐で合計を求め、`INSERT` と `COMMIT` を行うプロシージャ。`EXCEPTION` 節で `ROLLBACK` して再送出
   - 初期化部でパッケージ変数 `g_total` を初期化
-- `tree.txt` に構造木、`pack.json` に対象範囲・外側の宣言・依存候補を持つ packet、`check.json` に全範囲を重複なく覆っていることの検査結果が入ります
+
+### 共通エンジンの出力（各言語の `context/`）
+
+- `index.json`: 原文、構造木、字句上の依存候補、診断。実行環境（Python のバージョン）とアダプターの版を記録
+- `pack.json`: 対象範囲・外側の宣言・依存候補・例外領域の参照を持つ packet。対象範囲を連結すると原文を重複なく復元できる
+- `tree.txt`: `tree` コマンドが表示する構造木
+- `check.json`: 索引と packet の整合性検査の結果
