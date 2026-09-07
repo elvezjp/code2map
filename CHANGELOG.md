@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `index`, `pack`, `check`, `tree`, and `show` commands for deterministic whole-source partitioning with enclosing context and explicit budget/parse statuses.
 - PL/SQL, Python AST, and Java Tree-sitter context adapters; mixed-language directory input, strict encoding selection, source coverage and context integrity checks.
 - Adapter and budget-counter protocols, context documentation, and regression tests. The existing `build` CLI and generated output contract are preserved.
-- **Output samples for v0.4.0** under `docs/examples/v0.4.0/`. The Java and Python `build` outputs match v0.3.0 apart from the `original:` line, with `INDEX.md` and `MAP.json` byte-for-byte identical; the PL/SQL sample records the context engine (`index` / `pack` / `tree` / `check`) output.
+- **Output samples for v0.4.0** under `docs/examples/v0.4.0/`. The Java and Python `build` outputs match v0.3.0 apart from the `original:` line, with `INDEX.md` and `MAP.json` byte-for-byte identical; context engine (`index` / `pack` / `tree` / `check`) output is recorded under `context/` for Java, Python and PL/SQL.
 
 ### Changed
 

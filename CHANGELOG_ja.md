@@ -15,7 +15,7 @@
 - 文脈を保つ決定論的分割のための`index`、`pack`、`check`、`tree`、`show`コマンド。
 - PL/SQL・Python AST・Java Tree-sitterのアダプター、複数言語のディレクトリ入力、文字コード指定、網羅性・文脈整合性検査。
 - 言語アダプター／予算カウンターの拡張契約、文書、回帰テスト。既存の`build`コマンドと生成形式は維持。
-- **v0.4.0 の出力サンプル**を `docs/examples/v0.4.0/` に追加。Java・Python の `build` 出力は v0.3.0 と `original:` 行以外同一で、`INDEX.md`・`MAP.json` はバイト単位で一致。PL/SQL は共通エンジン（`index`／`pack`／`tree`／`check`）の出力を収録。
+- **v0.4.0 の出力サンプル**を `docs/examples/v0.4.0/` に追加。Java・Python の `build` 出力は v0.3.0 と `original:` 行以外同一で、`INDEX.md`・`MAP.json` はバイト単位で一致。共通エンジン（`index`／`pack`／`tree`／`check`）の出力を Java・Python・PL/SQL の各 `context/` に収録。
 
 ### 変更
 
