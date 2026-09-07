@@ -10,6 +10,21 @@ from code2map.context.model import Node, Parsed, canonical, digest
 
 ROOT = Path(__file__).resolve().parents[1]
 
+def assert_line_aligned(test, index, packed):
+    """Every packet must start at a line start and end at a line end (or the source end)."""
+    sources = {s["id"]: s["text"] for s in index["sources"]}
+    for packet in packed["packets"]:
+        text = sources[packet["source_id"]]
+        start, end = packet["start"], packet["end"]
+        test.assertTrue(
+            start == 0 or text[start - 1] == "\n",
+            f"packet starts inside a line at offset {start}: {text[max(0, start - 20):start]!r}|{text[start:start + 20]!r}",
+        )
+        test.assertTrue(
+            end == len(text) or text[end - 1] == "\n",
+            f"packet ends inside a line at offset {end}: {text[max(0, end - 20):end]!r}|{text[end:end + 20]!r}",
+        )
+
 
 class MapTest(unittest.TestCase):
     def index_text(self, text, suffix=".sql", encoding="utf-8"):
@@ -60,6 +75,7 @@ class MapTest(unittest.TestCase):
         for budget in (500, 1800, 3000, 8000, 20000):
             p = pack_index(i, budget=budget, reserve=100)
             validate_pack(i, p)
+            assert_line_aligned(self, i, p)
             restored = "".join(
                 json.loads(c["payload"])["target"]["text"] for c in p["packets"]
             )
@@ -69,6 +85,35 @@ class MapTest(unittest.TestCase):
                     self.assertLessEqual(
                         len(packet["payload"].encode("utf-8")), budget - 100
                     )
+
+    def test_split_boundaries_are_line_aligned(self):
+        # A child block that starts after indentation and ends before a trailing
+        # comment must not leave the indentation or the comment as a partial line
+        # in the neighbouring packet (elvezjp/code2map#27).
+        body = "".join(
+            f"        x := {n};\n        -- step {n}\n        begin\n"
+            f"            select {n} into y from dual;\n        end;  -- done {n}\n"
+            for n in range(12)
+        )
+        text = (
+            "create or replace package body pkg is\n"
+            "    procedure p is\n        x number;\n        y number;\n    begin\n"
+            + body
+            + "    end p;\nend pkg;\n/\n"
+        )
+        i = self.index_text(text)
+        counts = []
+        for budget in (700, 1200, 2500, 6000):
+            p = pack_index(i, budget=budget, reserve=100)
+            validate_pack(i, p)
+            counts.append(p["summary"]["packets"])
+            assert_line_aligned(self, i, p)
+            for packet in p["packets"]:
+                target = json.loads(packet["payload"])["target"]["text"]
+                self.assertFalse(target.strip() == "" and target != "", "whitespace-only packet")
+                for line in target.splitlines():
+                    self.assertNotRegex(line, r"^\s+$", "packet keeps a whitespace-only line")
+        self.assertGreater(max(counts), 1, "the small budgets must actually split the procedure")
 
     def test_split_preserves_enclosing_guards_and_else(self):
         text = (

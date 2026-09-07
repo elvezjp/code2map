@@ -17,7 +17,7 @@ All `start` and `end` fields are **zero-based Unicode character offsets into dec
 | `edges` | `id`, `owner_id`, `source_id`, `start`, `end`, `kind`, `symbol`, `target_ids`, `resolution`, `evidence` |
 | `diagnostics` | `source_id`, `start`, `end`, `code`, `message` |
 
-Each source has one covering file root. Siblings do not overlap and children lie within their parent. Adapters need not register whitespace or comments as nodes; the partitioner preserves those gaps.
+Each source has one covering file root. Siblings do not overlap and children lie within their parent. Adapters need not register whitespace or comments as nodes; the partitioner preserves those gaps. When the partitioner splits a range at child boundaries it aligns each boundary to whole lines, so a child that begins after indentation or ends before a trailing comment never leaves a partial line in the neighbouring range; when two children share one line, the earlier child keeps that line.
 
 `original_sha256` hashes the original bytes; `text_sha256` hashes the decoded text encoded as UTF-8. For example, decoding with `utf-8-sig` removes the BOM from stored text. Text reconstruction therefore preserves the decoded source, not necessarily the original encoded bytes.
 

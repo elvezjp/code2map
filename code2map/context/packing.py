@@ -168,6 +168,18 @@ def pack_index(index, *, budget=16000, reserve=0, counter=None, dependency_limit
 
     ranges = []
 
+    def line_start(sid, offset):
+        """Offset of the first character of the line containing ``offset``."""
+        return sources[sid]["text"].rfind("\n", 0, offset) + 1
+
+    def line_end(sid, offset):
+        """Offset just past the newline that ends the line containing ``offset``."""
+        text = sources[sid]["text"]
+        if offset >= len(text) or (offset > 0 and text[offset - 1] == "\n"):
+            return offset
+        newline = text.find("\n", offset)
+        return len(text) if newline < 0 else newline + 1
+
     def split(node):
         sid, start, end = node["source_id"], node["start"], node["end"]
         if cost(base_payload(sid, start, end)) <= limit or not children.get(node["id"]):
@@ -175,10 +187,22 @@ def pack_index(index, *, budget=16000, reserve=0, counter=None, dependency_limit
         output = []
         cursor = start
         for child in children[node["id"]]:
-            if child["start"] > cursor:
-                output.append((sid, cursor, child["start"]))
-            output.extend(split(child))
-            cursor = child["end"]
+            # Child spans begin at a keyword and end at a terminator, so cutting
+            # exactly there leaves indentation or a trailing comment as a partial
+            # line in the neighbouring packet. Align each boundary to whole lines;
+            # when two children share a line, the earlier one keeps that line.
+            child_start = max(cursor, line_start(sid, child["start"]))
+            child_end = max(child_start, line_end(sid, child["end"]))
+            if child_start > cursor:
+                output.append((sid, cursor, child_start))
+            parts = split(child)
+            last = len(parts) - 1
+            for position, (_, part_start, part_end) in enumerate(parts):
+                part_start = child_start if position == 0 else max(child_start, part_start)
+                part_end = child_end if position == last else min(child_end, part_end)
+                if part_end > part_start:
+                    output.append((sid, part_start, part_end))
+            cursor = child_end
         if cursor < end:
             output.append((sid, cursor, end))
         return output
