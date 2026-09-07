@@ -212,7 +212,7 @@ code2map/
 
 Only the latest code is kept at the repository root. Versions are managed with git tags.
 
-- The `main` branch accumulates changes for the next version under the `## [Unreleased]` heading in [CHANGELOG.md](CHANGELOG.md)
+- The `main` branch accumulates changes for the next version under the heading of the next version, marked `Unreleased` in place of the date, in [CHANGELOG.md](CHANGELOG.md)
 - On release, the version in `pyproject.toml` is confirmed, the heading date is finalized, and a `vX.Y.Z` tag is created
 
 ### Using Old Versions

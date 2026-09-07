@@ -7,7 +7,7 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
-## [未リリース]
+## [0.4.0] - 未リリース
 
 ### 追加
 
@@ -218,6 +218,7 @@
 - [リポジトリ](https://github.com/elvezjp/code2map)
 - [Issueトラッカー](https://github.com/elvezjp/code2map/issues)
 
+[0.4.0]: https://github.com/elvezjp/code2map/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/elvezjp/code2map/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/elvezjp/code2map/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/elvezjp/code2map/compare/v0.1.3...v0.2.0
