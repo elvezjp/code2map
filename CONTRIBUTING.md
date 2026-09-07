@@ -278,7 +278,7 @@ def parse_file(file_path: str, language: str | None = None) -> ParseResult:
 
 ### When to bump the version
 
-Bump the version when there is a meaningful change to the repository — new features, bug fixes, or significant documentation additions. Dependency-only updates (e.g. routine security patches from Dependabot) do **not** trigger a version bump on their own; record them in `[Unreleased]` and include them in the next release that has a meaningful change.
+Bump the version when there is a meaningful change to the repository — new features, bug fixes, or significant documentation additions. Dependency-only updates (e.g. routine security patches from Dependabot) do **not** trigger a version bump on their own; record them under the heading of the next, not yet released version (`## [x.y.z] - Unreleased`) and include them in the next release that has a meaningful change.
 
 ### Tagging a release
 
