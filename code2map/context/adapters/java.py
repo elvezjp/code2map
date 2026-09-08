@@ -2,11 +2,10 @@
 
 from importlib.metadata import version
 
-from tree_sitter import Language, Parser
 import tree_sitter_java
+from tree_sitter import Language, Parser
 
 from ..model import Node, Parsed, Reference
-
 
 CLASSES = {
     "class_declaration",

@@ -1,6 +1,7 @@
 """Python AST adapter; no imports or source execution are performed."""
 
 import ast
+
 from ..model import Node, Parsed, Reference
 
 

@@ -1,13 +1,13 @@
 """Build a portable snapshot; resolve lexical candidates without claiming semantics."""
 
-import platform
 import hashlib
+import platform
 import re
 from bisect import bisect_right
 from pathlib import Path
-from .model import digest, identity
-from .._version import __version__
 
+from .._version import __version__
+from .model import digest, identity
 
 SCOPES = {
     "file",
@@ -88,11 +88,11 @@ def build_index(input_path, *, encoding="utf-8", adapters=None):
         sources.append(source_record)
         used[adapter.name] = adapter.version
 
-        def flatten(node, parent=None):
-            nid = identity(sid, node.kind, node.start, node.end, node.name)
+        def flatten(node, parent=None, *, source_id=sid, source_line_starts=line_starts):
+            nid = identity(source_id, node.kind, node.start, node.end, node.name)
             record = {
                 "id": nid,
-                "source_id": sid,
+                "source_id": source_id,
                 "parent_id": parent,
                 "kind": node.kind,
                 "name": node.name,
@@ -102,8 +102,8 @@ def build_index(input_path, *, encoding="utf-8", adapters=None):
                 "header_end": node.header_end
                 if node.header_end is not None
                 else node.end,
-                "start_line": bisect_right(line_starts, node.start),
-                "end_line": bisect_right(line_starts, max(node.start, node.end - 1)),
+                "start_line": bisect_right(source_line_starts, node.start),
+                "end_line": bisect_right(source_line_starts, max(node.start, node.end - 1)),
                 "confidence": node.confidence,
             }
             nodes.append(record)

@@ -1,12 +1,11 @@
 import copy
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 
 from code2map import build_index, pack_index, validate_index, validate_pack
 from code2map.context.model import Node, Parsed, canonical, digest
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -462,9 +461,8 @@ def f(x):
         ):
             with self.assertRaises(ValueError):
                 pack_index(i, **kwargs)
-        with tempfile.TemporaryDirectory() as td:
-            with self.assertRaises(ValueError):
-                build_index(td)
+        with tempfile.TemporaryDirectory() as td, self.assertRaises(ValueError):
+            build_index(td)
 
     def test_cli_roundtrip_and_source_overwrite_refusal(self):
         from code2map.cli import main

@@ -48,7 +48,7 @@ def test_generators_with_id(tmp_path: Path):
     data = json.loads((out_dir / "MAP.json").read_text(encoding="utf-8"))
     assert data[0]["id"] == "CD1"
     # IDが最初のキーであることを確認
-    assert list(data[0].keys())[0] == "id"
+    assert next(iter(data[0])) == "id"
 
     # parts ファイルにIDが含まれる
     parts_files = list((out_dir / "parts").glob("*.py"))

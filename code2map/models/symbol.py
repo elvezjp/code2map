@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Optional
 
 
 @dataclass
@@ -12,15 +11,15 @@ class Symbol:
     end_line: int
     original_file: str
     language: str
-    parent: Optional[str] = None
-    qualname: Optional[str] = None
-    role: Optional[str] = None
-    signature: Optional[str] = None
-    calls: List[str] = field(default_factory=list)
-    dependencies: List[str] = field(default_factory=list)
-    side_effects: List[str] = field(default_factory=list)
-    part_file: Optional[str] = None
-    id: Optional[str] = None
+    parent: str | None = None
+    qualname: str | None = None
+    role: str | None = None
+    signature: str | None = None
+    calls: list[str] = field(default_factory=list)
+    dependencies: list[str] = field(default_factory=list)
+    side_effects: list[str] = field(default_factory=list)
+    part_file: str | None = None
+    id: str | None = None
 
     def display_name(self) -> str:
         if self.kind == "method" and self.parent:

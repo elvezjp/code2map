@@ -174,9 +174,15 @@ uv run code2map build your_code.py --dry-run
 ```text
 code2map/
 ├── code2map/              # メインパッケージ
-│   ├── cli.py             # CLIエントリーポイント
-│   ├── context/           # 原文索引、文脈付き分割、検証
-│   │   └── adapters/      # PL/SQL・Python・Javaアダプター
+│   ├── __main__.py        # `python -m code2map` の入口
+│   ├── _version.py        # バージョン番号
+│   ├── cli.py             # CLIエントリーポイント（build と共通エンジンのサブコマンド）
+│   ├── context/           # 共通エンジン：原文索引、文脈付き分割、検証
+│   │   ├── adapters/      # PL/SQL・Python・Javaアダプター
+│   │   ├── cli.py         # index / pack / check / tree / show
+│   │   ├── index.py       # 索引の構築と検査
+│   │   ├── model.py       # アダプター契約・予算カウンター・正規化
+│   │   └── packing.py     # 予算付き分割と検査
 │   ├── generators/        # 出力生成モジュール
 │   │   ├── index_generator.py   # INDEX.md生成
 │   │   ├── map_generator.py     # MAP.json生成
