@@ -11,7 +11,6 @@ import pytest
 from code2map import build_index, pack_index, validate_pack
 from code2map.context.model import canonical, digest
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -19,6 +18,7 @@ def invoke(*args):
     return subprocess.run(
         [sys.executable, "-m", "code2map", *map(str, args)],
         cwd=ROOT,
+        check=False,
         capture_output=True,
         text=True,
     )

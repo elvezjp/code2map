@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import ast
-from typing import List, Tuple
 
 from code2map.models.symbol import Symbol
 from code2map.parsers.base_parser import BaseParser
@@ -11,9 +10,9 @@ from code2map.utils.file_utils import read_text
 class _PythonSymbolVisitor(ast.NodeVisitor):
     def __init__(self, file_path: str) -> None:
         self.file_path = file_path
-        self.symbols: List[Symbol] = []
-        self._current_symbol: List[Symbol] = []
-        self._module_imports: List[str] = []
+        self.symbols: list[Symbol] = []
+        self._current_symbol: list[Symbol] = []
+        self._module_imports: list[str] = []
         self._ignore_new_symbol: int = 0
         self._function_depth: int = 0
 
@@ -130,7 +129,7 @@ class _PythonSymbolVisitor(ast.NodeVisitor):
             return node.attr
         return ""
 
-    def finalize(self) -> List[Symbol]:
+    def finalize(self) -> list[Symbol]:
         for symbol in self.symbols:
             symbol.dependencies = sorted(set(self._module_imports))
             symbol.calls = sorted(set(symbol.calls))
@@ -138,8 +137,8 @@ class _PythonSymbolVisitor(ast.NodeVisitor):
 
 
 class PythonParser(BaseParser):
-    def parse(self, file_path: str) -> Tuple[List[Symbol], List[str]]:
-        warnings: List[str] = []
+    def parse(self, file_path: str) -> tuple[list[Symbol], list[str]]:
+        warnings: list[str] = []
         try:
             source = read_text(file_path)
             if "\ufffd" in source:

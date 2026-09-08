@@ -4,8 +4,9 @@ It recognizes balanced procedural constructs without interpreting SQL. A script
 unit whose structure cannot be recognized is retained whole as an opaque node.
 """
 
-from dataclasses import dataclass
 import re
+from dataclasses import dataclass
+
 from ..model import Node, Parsed, Reference
 
 
@@ -466,9 +467,7 @@ class PLSQLAdapter:
                     "PROCEDURE",
                     "CURSOR",
                     "TYPE",
-                }:
-                    kind = "call"
-                elif following == ";" and previous in {"BEGIN", ";", "THEN", "ELSE"}:
+                } or following == ";" and previous in {"BEGIN", ";", "THEN", "ELSE"}:
                     kind = "call"
                 else:
                     kind = "reference"

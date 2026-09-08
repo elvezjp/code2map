@@ -40,7 +40,7 @@ class TestEdgeCases:
     def test_syntax_error_file(self) -> None:
         """Test parsing a file with syntax error."""
         parser = PythonParser()
-        symbols, warnings = parser.parse("tests/fixtures/syntax_error.py")
+        _symbols, warnings = parser.parse("tests/fixtures/syntax_error.py")
         # Should handle gracefully with warnings
         assert len(warnings) > 0
         assert "parse error" in warnings[0].lower()
@@ -48,7 +48,7 @@ class TestEdgeCases:
     def test_large_file_performance(self) -> None:
         """Test parsing a large file (2100+ lines) performs within time budget."""
         parser = PythonParser()
-        symbols, warnings = parser.parse("tests/fixtures/large_file.py")
+        symbols, _warnings = parser.parse("tests/fixtures/large_file.py")
         # Should parse successfully
         assert len(symbols) >= 1
         # Large class with many methods
@@ -102,7 +102,7 @@ class Outer:
         fixture_path.write_text(test_code)
         
         parser = PythonParser()
-        symbols, warnings = parser.parse(str(fixture_path))
+        symbols, _warnings = parser.parse(str(fixture_path))
 
         names = {s.display_name() for s in symbols}
         assert "Outer_Inner" in names

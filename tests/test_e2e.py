@@ -5,6 +5,7 @@ import json
 import sys
 from pathlib import Path
 from unittest.mock import patch
+
 import pytest
 
 from code2map.cli import main

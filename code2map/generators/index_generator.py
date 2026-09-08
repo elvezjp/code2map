@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable, List
 
 from code2map.models.symbol import Symbol
 from code2map.utils.file_utils import slice_lines, write_text
@@ -18,7 +18,7 @@ def _normalize_role(role: str | None) -> str | None:
     return line
 
 
-def _detect_side_effects(text: str) -> List[str]:
+def _detect_side_effects(text: str) -> list[str]:
     if not text:
         return []
     text_l = text.lower()
@@ -30,7 +30,7 @@ def _detect_side_effects(text: str) -> List[str]:
         ("db", ["jdbc", "select ", "insert ", "update ", "delete ", "execute(", "save", "persist", "flush", "commit"]),
         ("exceptions", ["throw new", "raise "]),
     ]
-    effects: List[str] = []
+    effects: list[str] = []
     for name, keys in rules:
         if any(k in text_l for k in keys):
             effects.append(name)
@@ -39,8 +39,8 @@ def _detect_side_effects(text: str) -> List[str]:
 
 def generate_index(
     symbols: Iterable[Symbol],
-    warnings: List[str],
-    lines: List[str],
+    warnings: list[str],
+    lines: list[str],
     output_path: str,
     input_file: str,
 ) -> None:
@@ -49,7 +49,7 @@ def generate_index(
     methods = [s for s in symbols if s.kind == "method"]
     functions = [s for s in symbols if s.kind == "function"]
 
-    parts: List[str] = []
+    parts: list[str] = []
     file_name = Path(input_file).name
     parts.append(f"# Index: {file_name}")
 

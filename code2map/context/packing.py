@@ -1,8 +1,9 @@
 """Partition targets exactly once; context is explicitly duplicated and budgeted."""
 
-from .model import UTF8Bytes, canonical, digest, identity
-from .index import validate_index
 from bisect import bisect_left, bisect_right
+
+from .index import validate_index
+from .model import UTF8Bytes, canonical, digest, identity
 
 
 def _payload_builder(index):
