@@ -3,7 +3,6 @@ from __future__ import annotations
 import hashlib
 import re
 from pathlib import Path
-from typing import Dict, List, Tuple
 
 from code2map.models.symbol import Symbol
 from code2map.utils.file_utils import ensure_dir, slice_lines, write_text
@@ -21,7 +20,7 @@ def _comment_prefix(language: str, ext: str) -> str:
     return "//"
 
 
-def _build_filename(symbol: Symbol, ext: str, existing: Dict[str, int]) -> str:
+def _build_filename(symbol: Symbol, ext: str, existing: dict[str, int]) -> str:
     if symbol.kind == "class":
         base = f"{symbol.name}.class{ext}"
     elif symbol.kind == "method":
@@ -41,19 +40,19 @@ def _build_filename(symbol: Symbol, ext: str, existing: Dict[str, int]) -> str:
 
 
 def generate_parts(
-    symbols: List[Symbol],
-    lines: List[str],
+    symbols: list[Symbol],
+    lines: list[str],
     out_dir: str,
     dry_run: bool = False,
-) -> List[Tuple[Symbol, str]]:
+) -> list[tuple[Symbol, str]]:
     ext = Path(symbols[0].original_file).suffix if symbols else ""
     parts_dir = Path(out_dir) / "parts"
     if not dry_run:
         ensure_dir(out_dir)
         ensure_dir(str(parts_dir))
 
-    existing: Dict[str, int] = {}
-    fragments: List[Tuple[Symbol, str]] = []
+    existing: dict[str, int] = {}
+    fragments: list[tuple[Symbol, str]] = []
 
     for symbol in symbols:
         if symbol.kind not in {"class", "method", "function"}:
@@ -77,7 +76,7 @@ def generate_parts(
             f"{prefix} lines: {symbol.start_line}-{symbol.end_line}",
             f"{prefix} symbol: {symbol.display_name()}",
         ])
-        notes: List[str] = []
+        notes: list[str] = []
         if symbol.dependencies:
             notes.append("references " + ", ".join(symbol.dependencies))
         if symbol.calls:

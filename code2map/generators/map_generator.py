@@ -3,7 +3,6 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-from typing import List, Tuple
 
 from code2map.models.symbol import Symbol
 from code2map.utils.file_utils import write_text
@@ -13,7 +12,7 @@ def _checksum(fragment: str) -> str:
     return hashlib.sha256(fragment.encode("utf-8")).hexdigest()
 
 
-def generate_map(entries: List[Tuple[Symbol, str]], output_path: str) -> None:
+def generate_map(entries: list[tuple[Symbol, str]], output_path: str) -> None:
     payload = []
     for symbol, fragment in entries:
         if not symbol.part_file:

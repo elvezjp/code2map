@@ -3,18 +3,17 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
-from typing import List
 
-from code2map.context.cli import add_commands, run as run_context
 from code2map._version import __version__
+from code2map.context.cli import add_commands
+from code2map.context.cli import run as run_context
 from code2map.generators.index_generator import generate_index
 from code2map.generators.map_generator import generate_map
 from code2map.generators.parts_generator import generate_parts
 from code2map.parsers.java_parser import JavaParser
 from code2map.parsers.python_parser import PythonParser
-from code2map.utils.file_utils import read_lines, ensure_dir
-from code2map.utils.logger import setup_logger, get_logger
-
+from code2map.utils.file_utils import ensure_dir, read_lines
+from code2map.utils.logger import get_logger, setup_logger
 
 LANG_EXT = {
     ".java": "java",
@@ -54,7 +53,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _print_dry_run(symbols, parts: List[str], input_file: str) -> None:
+def _print_dry_run(symbols, parts: list[str], input_file: str) -> None:
     print("Symbols:")
     for symbol in symbols:
         print(f"- {symbol.display_name()} ({symbol.kind}) {symbol.line_range()}")

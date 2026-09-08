@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import List, Optional, Tuple
-
 import tree_sitter_java as tsjava
 from tree_sitter import Language, Node, Parser
 
@@ -24,7 +22,7 @@ def _src(node: Node, source_bytes: bytes) -> str:
     return source_bytes[node.start_byte:node.end_byte].decode("utf-8", errors="replace")
 
 
-def _get_javadoc(node: Node, source_bytes: bytes) -> Optional[str]:
+def _get_javadoc(node: Node, source_bytes: bytes) -> str | None:
     """Return the first sentence of the Javadoc comment immediately preceding node."""
     parent = node.parent
     if parent is None:
@@ -39,8 +37,7 @@ def _get_javadoc(node: Node, source_bytes: bytes) -> Optional[str]:
             if not text.startswith("/**"):
                 return None
             inner = text[3:]
-            if inner.endswith("*/"):
-                inner = inner[:-2]
+            inner = inner.removesuffix("*/")
             lines = [ln.strip().lstrip("*").strip() for ln in inner.splitlines()]
             joined = " ".join(ln for ln in lines if ln)
             for sep in [".", "\n"]:
@@ -59,8 +56,8 @@ def _get_param_type(param: Node, source_bytes: bytes) -> str:
     return _src(type_node, source_bytes).strip()
 
 
-def _collect_calls(node: Node, source_bytes: bytes) -> List[str]:
-    calls: List[str] = []
+def _collect_calls(node: Node, source_bytes: bytes) -> list[str]:
+    calls: list[str] = []
 
     def walk(n: Node) -> None:
         if n.type == "method_invocation":
@@ -92,8 +89,8 @@ class JavaParser(BaseParser):
     def __init__(self) -> None:
         self._parser = Parser(JAVA_LANGUAGE)
 
-    def parse(self, file_path: str) -> Tuple[List[Symbol], List[str]]:
-        warnings: List[str] = []
+    def parse(self, file_path: str) -> tuple[list[Symbol], list[str]]:
+        warnings: list[str] = []
         source = read_text(file_path)
         if "\ufffd" in source:
             warnings.append("Encoding error detected; replaced invalid characters.")
@@ -103,7 +100,7 @@ class JavaParser(BaseParser):
         root = tree.root_node
 
         if root.has_error:
-            def _find_error(n: Node) -> Optional[Node]:
+            def _find_error(n: Node) -> Node | None:
                 if n.type == "ERROR" or n.is_missing:
                     return n
                 for c in n.children:
@@ -120,14 +117,14 @@ class JavaParser(BaseParser):
                     " (partial results may be incomplete)"
                 )
 
-        imports: List[str] = []
+        imports: list[str] = []
         for child in root.children:
             if child.type == "import_declaration":
                 for c in child.children:
                     if c.type in ("scoped_identifier", "identifier"):
                         imports.append(_get_scoped_name(c, source_bytes))
 
-        symbols: List[Symbol] = []
+        symbols: list[Symbol] = []
 
         def _add_method(node: Node, display_name: str, qualname: str) -> None:
             name_node = node.child_by_field_name("name")
@@ -187,7 +184,7 @@ class JavaParser(BaseParser):
                 elif member.type == "enum_body_declarations":
                     _process_body(member, display_name, qualname)
 
-        def add_class(node: Node, parent: Optional[str], qualparent: Optional[str]) -> None:
+        def add_class(node: Node, parent: str | None, qualparent: str | None) -> None:
             name_node = node.child_by_field_name("name")
             if name_node is None:
                 return

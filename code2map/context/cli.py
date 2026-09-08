@@ -3,9 +3,10 @@
 import json
 import sys
 from pathlib import Path
+
 from .index import build_index, validate_index
-from .packing import pack_index, validate_pack
 from .model import canonical
+from .packing import pack_index, validate_pack
 
 
 def add_commands(sub):

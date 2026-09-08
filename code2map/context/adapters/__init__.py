@@ -1,7 +1,7 @@
 """Built-in adapters. Consumers can supply any object implementing Adapter."""
 
-from .python import PythonAdapter
 from .plsql import PLSQLAdapter
+from .python import PythonAdapter
 
 
 def __getattr__(name):
