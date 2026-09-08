@@ -7,11 +7,11 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
-## [0.4.0] - 未リリース
+## [0.4.0] - 2026-09-07
 
 ### 追加
 
-- 0.4.0: 原文スナップショット、構造階層、字句上の依存候補を保持する汎用エンジンとPython API。
+- **共通エンジン**: 原文スナップショット、構造階層、字句上の依存候補を保持する汎用エンジンとPython API（`build_index`／`pack_index`／`validate_index`／`validate_pack`）。
 - 文脈を保つ決定論的分割のための`index`、`pack`、`check`、`tree`、`show`コマンド。
 - PL/SQL・Python AST・Java Tree-sitterのアダプター、複数言語のディレクトリ入力、文字コード指定、網羅性・文脈整合性検査。
 - 言語アダプター／予算カウンターの拡張契約、文書、回帰テスト。既存の`build`コマンドと生成形式は維持。
@@ -25,6 +25,13 @@
 
 - `python -m code2map`と`--version`を追加。
 - 意図的に実行不能な生成断片と構文エラーのテスト素材をRuffの検査対象から除外。
+
+### 互換性
+
+- `build` コマンドの引数と生成形式（`INDEX.md`・`MAP.json`・`parts/`）は0.3.0と同一で、同じ入力から同じ出力を生成する。
+- `code2map.cli.main()` は戻り値が `None` から終了コード（`int`）になり、`argv` 引数を受け付ける。戻り値を使わない既存の呼び出しはそのまま動く。
+- 共通エンジンの `index.json` は実行環境（Pythonのバージョン）を記録し、`index_sha256` と packet の ID はその値に依存する。
+- 最低対応 Python は 3.11（0.2.1 から変更なし）。CI は Python 3.11・3.13・3.14 × Linux・Windows・macOS で検証している。
 
 
 ## [0.3.0] - 2026-08-09
@@ -213,12 +220,25 @@
 - クラス/メソッド単位の分割のみ（処理フェーズ単位の分割は未対応）
 - 対応言語はJavaとPythonのみ
 
+## バージョン比較
+
+| バージョン | 主な機能 |
+| ---------- | -------- |
+| 0.4.0 | 共通エンジン（`index`／`pack`／`check`／`tree`／`show`、Python API）、PL/SQL・Python・Java アダプター、行単位の packet 境界、`python -m code2map`・`--version` |
+| 0.3.0 | `cryptography` の下限引き上げ（セキュリティ）、`versions/` 廃止と git tag によるバージョン管理、v0.3.0 出力サンプル |
+| 0.2.1 | Python 最低バージョン 3.11、PyPI 公開向けメタデータ |
+| 0.2.0 | Java パーサーを Tree-sitter に置き換え（Java 8+ 構文） |
+| 0.1.3 | Java パースエラーメッセージの改善 |
+| 0.1.2 | `parts/` ファイル名のサニタイズ |
+| 0.1.1 | シンボル ID（`CD1`, `CD2`, …） |
+| 0.1.0 | 初回リリース（`build`、Python・Java パーサー、`INDEX.md`／`MAP.json`／`parts/`） |
+
 ## リンク
 
 - [リポジトリ](https://github.com/elvezjp/code2map)
 - [Issueトラッカー](https://github.com/elvezjp/code2map/issues)
 
-[0.4.0]: https://github.com/elvezjp/code2map/compare/v0.3.0...HEAD
+[0.4.0]: https://github.com/elvezjp/code2map/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/elvezjp/code2map/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/elvezjp/code2map/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/elvezjp/code2map/compare/v0.1.3...v0.2.0

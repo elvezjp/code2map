@@ -205,7 +205,7 @@ git clone https://github.com/elvezjp/code2map.git
 cd code2map
 
 # Install including dev dependencies
-uv sync --all-extras
+uv sync --locked --all-extras
 
 # Verify installation
 uv run code2map --help

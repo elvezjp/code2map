@@ -174,9 +174,15 @@ This is a schematic formatting example. See the [samples](docs/examples/) for ge
 ```text
 code2map/
 ├── code2map/              # Main package
-│   ├── cli.py             # CLI entry point
-│   ├── context/           # Source index, context packing and validation
-│   │   └── adapters/      # PL/SQL, Python and Java adapters
+│   ├── __main__.py        # `python -m code2map` entry point
+│   ├── _version.py        # Version number
+│   ├── cli.py             # CLI entry point (build and context-engine subcommands)
+│   ├── context/           # Context engine: source index, context packing and validation
+│   │   ├── adapters/      # PL/SQL, Python and Java adapters
+│   │   ├── cli.py         # index / pack / check / tree / show
+│   │   ├── index.py       # Index construction and validation
+│   │   ├── model.py       # Adapter contract, budget counter, canonicalisation
+│   │   └── packing.py     # Budgeted partitioning and validation
 │   ├── generators/        # Output generation modules
 │   │   ├── index_generator.py   # INDEX.md generation
 │   │   ├── map_generator.py     # MAP.json generation

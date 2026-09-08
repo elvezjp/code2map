@@ -72,7 +72,7 @@ Add normalization of the input path and validation that it resides within an all
 
 ### Input Validation
 
-- Input files are identified by extension (`.py`, `.java`)
+- `build` identifies the language from the input file extension (`.py`, `.java`). The context engine (`index`) covers `.sql`, `.pks`, `.pkb`, `.pls`, `.plsql`, `.py` and `.java`; other files are not indexed
 - Malformed files are handled as parse errors
 - Be aware of symbolic link traversal risks
 
@@ -81,6 +81,7 @@ Add normalization of the input path and validation that it resides within an all
 - Generated Markdown files contain fragments of the original source code
 - When processing source code containing sensitive information, handle output files with care
 - `MAP.json` contains path information of the original files
+- The context engine's `index.json` holds the **complete source text** of the input files, and each packet in `pack.json` contains source fragments. Treat these files as the analysed source code itself (recorded paths are relative to the input; no absolute paths or timestamps are stored)
 
 ### Dependencies
 
@@ -111,7 +112,7 @@ Follow these recommendations to use code2map safely:
 
 ## Known Security Limitations
 
-- This tool performs static analysis only and does not execute code
+- This tool performs static analysis only and does not execute code. Indexing and packing make no network access and call no external services (such as LLMs)
 - Dependencies introduced via dynamic dispatch or reflection cannot be detected
 - No functionality is provided for detecting malicious code patterns
 

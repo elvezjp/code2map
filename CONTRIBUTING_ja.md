@@ -205,7 +205,7 @@ git clone https://github.com/elvezjp/code2map.git
 cd code2map
 
 # 開発用依存関係を含めてインストール
-uv sync --all-extras
+uv sync --locked --all-extras
 
 # 動作確認
 uv run code2map --help

@@ -7,11 +7,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.0] - Unreleased
+## [0.4.0] - 2026-09-07
 
 ### Added
 
-- 0.4.0: a language-neutral source snapshot, structural hierarchy and lexical dependency graph, exposed through reusable Python APIs.
+- **Context engine**: a language-neutral source snapshot, structural hierarchy and lexical dependency graph, exposed through reusable Python APIs (`build_index` / `pack_index` / `validate_index` / `validate_pack`).
 - `index`, `pack`, `check`, `tree`, and `show` commands for deterministic whole-source partitioning with enclosing context and explicit budget/parse statuses.
 - PL/SQL, Python AST, and Java Tree-sitter context adapters; mixed-language directory input, strict encoding selection, source coverage and context integrity checks.
 - Adapter and budget-counter protocols, context documentation, and regression tests. The existing `build` CLI and generated output contract are preserved.
@@ -25,6 +25,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added `python -m code2map` and `--version` entry points.
 - Excluded deliberately non-executable generated fragments and malformed parser fixtures from Ruff checks.
+
+### Compatibility
+
+- The `build` command arguments and generated output (`INDEX.md`, `MAP.json`, `parts/`) are unchanged from 0.3.0; the same input produces the same output.
+- `code2map.cli.main()` now returns an exit code (`int`) instead of `None` and accepts an `argv` argument. Existing callers that ignore the return value keep working.
+- The context engine's `index.json` records the runtime (Python version); `index_sha256` and packet IDs depend on it.
+- The minimum Python version remains 3.11 (unchanged since 0.2.1). CI covers Python 3.11, 3.13 and 3.14 on Linux, Windows and macOS.
 
 
 ## [0.3.0] - 2026-08-09
@@ -213,12 +220,25 @@ This version has the following limitations:
 - Class/method-level splitting only (processing phase-level splitting not supported)
 - Supported languages: Java and Python only
 
+## Version Comparison
+
+| Version | Main features |
+| ------- | ------------- |
+| 0.4.0 | Context engine (`index` / `pack` / `check` / `tree` / `show`, Python API), PL/SQL, Python and Java adapters, line-aligned packet boundaries, `python -m code2map` and `--version` |
+| 0.3.0 | Raised `cryptography` floor (security), removed `versions/` in favour of git tags, v0.3.0 output samples |
+| 0.2.1 | Minimum Python 3.11, PyPI-ready package metadata |
+| 0.2.0 | Java parser replaced with Tree-sitter (Java 8+ syntax) |
+| 0.1.3 | Improved Java parse error messages |
+| 0.1.2 | Sanitised `parts/` file names |
+| 0.1.1 | Symbol IDs (`CD1`, `CD2`, …) |
+| 0.1.0 | Initial release (`build`, Python and Java parsers, `INDEX.md` / `MAP.json` / `parts/`) |
+
 ## Links
 
 - [Repository](https://github.com/elvezjp/code2map)
 - [Issue Tracker](https://github.com/elvezjp/code2map/issues)
 
-[0.4.0]: https://github.com/elvezjp/code2map/compare/v0.3.0...HEAD
+[0.4.0]: https://github.com/elvezjp/code2map/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/elvezjp/code2map/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/elvezjp/code2map/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/elvezjp/code2map/compare/v0.1.3...v0.2.0
