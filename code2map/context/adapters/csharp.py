@@ -143,11 +143,13 @@ class CSharpAdapter:
             )
 
         def structural(child):
-            """Members and directives allowed inside type bodies and #if blocks."""
+            """Anything that may sit inside a type body or a #if block."""
             return (
                 statement_like(child)
                 or child.type in FUNCTIONS
                 or child.type in IMPORTS
+                or child.type
+                in {"namespace_declaration", "file_scoped_namespace_declaration"}
                 or child.type.startswith("preproc_")
             )
 

@@ -242,3 +242,28 @@ def test_mixed_language_directory_includes_csharp(tmp_path):
     assert len(index["sources"]) == 4
     assert set(index["adapters"]) >= {"csharp-tree-sitter", "java-tree-sitter"}
     validate_pack(index, pack_index(index, budget=3000))
+
+
+def test_conditional_compilation_around_a_namespace(tmp_path):
+    consume = "\n".join(f"            Consume({i});" for i in range(120))
+    text = (
+        "#if DEBUG\nnamespace Demo\n{\n    class A\n    {\n        void M()\n        {\n"
+        + consume
+        + "\n        }\n    }\n}\n#endif\n"
+    )
+    index = index_csharp(tmp_path, text)
+    assert not index["diagnostics"]
+    assert {n["symbol"] for n in index["nodes"] if n["kind"] == "namespace"} == {"Demo"}
+    assert {n["symbol"] for n in index["nodes"] if n["kind"] == "class"} == {"A"}
+    assert {n["symbol"] for n in index["nodes"] if n["kind"] == "function"} == {"M"}
+    packed = pack_index(index, budget=6000)
+    assert packed["summary"]["oversized"] == 0
+    assert packed["summary"]["ready"] > 1
+    marker = text.index("Consume(77)")
+    packet = next(p for p in packed["packets"] if p["start"] <= marker < p["end"])
+    headers = "\n".join(c["text"] for c in json.loads(packet["payload"])["enclosing_context"])
+    assert "#if DEBUG" in headers
+    assert "namespace Demo" in headers
+    assert "void M()" in headers
+    assert recovered(index, packed) == text
+
