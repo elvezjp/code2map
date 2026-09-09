@@ -20,13 +20,15 @@
 
 ## テスト範囲と出力互換性
 
-全68件の内訳は従来機能30件と共通エンジン38件です。原文の完全復元、Unicode・CRLF、複数言語、外側の分岐条件と例外領域の参照、未解決・曖昧な呼出候補、独自アダプターとカウンター、oversized／opaque、文脈省略記録の整合性、CLI終了コードを含みます。
+全80件の内訳は従来機能30件と共通エンジン50件です。原文の完全復元、Unicode・CRLF、複数言語、外側の分岐条件と例外領域の参照、未解決・曖昧な呼出候補、独自アダプターとカウンター、oversized／opaque、文脈省略記録の整合性、CLI終了コードを含みます。
 
 packet境界については、全packetの境界が行頭・行末にあることを検査する性質テストと、生の範囲は予算に収まるが行揃え後は収まらない子の回帰テストで確認しています。約4万行のPL/SQLパッケージ（予算40,000／予約4,000バイト）でも、全137packetで行の途中の境界がないことを確認しました。行揃えの修正（[#27](https://github.com/elvezjp/code2map/issues/27)）によるpacket数とoversized数の変化はありませんでした。
 
 比較に使った7種類は`sample.py`、`sample.java`、`java8_syntax.java`、`large_file.py`、`function_only.py`、`empty.py`、`comments_only.py`です。両版で同じ入力パスを使い、`INDEX.md`、`MAP.json`、`parts/`を含むすべての生成ファイルをバイト単位で比較しました。
 
 共通エンジンの出力サンプルは、`docs/examples/v0.4.0/`の各言語の`context/`に収録しています。
+
+C#アダプター（[#36](https://github.com/elvezjp/code2map/issues/36)）は12件の回帰テストで確認しています。CRLF・Unicode・オーバーロードでの索引の再現性、分割後の`else`条件・ループヘッダー・例外ハンドラーの保持、switch文と式形式メンバー、150armのswitch式の分割、分割不能な`do`、構文エラーの`opaque`化、ファイルスコープ名前空間・`#region`・ローカル関数・`goto`、クラスと名前空間を囲む`#if`の内部構造の抽出と分割後の条件ヘッダーの保持、共有する`case`ラベルの分岐ヘッダーへの保持、別ファイルの`partial`型、4言語の混在ディレクトリです。合成サンプルは`docs/examples/v0.5.0/csharp/`に収録しています（予算6,000バイトで8packet・ready 8・oversized 0・`check` passed）。既存のPython・Java・PL/SQLサンプルは再生成しても構造と分割が同一で、変わるのは実行環境の記録だけです。
 
 ## 依存関係と検証の限界
 
