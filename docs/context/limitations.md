@@ -30,6 +30,10 @@ The adapter does not resolve types, inheritance, dynamic dispatch or imported fi
 
 The index records Tree-sitter and Java grammar versions. Reproduction requires fixed Python, dependency versions, input and settings.
 
+## C#
+
+Structure comes from the `tree-sitter-c-sharp` grammar. Block-form namespaces are scopes; a file-scoped `namespace X;` is recorded as a leaf `import` node and does not qualify the names below it. Classes, structs, interfaces, records, enums, methods, constructors, properties, indexers, operators and local functions are nodes; property accessors are branches under the property. Control flow (if/else, loops, switch statement and expression, try/catch/finally, using, lock, checked, unsafe, fixed) splits along its bodies; `do` remains indivisible so the trailing condition is not separated. Lambdas, anonymous methods, query expressions and attributes are not split. `partial` types in different files are separate nodes and are not merged. Preprocessor lines (`#region`, `#if`, ...) are leaf `preproc` nodes; conditional compilation is not evaluated, so inactive branches are indexed as written. Calls, object creation, `goto` and identifiers are lexical candidates without overload, extension-method or type resolution. Syntax errors make the whole file opaque. The index records the Tree-sitter runtime and C# grammar versions.
+
 ## Context and semantic understanding
 
 Supporting excerpts are mainly declarations and signatures. The engine does not generate summaries of callee updates or thrown exceptions. External dependencies remain unresolved when supporting source is unavailable.

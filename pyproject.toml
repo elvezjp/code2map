@@ -34,6 +34,7 @@ classifiers = [
 ]
 dependencies = [
     "tree-sitter>=0.21.0",
+    "tree-sitter-c-sharp>=0.21.0",
     "tree-sitter-java>=0.21.0",
 ]
 

@@ -19,7 +19,7 @@ The engine has no dependency on an LLM, embeddings, a vector database or a parti
 
 The index excludes timestamps and absolute paths. Source IDs depend on the relative path and decoded-text hash. Node IDs depend on source ID, kind, range and name. Editing a source changes its IDs; tracking identities across edits is not guaranteed.
 
-Python AST behavior depends on the interpreter, so its version is recorded. Java records Tree-sitter and grammar versions. Fix source bytes, encoding, relative paths, runtime and adapter implementations, tokenizer vocabulary/options and packing settings to reproduce output byte for byte. Custom adapters and counters must themselves behave deterministically.
+Python AST behavior depends on the interpreter, so its version is recorded. Java and C# record Tree-sitter and grammar versions. Fix source bytes, encoding, relative paths, runtime and adapter implementations, tokenizer vocabulary/options and packing settings to reproduce output byte for byte. Custom adapters and counters must themselves behave deterministically.
 
 Hashes establish content consistency, not authorship or authenticity.
 

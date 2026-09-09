@@ -15,9 +15,12 @@ examples/
 │   │   ├── user_management_service.py  # 入力ファイル
 │   │   ├── output/                     # build の出力（INDEX.md, MAP.json, parts/）
 │   │   └── context/                    # 共通エンジンの出力（index.json, pack.json, tree.txt, check.json）
-│   └── plsql/
-│       ├── accounting.sql              # 入力ファイル
-│       └── context/                    # 共通エンジンの出力（build は PL/SQL 非対応）
+│   ├── plsql/
+│   │   ├── accounting.sql              # 入力ファイル
+│   │   └── context/                    # 共通エンジンの出力（build は PL/SQL 非対応）
+│   └── csharp/
+│       ├── UserManagementService.cs    # 入力ファイル（v0.5.0 から）
+│       └── context/                    # 共通エンジンの出力（build は C# 非対応）
 └── （旧バージョン）/                    # 参照用。context/ と plsql/ は共通エンジンを持つバージョンにのみある
 ```
 
@@ -36,16 +39,17 @@ uv run code2map build $EX/java/UserManagementService.java --out $EX/java/output
 uv run code2map build $EX/python/user_management_service.py --out $EX/python/output
 ```
 
-### 共通エンジン（Java・Python・PL/SQL）
+### 共通エンジン（Java・Python・PL/SQL・C#）
 
 `index` で索引を作り、`pack` で予算に応じた packet に分割し、`tree` で構造木、`check` で整合性検査の結果を保存します。索引に記録されるパスは入力ファイルからの相対パスなので、実行するディレクトリによって出力は変わりません。`build` は PL/SQL に対応していないため、PL/SQL は共通エンジンの出力だけを収録しています。
 
 ```bash
-for lang in java python plsql; do
+for lang in java python plsql csharp; do
   case $lang in
     java)   src=$EX/java/UserManagementService.java;   budget=6000 ;;
     python) src=$EX/python/user_management_service.py; budget=6000 ;;
     plsql)  src=$EX/plsql/accounting.sql;              budget=3000 ;;
+    csharp) src=$EX/csharp/UserManagementService.cs;   budget=6000 ;;
   esac
   uv run code2map index $src --output $EX/$lang/context/index.json
   uv run code2map pack $EX/$lang/context/index.json --output $EX/$lang/context/pack.json --budget-bytes $budget --reserve-bytes 0

@@ -14,7 +14,7 @@ A Python library and CLI that indexes source structure and assembles context-awa
 
 ## Context-aware partitioning
 
-Version 0.4.0 adds a reusable engine that indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, and Java, including directories with mixed languages. The existing `build` command and its output format remain available.
+Version 0.4.0 adds a reusable engine that indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, Java, and C#, including directories with mixed languages. The existing `build` command and its output format remain available.
 
 Run at the repository root after [setup](#setup).
 
@@ -64,7 +64,7 @@ IXV delivers a methodology and OSS that put AI to practical use in real developm
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
 - [SECURITY.md](SECURITY.md) - Security policy
 - [spec_en.md](spec_en.md) - Existing `build` specification
-- [examples/](examples/) - PL/SQL, Python and Java context-engine samples
+- [examples/](examples/) - PL/SQL, Python, Java and C# context-engine samples
 - [docs/examples/](docs/examples/) - Sample inputs and outputs for `build` and the context engine, per release
 
 ## Setup
@@ -178,7 +178,7 @@ code2map/
 │   ├── _version.py        # Version number
 │   ├── cli.py             # CLI entry point (build and context-engine subcommands)
 │   ├── context/           # Context engine: source index, context packing and validation
-│   │   ├── adapters/      # PL/SQL, Python and Java adapters
+│   │   ├── adapters/      # PL/SQL, Python, Java and C# adapters
 │   │   ├── cli.py         # index / pack / check / tree / show
 │   │   ├── index.py       # Index construction and validation
 │   │   ├── model.py       # Adapter contract, budget counter, canonicalisation
@@ -235,7 +235,7 @@ git checkout v0.2.1
 ## Limitations
 
 - `build` extracts symbols from one Python/Java file. Fragments overlap and have no enforced input budget.
-- `index` accepts PL/SQL, Python and Java files/directories; `pack` partitions along source structure. Indivisible regions can exceed the budget.
+- `index` accepts PL/SQL, Python, Java and C# files/directories; `pack` partitions along source structure. Indivisible regions can exceed the budget.
 - Calls and variable references are static candidates. Complete data flow and runtime bindings are not resolved.
 
 See the [build specification](spec_en.md) and [context-engine limitations](docs/context/limitations.md).

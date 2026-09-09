@@ -1,0 +1,5 @@
+{
+  "coverage": "exactly-once",
+  "packets": 8,
+  "status": "passed"
+}

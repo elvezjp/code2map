@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- C# adapter for the context engine (`code2map/context/adapters/csharp.py`, Tree-sitter `tree-sitter-c-sharp`), following the Java adapter's contract: namespaces as scopes, types/members/control flow/handlers as nodes, `#region` and other preprocessor lines as leaf `preproc` nodes, expressions indivisible, syntax errors opaque, lexical call/`new`/`goto`/identifier candidates ([#36](https://github.com/elvezjp/code2map/issues/36)). `build` is unchanged.
+- `namespace` joins the scope kinds used for candidate resolution and qualified names.
+- Regression tests (CRLF/Unicode/overloads, else/loop-header/handler retention, switch and expression-bodied members, indivisible `do`, syntax errors, file-scoped namespace, `#region`, local functions, `goto`, `partial` types, mixed-language directories) and a synthetic C# sample under `docs/examples/v0.5.0/csharp/`.
+
 ## [0.4.0] - 2026-09-07
 
 ### Added

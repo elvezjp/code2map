@@ -7,6 +7,14 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
+## [未リリース]
+
+### 追加
+
+- 共通エンジンのC#アダプター（`code2map/context/adapters/csharp.py`・Tree-sitter `tree-sitter-c-sharp`）。Javaアダプターと同じ契約：名前空間をスコープに、型・メンバー・制御構文・例外ハンドラーをノードに、`#region`等の前処理行は葉の`preproc`ノードに、式は分割せず、構文エラーは`opaque`、呼出・`new`・`goto`・識別子は字句候補（[#36](https://github.com/elvezjp/code2map/issues/36)）。`build`は変更なし。
+- 候補解決と修飾名のスコープ種別に`namespace`を追加。
+- 回帰テスト（CRLF・Unicode・オーバーロード、else／ループヘッダー／ハンドラーの保持、switchと式形式メンバー、分割不能な`do`、構文エラー、ファイルスコープ名前空間、`#region`、ローカル関数、`goto`、`partial`型、混在ディレクトリ）と、合成のC#サンプル（`docs/examples/v0.5.0/csharp/`）。
+
 ## [0.4.0] - 2026-09-07
 
 ### 追加
