@@ -41,15 +41,17 @@ uv run code2map build $EX/python/user_management_service.py --out $EX/python/out
 
 ### 共通エンジン（Java・Python・PL/SQL・C#）
 
+言語ごとに最新のサンプルがある版のディレクトリを使います（C# は v0.5.0 から。他の3言語の最新は v0.4.0）。
+
 `index` で索引を作り、`pack` で予算に応じた packet に分割し、`tree` で構造木、`check` で整合性検査の結果を保存します。索引に記録されるパスは入力ファイルからの相対パスなので、実行するディレクトリによって出力は変わりません。`build` は PL/SQL に対応していないため、PL/SQL は共通エンジンの出力だけを収録しています。
 
 ```bash
 for lang in java python plsql csharp; do
   case $lang in
-    java)   src=$EX/java/UserManagementService.java;   budget=6000 ;;
-    python) src=$EX/python/user_management_service.py; budget=6000 ;;
-    plsql)  src=$EX/plsql/accounting.sql;              budget=3000 ;;
-    csharp) src=$EX/csharp/UserManagementService.cs;   budget=6000 ;;
+    java)   EX=docs/examples/v0.4.0; src=$EX/java/UserManagementService.java;   budget=6000 ;;
+    python) EX=docs/examples/v0.4.0; src=$EX/python/user_management_service.py; budget=6000 ;;
+    plsql)  EX=docs/examples/v0.4.0; src=$EX/plsql/accounting.sql;              budget=3000 ;;
+    csharp) EX=docs/examples/v0.5.0; src=$EX/csharp/UserManagementService.cs;   budget=6000 ;;
   esac
   uv run code2map index $src --output $EX/$lang/context/index.json
   uv run code2map pack $EX/$lang/context/index.json --output $EX/$lang/context/pack.json --budget-bytes $budget --reserve-bytes 0

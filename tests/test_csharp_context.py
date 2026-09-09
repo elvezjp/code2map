@@ -97,10 +97,68 @@ def test_csharp_switch_nested_types_and_expression_bodies(tmp_path):
         n["symbol"] for n in index["nodes"] if n["kind"] == "function"
     }
     assert any(n["kind"] == "branch" for n in index["nodes"])
-    # An expression-bodied member has its arrow clause as the body, not a block.
+    # An expression-bodied member has its arrow clause as the body, not a block,
+    # but a switch expression inside it still splits along its arms.
     run = next(n for n in index["nodes"] if n["symbol"] == "Run")
-    assert not any(n["parent_id"] == run["id"] and n["kind"] == "block" for n in index["nodes"])
+    run_children = [n for n in index["nodes"] if n["parent_id"] == run["id"]]
+    assert not any(n["kind"] == "block" for n in run_children)
+    switch = next(n for n in run_children if n["name"] == "switch_expression")
+    assert sum(1 for n in index["nodes"] if n["parent_id"] == switch["id"] and n["kind"] == "branch") == 2
     validate_pack(index, pack_index(index, budget=2000))
+
+
+def test_large_switch_expression_in_expression_bodied_member_splits(tmp_path):
+    arms = ",\n".join(f"        {i} => Consume({i})" for i in range(150))
+    text = "class Example\n{\n    int Run(int x) => x switch\n    {\n" + arms + ",\n        _ => 0\n    };\n}\n"
+    index = index_csharp(tmp_path, text)
+    packed = pack_index(index, budget=4000)
+    assert packed["summary"]["oversized"] == 0
+    assert packed["summary"]["ready"] > 1
+    assert recovered(index, packed) == text
+
+
+def test_conditional_compilation_keeps_inner_structure(tmp_path):
+    consume = "\n".join(f"        Consume({i});" for i in range(120))
+    text = (
+        "#if DEBUG\nclass A\n{\n    void M()\n    {\n" + consume + "\n    }\n}\n"
+        "#elif TRACE\nclass C { }\n#else\nclass B { void N() { } }\n#endif\nclass D { }\n"
+    )
+    index = index_csharp(tmp_path, text)
+    assert not index["diagnostics"]
+    classes = {n["symbol"] for n in index["nodes"] if n["kind"] == "class"}
+    assert classes == {"A", "B", "C", "D"}
+    assert {"M", "N"} <= {n["symbol"] for n in index["nodes"] if n["kind"] == "function"}
+    names = [n["name"] for n in index["nodes"] if n["kind"] == "preproc"]
+    assert names == ["#if DEBUG", "#elif TRACE", "#else"]
+    packed = pack_index(index, budget=6000)
+    assert packed["summary"]["oversized"] == 0
+    marker = text.index("Consume(77)")
+    packet = next(p for p in packed["packets"] if p["start"] <= marker < p["end"])
+    headers = "\n".join(c["text"] for c in json.loads(packet["payload"])["enclosing_context"])
+    assert "#if DEBUG" in headers
+    assert "void M()" in headers
+    assert recovered(index, packed) == text
+
+
+def test_shared_case_labels_stay_in_one_branch_header(tmp_path):
+    consume = "\n".join(f"                Consume({i});" for i in range(120))
+    text = (
+        "class Example\n{\n    void Run(int x)\n    {\n        switch (x)\n        {\n"
+        "            case 1:\n            case 2:\n" + consume + "\n                break;\n"
+        "            default:\n                break;\n        }\n    }\n}\n"
+    )
+    index = index_csharp(tmp_path, text)
+    branches = [n for n in index["nodes"] if n["kind"] == "branch"]
+    assert len(branches) == 2  # `case 1: case 2:` share one branch; `default:` is the other
+    shared = min(branches, key=lambda n: n["start"])
+    assert text[shared["start"] : shared["header_end"]].count("case") == 2
+    packed = pack_index(index, budget=6000)
+    marker = text.index("Consume(77)")
+    packet = next(p for p in packed["packets"] if p["start"] <= marker < p["end"])
+    assert packet["status"] == "ready"
+    headers = "\n".join(c["text"] for c in json.loads(packet["payload"])["enclosing_context"])
+    assert "case 1:" in headers and "case 2:" in headers
+    assert recovered(index, packed) == text
 
 
 def test_do_while_remains_indivisible_to_retain_trailing_condition(tmp_path):

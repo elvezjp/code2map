@@ -8,11 +8,10 @@ symbol binding, no execution.
 
 from importlib.metadata import version
 
-from tree_sitter import Language, Parser
 import tree_sitter_c_sharp
+from tree_sitter import Language, Parser
 
 from ..model import Node, Parsed, Reference
-
 
 CLASSES = {
     "class_declaration",
@@ -66,6 +65,9 @@ CONTAINERS = {
 }
 IMPORTS = {"using_directive", "extern_alias_directive", "global_attribute"}
 PARAMETERS = {"parameter"}
+# Conditional-compilation blocks carry the declarations they guard until the
+# matching #endif. They are indexed as written; no condition is evaluated.
+PREPROC_BLOCKS = {"preproc_if", "preproc_elif", "preproc_else"}
 
 
 class CSharpAdapter:
@@ -136,8 +138,50 @@ class CSharpAdapter:
                 or child.type.endswith("_statement")
                 or child.type in DECLARATIONS
                 or child.type in CLASSES
+                or child.type in PREPROC_BLOCKS
                 or child.type == "local_function_statement"
             )
+
+        def structural(child):
+            """Members and directives allowed inside type bodies and #if blocks."""
+            return (
+                statement_like(child)
+                or child.type in FUNCTIONS
+                or child.type in IMPORTS
+                or child.type.startswith("preproc_")
+            )
+
+        def first_line_end(item):
+            head = source(item).split("\n", 1)[0]
+            return positions[item.start_byte + len(head.encode("utf-8"))]
+
+        def convert_switch_sections(sections):
+            """Merge label-only sections into the section that carries the body.
+
+            `case 1:` followed by `case 2:` shares one body; Tree-sitter returns
+            the first label as an empty section. Keeping both labels in one
+            branch header preserves that the body also runs for `case 1:`.
+            """
+            result = []
+            pending_start = None
+            for section in sections:
+                has_body = any(statement_like(c) for c in section.named_children)
+                if not has_body:
+                    if pending_start is None:
+                        pending_start = positions[section.start_byte]
+                    continue
+                node = convert(section)
+                if node is not None and pending_start is not None:
+                    node.start = pending_start
+                    node.name = "switch_section"
+                pending_start = None
+                if node is not None:
+                    result.append(node)
+            if pending_start is not None and result:
+                # Trailing label-only sections have no body of their own; the
+                # gap keeps their text and the coverage stays exact.
+                pass
+            return result
 
         def convert(item):
             kind = item.type
@@ -170,9 +214,11 @@ class CSharpAdapter:
                 category, symbol = "parameter", name
             elif kind in DECLARATIONS:
                 category = "declaration"
-                if kind == "enum_member_declaration":
-                    symbol = name
-                elif kind in {"delegate_declaration", "event_declaration"}:
+                if kind in {
+                    "enum_member_declaration",
+                    "delegate_declaration",
+                    "event_declaration",
+                }:
                     symbol = name
                 else:
                     declarators = [
@@ -206,6 +252,15 @@ class CSharpAdapter:
                     name = source(item.child_by_field_name("name")) or kind
             elif kind in IMPORTS:
                 category = "import"
+            elif kind in PREPROC_BLOCKS:
+                category = "preproc"
+                name = source(item).splitlines()[0].strip() if source(item) else kind
+                header_end = first_line_end(item)
+                children.extend(
+                    convert_many(c for c in item.named_children if structural(c))
+                )
+                if children:
+                    header_end = min(header_end, children[0].start)
             elif kind.startswith("preproc_"):
                 category = "preproc"
                 name = source(item).splitlines()[0].strip() if source(item) else kind
@@ -216,7 +271,9 @@ class CSharpAdapter:
                 header_end = positions[body.start_byte] + (
                     1 if source(body).startswith("{") else 0
                 )
-            if kind in {"namespace_declaration"} | CLASSES:
+            if kind in PREPROC_BLOCKS:
+                pass  # children were collected above
+            elif kind in {"namespace_declaration"} | CLASSES:
                 params = item.child_by_field_name("parameters")
                 if params is not None:  # positional records
                     children.extend(
@@ -241,8 +298,14 @@ class CSharpAdapter:
                 elif body is not None and body.type == "block":
                     children.extend(convert_many([body]))
                 elif body is not None:
-                    # Expression-bodied member: the arrow clause is the body.
+                    # Expression-bodied member: the arrow clause is the body. A
+                    # switch expression inside it still splits along its arms.
                     header_end = positions[body.start_byte]
+                    children.extend(
+                        convert_many(
+                            c for c in body.named_children if c.type == "switch_expression"
+                        )
+                    )
             elif kind == "if_statement":
                 consequence = item.child_by_field_name("consequence")
                 alternative = item.child_by_field_name("alternative")
@@ -266,6 +329,12 @@ class CSharpAdapter:
                         children.extend(convert_many([child]))
                 if children:
                     header_end = children[0].start
+            elif kind == "switch_statement":
+                sections = [
+                    c for c in (body.named_children if body is not None else [])
+                    if c.type == "switch_section"
+                ]
+                children.extend(convert_switch_sections(sections))
             elif (
                 category in {"control", "handler", "branch", "block"}
                 and kind not in {"do_statement", "switch_expression_arm"}
