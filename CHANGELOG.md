@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - C# adapter for the context engine (`code2map/context/adapters/csharp.py`, Tree-sitter `tree-sitter-c-sharp`), following the Java adapter's contract: namespaces as scopes, types/members/control flow/handlers as nodes, `#if`/`#elif`/`#else` blocks as `preproc` nodes that keep their guarded declarations as children (indexed as written, not evaluated), other directive lines as leaf `preproc` nodes, shared `case` labels merged into one branch header, switch expressions inside expression-bodied members split along their arms, expressions otherwise indivisible, syntax errors opaque, lexical call/`new`/`goto`/identifier candidates ([#36](https://github.com/elvezjp/code2map/issues/36)). `build` is unchanged.
 - `namespace` joins the scope kinds used for candidate resolution and qualified names.
-- Regression tests (CRLF/Unicode/overloads, else/loop-header/handler retention, switch and expression-bodied members, large switch expressions, indivisible `do`, syntax errors, file-scoped namespace, `#region`, `#if` around classes and namespaces, shared `case` labels, local functions, `goto`, `partial` types, mixed-language directories) and a synthetic C# sample under `docs/examples/v0.5.0/csharp/`.
+- Regression tests (CRLF/Unicode/overloads, UTF-8 BOM, else/loop-header/handler retention, switch and expression-bodied members, large switch expressions, indivisible `do`, syntax errors, file-scoped namespace, `#region`, `#if` around classes and namespaces, shared `case` labels, local functions, `goto`, `partial` types, mixed-language directories) and a synthetic C# sample under `docs/examples/v0.5.0/csharp/`.
 
 ## [0.4.0] - 2026-09-07
 

@@ -186,7 +186,7 @@ def test_csharp_syntax_error_is_visible_and_source_is_retained(tmp_path):
 
 
 def test_file_scoped_namespace_regions_locals_and_goto(tmp_path):
-    text = """﻿using System;
+    text = "\ufeff" + """using System;
 namespace Demo.App;
 #region Types
 public class Calc
@@ -267,3 +267,50 @@ def test_conditional_compilation_around_a_namespace(tmp_path):
     assert "void M()" in headers
     assert recovered(index, packed) == text
 
+
+def test_utf8_bom_is_accepted_and_only_shifts_positions(tmp_path):
+    text = (
+        "namespace Demo\r\n{\r\n    class Example\r\n    {\r\n"
+        "        int Run(int x) { return x + 1; }\r\n    }\r\n}\r\n"
+    )
+    plain = index_csharp(tmp_path, text, name="Plain.cs")
+    with_bom = index_csharp(tmp_path, "\ufeff" + text, name="Bom.cs")
+
+    # The grammar treats U+FEFF as whitespace, so a leading BOM is not a syntax error.
+    assert not with_bom["diagnostics"]
+    assert with_bom["sources"][0]["text"] == "\ufeff" + text
+
+    def shape(index):  # the file node is named after its path, so compare only its kind
+        return [
+            (n["kind"], n.get("symbol"), "" if n["kind"] == "file" else n["name"])
+            for n in index["nodes"]
+        ]
+
+    assert shape(with_bom) == shape(plain)
+    # Offsets count characters, so every node moves by exactly one position.
+    for before, after in zip(plain["nodes"], with_bom["nodes"]):
+        if before["kind"] == "file":
+            assert (after["start"], after["end"]) == (0, before["end"] + 1)
+        else:
+            assert after["start"] == before["start"] + 1
+            assert after["end"] == before["end"] + 1
+            assert after["header_end"] == before["header_end"] + 1
+
+    # Under strict utf-8 the BOM stays in the source and is reconstructed as-is.
+    for budget in [1, 2000, 100000]:
+        packed = pack_index(with_bom, budget=budget)
+        assert validate_pack(with_bom, packed)["coverage"] == "exactly-once"
+        assert recovered(with_bom, packed) == "\ufeff" + text
+
+    # utf-8-sig strips the BOM: text and offsets match the BOM-free file,
+    # and only the decoded-text hash differs from the original bytes' hash.
+    stripped = build_index(tmp_path / "Bom.cs", encoding="utf-8-sig")
+    assert not stripped["diagnostics"]
+    assert stripped["sources"][0]["text"] == text
+    assert stripped["sources"][0]["text_sha256"] != stripped["sources"][0]["original_sha256"]
+    assert stripped["sources"][0]["original_sha256"] == with_bom["sources"][0]["original_sha256"]
+
+    def offsets(index):
+        return [(n["start"], n["end"], n["header_end"]) for n in index["nodes"]]
+
+    assert offsets(stripped) == offsets(plain)

@@ -8,8 +8,8 @@ This document summarizes the latest available validation results. Update the rel
 
 | Check | Latest verification | Result |
 | --- | --- | --- |
-| Local full suite, macOS / Python 3.14.2 (`b5321f3`, `d3ff096`) | 2026-09-09 | 80 passed (including 12 C# adapter tests) |
-| Ruff (`uv run ruff check .`) | 2026-09-09 | Passed (locked 0.16.6 and latest) |
+| Local full suite, macOS / Python 3.12.10 (`811466b` plus the UTF-8 BOM test) | 2026-09-10 | 81 passed (including 13 C# adapter tests) |
+| Ruff (`uv run ruff check .`) | 2026-09-10 | Passed (locked 0.16.6) |
 | GitHub Actions CI, Linux / Windows / macOS × Python 3.11 / 3.13 / 3.14 | 2026-09-09, `d3ff096` (C# adapter PR) | All 9 jobs passed |
 | Packet boundaries, approximately 40,000-line PL/SQL package | 2026-09-07 | No mid-line boundaries in 137 packets |
 | Legacy output comparison against `d90beee330bca581d0a52eddec38362c3b28d50a` | 2026-09-05 | Byte-identical outputs for 7 fixtures |
@@ -20,7 +20,7 @@ This document summarizes the latest available validation results. Update the rel
 
 ## Test coverage and output compatibility
 
-The complete suite contains 80 tests: 30 legacy tests and 50 context-engine tests. Coverage includes exact whole-source reconstruction, Unicode and CRLF, multiple source languages, enclosing branch conditions and exception references, unresolved and ambiguous lexical calls, custom adapters and counters, oversized/opaque regions, context omission integrity, and CLI exit behavior.
+The complete suite contains 81 tests: 30 legacy tests and 51 context-engine tests. Coverage includes exact whole-source reconstruction, Unicode and CRLF, UTF-8 BOM, multiple source languages, enclosing branch conditions and exception references, unresolved and ambiguous lexical calls, custom adapters and counters, oversized/opaque regions, context omission integrity, and CLI exit behavior.
 
 Packet-boundary coverage includes a property test asserting that every packet starts at a line start and ends at a line end, and a regression test for a child whose raw span fits the budget but whose line-aligned span does not. Validation on a PL/SQL package of about 40,000 lines (budget 40,000 / reserve 4,000 bytes) found no mid-line boundaries in any of the 137 packets. Packet and oversized counts were unchanged by the line-alignment fix ([#27](https://github.com/elvezjp/code2map/issues/27)).
 

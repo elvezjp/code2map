@@ -28,7 +28,7 @@ uv run code2map check output/index.json --pack output/pack.json
 uv run code2map show output/index.json NODE_ID
 ```
 
-`index`は単一ファイル、またはディレクトリ内で再帰的に選択した対応ファイルを受け付けます。拡張子は`.py`、`.java`、`.sql`、`.pks`、`.pkb`、`.pls`、`.plsql`です。隠しパスと`node_modules`、`__pycache__`、`build`、`dist`は除外し、未対応ファイルは読み飛ばします。既定は厳密なUTF-8デコードです。旧資産には`--encoding cp932`等を指定します。索引にはデコード後のソース全文が含まれます。
+`index`は単一ファイル、またはディレクトリ内で再帰的に選択した対応ファイルを受け付けます。拡張子は`.py`、`.java`、`.cs`、`.sql`、`.pks`、`.pkb`、`.pls`、`.plsql`です。隠しパスと`node_modules`、`__pycache__`、`build`、`dist`は除外し、未対応ファイルは読み飛ばします。既定は厳密なUTF-8デコードです。旧資産には`--encoding cp932`等を指定します。索引にはデコード後のソース全文が含まれます。
 
 ### 引数と既定値
 

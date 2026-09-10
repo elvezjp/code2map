@@ -28,7 +28,7 @@ uv run code2map check output/index.json --pack output/pack.json
 uv run code2map show output/index.json NODE_ID
 ```
 
-`index` accepts a file or recursively selected supported files in a directory. Extensions: `.py`, `.java`, `.sql`, `.pks`, `.pkb`, `.pls`, `.plsql`. Hidden paths and `node_modules`, `__pycache__`, `build`, and `dist` directories are excluded. Unsupported files are skipped. It uses strict UTF-8 by default; select `--encoding cp932` or another supported encoding for legacy assets. Index snapshots contain the complete decoded source text.
+`index` accepts a file or recursively selected supported files in a directory. Extensions: `.py`, `.java`, `.cs`, `.sql`, `.pks`, `.pkb`, `.pls`, `.plsql`. Hidden paths and `node_modules`, `__pycache__`, `build`, and `dist` directories are excluded. Unsupported files are skipped. It uses strict UTF-8 by default; select `--encoding cp932` or another supported encoding for legacy assets. Index snapshots contain the complete decoded source text.
 
 ### Arguments and defaults
 

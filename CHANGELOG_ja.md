@@ -13,7 +13,7 @@
 
 - 共通エンジンのC#アダプター（`code2map/context/adapters/csharp.py`・Tree-sitter `tree-sitter-c-sharp`）。Javaアダプターと同じ契約：名前空間をスコープに、型・メンバー・制御構文・例外ハンドラーをノードに、`#if`／`#elif`／`#else`のブロックは囲んだ宣言を子に持つ`preproc`ノードに（評価せず書かれたまま索引化）、その他のディレクティブ行は葉の`preproc`ノードに、共有する`case`ラベルは一つの分岐ヘッダーに併合、式形式メンバー内のswitch式はarmごとに分割、それ以外の式は分割せず、構文エラーは`opaque`、呼出・`new`・`goto`・識別子は字句候補（[#36](https://github.com/elvezjp/code2map/issues/36)）。`build`は変更なし。
 - 候補解決と修飾名のスコープ種別に`namespace`を追加。
-- 回帰テスト（CRLF・Unicode・オーバーロード、else／ループヘッダー／ハンドラーの保持、switchと式形式メンバー、大きなswitch式、分割不能な`do`、構文エラー、ファイルスコープ名前空間、`#region`、クラスと名前空間を囲む`#if`、共有`case`ラベル、ローカル関数、`goto`、`partial`型、混在ディレクトリ）と、合成のC#サンプル（`docs/examples/v0.5.0/csharp/`）。
+- 回帰テスト（CRLF・Unicode・オーバーロード、BOM付きUTF-8、else／ループヘッダー／ハンドラーの保持、switchと式形式メンバー、大きなswitch式、分割不能な`do`、構文エラー、ファイルスコープ名前空間、`#region`、クラスと名前空間を囲む`#if`、共有`case`ラベル、ローカル関数、`goto`、`partial`型、混在ディレクトリ）と、合成のC#サンプル（`docs/examples/v0.5.0/csharp/`）。
 
 ## [0.4.0] - 2026-09-07
 
