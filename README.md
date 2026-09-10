@@ -14,7 +14,7 @@ A Python library and CLI that indexes source structure and assembles context-awa
 
 ## Context-aware partitioning
 
-Version 0.4.0 adds a reusable engine that indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, Java, and C#, including directories with mixed languages. The existing `build` command and its output format remain available.
+A reusable engine indexes whole source files before assembling budgeted context packets. It supports PL/SQL, Python, Java, and C#, including directories with mixed languages. The `build` command and its output format are available alongside it.
 
 Run at the repository root after [setup](#setup).
 

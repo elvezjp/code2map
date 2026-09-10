@@ -26,7 +26,7 @@ Packet-boundary coverage includes a property test asserting that every packet st
 
 The seven legacy fixtures were `sample.py`, `sample.java`, `java8_syntax.java`, `large_file.py`, `function_only.py`, `empty.py`, and `comments_only.py`. The comparison used the same input paths for both versions and compared every generated file's bytes, including `INDEX.md`, `MAP.json`, and `parts/`.
 
-Context-engine output samples are recorded under `context/` for each language in `docs/examples/v0.4.0/`.
+Context-engine output samples are recorded under `context/` for each language in `docs/examples/` (Python, Java and PL/SQL under `v0.4.0/`, C# under `v0.5.0/csharp/`).
 
 The C# adapter ([#36](https://github.com/elvezjp/code2map/issues/36)) is covered by 12 regression tests: index reproducibility with CRLF, Unicode and overloads; retention of the `else` guard, loop headers and exception handlers after splitting; switch statements and expression-bodied members; splitting a 150-arm switch expression; the indivisible `do`; syntax errors becoming opaque; file-scoped namespaces, `#region`, local functions and `goto`; structure inside `#if` blocks around classes and namespaces with the directive header retained after splitting; shared `case` labels kept in one branch header; `partial` types across files; and a four-language mixed directory. The synthetic sample lives under `docs/examples/v0.5.0/csharp/` (budget 6,000 bytes: 8 packets, 8 ready, 0 oversized, `check` passed). Regenerating the existing Python, Java and PL/SQL samples yields identical structure and packets; only the recorded runtime versions differ.
 

@@ -1,6 +1,6 @@
 # Development
 
-- `main` is code2map 0.4.0, developed from the public repository history.
+- `main` is the code2map development branch, developed from the public repository history. The current version is in `pyproject.toml` and `code2map/_version.py`.
 - Read README.md, spec.md and docs/context/architecture.md before changing the engine.
 - Preserve the existing build command and INDEX.md / MAP.json / parts output contract.
 - New reusable APIs live in code2map.context; language-specific parsing belongs in adapters.

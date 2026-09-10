@@ -1,4 +1,4 @@
-# 共通エンジン（0.4.0）
+# 共通エンジン
 
 [English](README.md) | [日本語](README_ja.md)
 
