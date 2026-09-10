@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Raised the minimum Tree-sitter version from 0.21.0 to 0.26.0 to exclude versions incompatible with the parser API used by code2map.
+- Raised the dependency floors to the versions CI verifies: `tree-sitter>=0.26.0`, `tree-sitter-java>=0.23.5` and `tree-sitter-c-sharp>=0.23.5` (previously 0.21.0 for all three). Older runtimes cannot load these grammars: 0.22 rejects the `PyCapsule` the grammar packages return, and 0.23 to 0.24 refuse the C# grammar's language ABI 15; 0.21.0 grammars fail a C# regression test and rely on deprecated integer pointers.
 - Corrected the security policy to include C# (`.cs`) inputs and describe `uv sync` as synchronizing the environment with `uv.lock`.
 
 ## [0.4.0] - 2026-09-07

@@ -34,8 +34,8 @@ classifiers = [
 ]
 dependencies = [
     "tree-sitter>=0.26.0",
-    "tree-sitter-c-sharp>=0.21.0",
-    "tree-sitter-java>=0.21.0",
+    "tree-sitter-c-sharp>=0.23.5",
+    "tree-sitter-java>=0.23.5",
 ]
 
 [project.optional-dependencies]
