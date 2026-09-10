@@ -67,7 +67,7 @@ class WholeFileAdapter:
                                     "start": 0, "end": len(text)}])
 ```
 
-構文対応後は、位置を持つchildrenと`Reference(kind, symbol, start, end)`を返す。スコープとして扱う共通kindは`file`, `package_body`, `package_spec`, `function`, `procedure`, `class`, `block`。その他のkindは範囲の階層を表す。
+構文対応後は、位置を持つchildrenと`Reference(kind, symbol, start, end)`を返す。スコープとして扱う共通kindは`file`, `package_body`, `package_spec`, `namespace`, `function`, `procedure`, `class`, `block`。`namespace`は配下の名前の修飾にも使う。その他のkind（`control`・`branch`・`handler`・`label`・`preproc`など）は範囲の階層だけを表す。
 
 `header_end`は周辺文脈として必要なヘッダーの終端。本文全体を指定すると、分割後の文脈が巨大になるので注意する。認識不能な範囲は`opaque`とdiagnosticsの両方を返す。
 

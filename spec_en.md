@@ -2,7 +2,7 @@
 
 [English](spec_en.md) | [日本語](spec.md)
 
-This document describes the existing `build` workflow retained in version 0.4.0. For `index` / `pack` / `check` / `tree` / `show` and the Python API, see the [context guide](docs/context/README.md) and [data contracts](docs/context/contracts.md). A legacy `MAP.json` cannot be used as input to `pack`.
+This document describes the `build` workflow. For `index` / `pack` / `check` / `tree` / `show` and the Python API, see the [context guide](docs/context/README.md) and [data contracts](docs/context/contracts.md). The `MAP.json` written by `build` cannot be used as input to `pack`.
 
 ## 1. Purpose and scope
 
@@ -161,6 +161,6 @@ Warnings appear in INDEX and stderr, not MAP. Warnings are displayed even withou
 
 Existing parser extensions return symbols and warnings from `BaseParser.parse(file_path)`. Context-engine languages use the separate `Adapter` contract. These are different interfaces.
 
-Version 0.4.0 adds multiple-file indexing and budgeted structural partitioning through the context engine. See [supported behavior and remaining work](docs/context/limitations.md) for priorities. Configuration files, incremental analysis, additional languages, call-graph visualization, CI templates for automatic index generation, a Web UI and IDE integration remain extension candidates, distinct from implemented features.
+The context engine provides multiple-file indexing and budgeted structural partitioning. See [supported behavior and remaining work](docs/context/limitations.md) for priorities. Configuration files, incremental analysis, additional languages, call-graph visualization, CI templates for automatic index generation, a Web UI and IDE integration remain extension candidates, distinct from implemented features.
 
 Preserve the existing INDEX/MAP/parts output contract, isolate language-specific code and keep new behavior explicitly selectable.

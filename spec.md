@@ -2,7 +2,7 @@
 
 [English](spec_en.md) | [日本語](spec.md)
 
-この文書は0.4.0に継承した`build`の仕様です。新しい`index`／`pack`／`check`／`tree`／`show`とPython APIは[共通エンジンガイド](docs/context/README_ja.md)および[データ契約](docs/context/contracts_ja.md)を参照してください。旧`MAP.json`は`pack`の入力には使えません。
+この文書は`build`の仕様です。`index`／`pack`／`check`／`tree`／`show`とPython APIは[共通エンジンガイド](docs/context/README_ja.md)および[データ契約](docs/context/contracts_ja.md)を参照してください。`build`が出力する`MAP.json`は`pack`の入力には使えません。
 
 ## 1. 目的と範囲
 
@@ -161,6 +161,6 @@ Pythonは`ast.Call`、Javaは`method_invocation`から呼出名を得ます。Ja
 
 従来パーサーの拡張は`BaseParser.parse(file_path)`からシンボルと警告を返す方式です。共通エンジンの言語追加は別の`Adapter`契約で行います。両者を混同しないでください。
 
-0.4.0では複数ファイルの索引化と構造に沿った予算付き分割を共通エンジンに追加しました。今後の優先事項は[対応範囲と残課題](docs/context/limitations_ja.md)にまとめています。設定ファイル、差分解析、追加言語、呼出グラフ表示、索引自動生成のCIテンプレート、Web UI、IDE連携は、実装済み機能とは区別した拡張候補です。
+共通エンジンは複数ファイルの索引化と構造に沿った予算付き分割を提供します。今後の優先事項は[対応範囲と残課題](docs/context/limitations_ja.md)にまとめています。設定ファイル、差分解析、追加言語、呼出グラフ表示、索引自動生成のCIテンプレート、Web UI、IDE連携は、実装済み機能とは区別した拡張候補です。
 
 既存のINDEX／MAP／partsの出力契約を保ち、言語ごとの実装を分離し、新しい動作を明示的に選べる設計を維持します。

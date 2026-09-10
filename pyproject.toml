@@ -1,6 +1,6 @@
 [project]
 name = "code2map"
-version = "0.4.0"
+version = "0.5.0"
 description = "Transform large source code into semantic maps for AI-driven analysis and review"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -33,8 +33,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "tree-sitter>=0.21.0",
-    "tree-sitter-java>=0.21.0",
+    "tree-sitter>=0.26.0",
+    "tree-sitter-c-sharp>=0.23.5",
+    "tree-sitter-java>=0.23.5",
 ]
 
 [project.optional-dependencies]

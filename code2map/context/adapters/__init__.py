@@ -10,9 +10,13 @@ def __getattr__(name):
     if name == "JavaAdapter":
         from .java import JavaAdapter
         return JavaAdapter
+    if name == "CSharpAdapter":
+        from .csharp import CSharpAdapter
+        return CSharpAdapter
     raise AttributeError(name)
 
 
 def builtin_adapters():
+    from .csharp import CSharpAdapter
     from .java import JavaAdapter
-    return [PythonAdapter(), PLSQLAdapter(), JavaAdapter()]
+    return [PythonAdapter(), PLSQLAdapter(), JavaAdapter(), CSharpAdapter()]

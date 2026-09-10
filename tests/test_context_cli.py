@@ -27,7 +27,7 @@ def invoke(*args):
 def test_module_commands_and_version(tmp_path):
     index = tmp_path / "index.json"
     packed = tmp_path / "pack.json"
-    assert invoke("--version").stdout.strip() == "code2map 0.4.0"
+    assert invoke("--version").stdout.strip() == "code2map 0.5.0"
     assert invoke("index", ROOT / "examples", "--output", index).returncode == 0
     assert (
         invoke("pack", index, "--output", packed, "--budget-bytes", 16000).returncode
@@ -35,7 +35,7 @@ def test_module_commands_and_version(tmp_path):
     )
     assert invoke("check", index, "--pack", packed).returncode == 0
     data = json.loads(index.read_text())
-    assert data["generator"] == "code2map/0.4.0"
+    assert data["generator"] == "code2map/0.5.0"
     assert invoke("tree", index, "--depth", 1).returncode == 0
     node = data["nodes"][0]
     assert invoke("show", index, node["id"]).returncode == 0

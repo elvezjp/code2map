@@ -8,8 +8,8 @@ Security updates are provided for the following versions. We recommend using the
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.4.0   | :white_check_mark: |
-| < 0.4.0 | :x:                |
+| 0.5.0   | :white_check_mark: |
+| < 0.5.0 | :x:                |
 
 ## Reporting a Vulnerability
 
@@ -72,7 +72,7 @@ Add normalization of the input path and validation that it resides within an all
 
 ### Input Validation
 
-- `build` identifies the language from the input file extension (`.py`, `.java`). The context engine (`index`) covers `.sql`, `.pks`, `.pkb`, `.pls`, `.plsql`, `.py` and `.java`; other files are not indexed
+- `build` identifies the language from the input file extension (`.py`, `.java`). The context engine (`index`) covers `.sql`, `.pks`, `.pkb`, `.pls`, `.plsql`, `.py`, `.java` and `.cs`; other files are not indexed
 - Malformed files are handled as parse errors
 - Be aware of symbolic link traversal risks
 
@@ -86,7 +86,7 @@ Add normalization of the input path and validation that it resides within an all
 ### Dependencies
 
 - Dependencies are regularly scanned for vulnerabilities
-- Run `uv sync` to obtain the latest dependencies
+- Run `uv sync` to synchronize the environment with the dependency versions recorded in `uv.lock`
 
 ### Dependabot Alert Policy
 

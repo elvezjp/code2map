@@ -13,6 +13,7 @@ SCOPES = {
     "file",
     "package_body",
     "package_spec",
+    "namespace",
     "function",
     "procedure",
     "class",
@@ -156,7 +157,14 @@ def build_index(input_path, *, encoding="utf-8", adapters=None):
         while p:
             if (
                 p["kind"]
-                in {"package_body", "package_spec", "class", "function", "procedure"}
+                in {
+                    "package_body",
+                    "package_spec",
+                    "namespace",
+                    "class",
+                    "function",
+                    "procedure",
+                }
                 and p["symbol"]
             ):
                 parts.insert(0, p["symbol"])

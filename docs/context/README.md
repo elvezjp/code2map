@@ -1,4 +1,4 @@
-# Context engine (0.4.0)
+# Context engine
 
 [English](README.md) | [日本語](README_ja.md)
 
@@ -28,7 +28,7 @@ uv run code2map check output/index.json --pack output/pack.json
 uv run code2map show output/index.json NODE_ID
 ```
 
-`index` accepts a file or recursively selected supported files in a directory. Extensions: `.py`, `.java`, `.sql`, `.pks`, `.pkb`, `.pls`, `.plsql`. Hidden paths and `node_modules`, `__pycache__`, `build`, and `dist` directories are excluded. Unsupported files are skipped. It uses strict UTF-8 by default; select `--encoding cp932` or another supported encoding for legacy assets. Index snapshots contain the complete decoded source text.
+`index` accepts a file or recursively selected supported files in a directory. Extensions: `.py`, `.java`, `.cs`, `.sql`, `.pks`, `.pkb`, `.pls`, `.plsql`. Hidden paths and `node_modules`, `__pycache__`, `build`, and `dist` directories are excluded. Unsupported files are skipped. It uses strict UTF-8 by default; select `--encoding cp932` or another supported encoding for legacy assets. Index snapshots contain the complete decoded source text.
 
 ### Arguments and defaults
 
@@ -94,6 +94,7 @@ The API accepts trusted custom language adapters through `build_index(..., adapt
 - Budget compliance applies to the serialized payload. Indivisible statements, very long headers and opaque regions can be oversized. They remain intact and are never silently truncated.
 - `candidate` and `ambiguous` are lexical evidence, not proven runtime binding or data flow. Qualified external calls can remain unresolved. A `ready` status asserts size and reported diagnostics, not complete program understanding.
 - The PL/SQL scanner is not the Oracle grammar or compiler. Unsupported units are retained with diagnostics when detected; structurally accepted code is not proof of Oracle validity.
+- C# uses Tree-sitter (`tree-sitter-c-sharp`) with the same contract as Java: namespaces, types, members, control flow and handlers become nodes. `#if`/`#elif`/`#else` blocks keep the declarations they guard as children (both sides indexed as written, nothing evaluated); `#region` and other directive lines are leaf `preproc` nodes that never form regions. Shared `case` labels stay in one branch header. Expressions, lambdas and query syntax stay indivisible, with one exception: a switch expression inside an expression-bodied member splits along its arms; syntax errors make the file opaque; calls, `new`, `goto` and identifiers are lexical candidates only.
 - Java uses Tree-sitter and records both parser and grammar versions. Syntax errors make the file opaque. Expressions, anonymous classes and lambdas are not recursively partitioned. Do-while remains indivisible so its trailing condition cannot be lost. Type inference, imports, inheritance and dynamic dispatch are not resolved.
 - Python uses the running interpreter's AST. Imports are not executed. Dynamic language features and full `global`/`nonlocal` binding analysis are not implemented.
 

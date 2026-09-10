@@ -15,10 +15,13 @@ examples/
 │   │   ├── user_management_service.py  # 入力ファイル
 │   │   ├── output/                     # build の出力（INDEX.md, MAP.json, parts/）
 │   │   └── context/                    # 共通エンジンの出力（index.json, pack.json, tree.txt, check.json）
-│   └── plsql/
-│       ├── accounting.sql              # 入力ファイル
-│       └── context/                    # 共通エンジンの出力（build は PL/SQL 非対応）
-└── （旧バージョン）/                    # 参照用。context/ と plsql/ は共通エンジンを持つバージョンにのみある
+│   ├── plsql/
+│   │   ├── accounting.sql              # 入力ファイル
+│   │   └── context/                    # 共通エンジンの出力（build は PL/SQL 非対応）
+│   └── csharp/
+│       ├── UserManagementService.cs    # 入力ファイル
+│       └── context/                    # 共通エンジンの出力（build は C# 非対応）
+└── （旧バージョン）/                    # 参照用。context/ と plsql/ は v0.4.0 以降、csharp/ は v0.5.0 以降にのみある
 ```
 
 ## Usage
@@ -26,7 +29,7 @@ examples/
 いずれもリポジトリルートから実行します。`EX` に最新バージョンのディレクトリを入れてください。
 
 ```bash
-EX=docs/examples/v0.4.0
+EX=docs/examples/v0.5.0
 ```
 
 ### build（Java・Python）
@@ -36,16 +39,17 @@ uv run code2map build $EX/java/UserManagementService.java --out $EX/java/output
 uv run code2map build $EX/python/user_management_service.py --out $EX/python/output
 ```
 
-### 共通エンジン（Java・Python・PL/SQL）
+### 共通エンジン（Java・Python・PL/SQL・C#）
 
 `index` で索引を作り、`pack` で予算に応じた packet に分割し、`tree` で構造木、`check` で整合性検査の結果を保存します。索引に記録されるパスは入力ファイルからの相対パスなので、実行するディレクトリによって出力は変わりません。`build` は PL/SQL に対応していないため、PL/SQL は共通エンジンの出力だけを収録しています。
 
 ```bash
-for lang in java python plsql; do
+for lang in java python plsql csharp; do
   case $lang in
     java)   src=$EX/java/UserManagementService.java;   budget=6000 ;;
     python) src=$EX/python/user_management_service.py; budget=6000 ;;
     plsql)  src=$EX/plsql/accounting.sql;              budget=3000 ;;
+    csharp) src=$EX/csharp/UserManagementService.cs;   budget=6000 ;;
   esac
   uv run code2map index $src --output $EX/$lang/context/index.json
   uv run code2map pack $EX/$lang/context/index.json --output $EX/$lang/context/pack.json --budget-bytes $budget --reserve-bytes 0
@@ -62,7 +66,7 @@ done
 
 そのため、バージョン間で出力が変わるのは解析ロジックに変更があった場合のみです。`build` の出力は、`parts/` の各ファイル冒頭にある `original:` 行（入力ファイルのパスを記録する行）を除いて比較できます。この行はディレクトリ名がバージョンごとに異なるため必ず差分になり、それ以外に差分が無ければ出力は変わっていません。`INDEX.md` と `MAP.json` は入力パスを含まないため、バイト単位で比較できます。
 
-共通エンジンの `index.json` には実行環境として Python のバージョンが記録され、`index_sha256` と packet の ID はその値に依存します。収録した出力の生成環境は `index.json` の `runtime` を参照してください。別のバージョンの Python で再生成すると、構造や分割結果が同じでもハッシュと ID が変わります。詳細は [共通エンジンの設計](../context/architecture_ja.md) を参照してください。
+共通エンジンの `index.json` には code2map のバージョン（`generator`）と実行環境の Python のバージョン（`runtime`）が記録され、`index_sha256` と packet の ID はその値に依存します。収録した出力の生成環境は `index.json` のこれらの欄を参照してください。別のバージョンの code2map や Python で再生成すると、構造や分割結果が同じでもハッシュと ID が変わります。`tree.txt` と `check.json` はこれらを含まないため、バイト単位で比較できます。詳細は [共通エンジンの設計](../context/architecture_ja.md) を参照してください。
 
 旧バージョンの出力を再生成する場合は、対応する git tag を checkout した実装を使用してください。
 
@@ -91,6 +95,10 @@ Javaサンプルと同等の機能をPythonで実装したもの。以下の機�
 - `User`: ユーザーエンティティ（dataclass）
 - `UserAlreadyExistsException`: ユーザー重複例外
 - `UserNotFoundException`: ユーザー未発見例外
+
+### C#: UserManagementService.cs
+
+Java サンプルと同等の機能を C# で実装した合成コード。名前空間・クラス・プロパティ・式形式メンバー・switch 式・`#region`・`#if` を含み、共通エンジンの C# アダプターの動作を示します。
 
 ### PL/SQL: accounting.sql
 

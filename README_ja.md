@@ -14,7 +14,7 @@
 
 ## 文脈付き分割
 
-0.4.0で、原文全体を先に索引化し、予算に応じて文脈付きの入力を組み立てる共通エンジンを追加しました。PL/SQL・Python・Java、およびこれらが混在するディレクトリに対応します。既存の`build`コマンドと出力形式も継続して利用できます。
+原文全体を先に索引化し、予算に応じて文脈付きの入力を組み立てる共通エンジンを備えています。PL/SQL・Python・Java・C#、およびこれらが混在するディレクトリに対応します。`build`コマンドと出力形式も併せて利用できます。
 
 [セットアップ](#セットアップ)後、リポジトリのルートで実行します。
 
@@ -64,7 +64,7 @@ IXVでは、開発方法論とOSSを提供することで、AI活用を現場に
 - [CONTRIBUTING_ja.md](CONTRIBUTING_ja.md) - コントリビューション方法
 - [SECURITY_ja.md](SECURITY_ja.md) - セキュリティポリシー
 - [spec.md](spec.md) - 従来の`build`仕様書
-- [examples/](examples/) - 共通エンジン用のPL/SQL・Python・Javaサンプル
+- [examples/](examples/) - 共通エンジン用のPL/SQL・Python・Java・C#サンプル
 - [docs/examples/](docs/examples/) - `build`と共通エンジンのバージョン別の入出力例
 
 ## セットアップ
@@ -178,7 +178,7 @@ code2map/
 │   ├── _version.py        # バージョン番号
 │   ├── cli.py             # CLIエントリーポイント（build と共通エンジンのサブコマンド）
 │   ├── context/           # 共通エンジン：原文索引、文脈付き分割、検証
-│   │   ├── adapters/      # PL/SQL・Python・Javaアダプター
+│   │   ├── adapters/      # PL/SQL・Python・Java・C#アダプター
 │   │   ├── cli.py         # index / pack / check / tree / show
 │   │   ├── index.py       # 索引の構築と検査
 │   │   ├── model.py       # アダプター契約・予算カウンター・正規化
@@ -235,7 +235,7 @@ git checkout v0.2.1
 ## 制約
 
 - `build`はPython・Javaの単一ファイルからシンボルを抽出します。断片は重複し、入力サイズを制限しません。
-- `index`はPL/SQL・Python・Javaのファイル／ディレクトリに対応し、`pack`は原文の構造に沿って分割します。分割不能な範囲は予算を超える場合があります。
+- `index`はPL/SQL・Python・Java・C#のファイル／ディレクトリに対応し、`pack`は原文の構造に沿って分割します。分割不能な範囲は予算を超える場合があります。
 - 呼出しや変数参照は静的な候補です。完全なデータフローや実行時の結合は解決しません。
 
 [build仕様書](spec.md)と[共通エンジンの制約](docs/context/limitations_ja.md)を参照してください。

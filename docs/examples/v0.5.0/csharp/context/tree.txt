@@ -1,0 +1,34 @@
+file UserManagementService.cs L1-185 [syntax] bd6bb3525793bce30b808627
+  import using_directive L2-2 [syntax] 77a106e8862cde083964782c
+  import using_directive L3-3 [syntax] c440f7a7475bef9537653f38
+  namespace Example.Users L5-185 [syntax] e616a6de1f768189e8f75cd2
+    class User L8-22 [syntax] 5a386fd41dad91d79b546728
+      function UserId L10-10 [syntax] 71e124dff34d6e5b8f441f15
+      function UserName L11-11 [syntax] 4d9b937d824206993e26dc31
+      function Email L12-12 [syntax] 2f4a35c323bf5a54b5a32120
+      function Age L13-13 [syntax] db9ef728eb891a7ea7def3c7
+      function User L15-21 [syntax] 993bd09ca149d01fafde883f
+    class UserNotFoundException L24-27 [syntax] 69f94a8f09e667e3851aa5f9
+      function UserNotFoundException L26-26 [syntax] 8b8a7fddb08ed488f4ab8eda
+    class UserAlreadyExistsException L29-32 [syntax] 86e16943832a7191e84d3fa2
+      function UserAlreadyExistsException L31-31 [syntax] 38c85ce7e10f3cbd3c352dd9
+    preproc #region Service L34-34 [syntax] 88dc5e70fd15b13e16a7706c
+    class UserManagementService L36-183 [syntax] d34f9a7f5884c4c6a8ec426f
+      declaration _users L38-38 [syntax] 8003e6dcdd732b6b8f02b53a
+      declaration MinAge L39-39 [syntax] ed370aed733b380ca5540889
+      declaration MaxAge L40-40 [syntax] bc87db0b833bc834b557f34a
+      function UserCount L42-42 [syntax] 63ced5ca5f9d58e940253f8d
+      function RegisterUser L44-57 [syntax] 7fcc8c8ba72b065c51855fb9
+      function FindById L59-62 [syntax] 345e45d78ce2a8004d4d2ccc
+      function FindAll L64-72 [syntax] d360a4807b0de02d506d7121
+      function FindByAgeRange L74-89 [syntax] 248f3515e548f4def53978b4
+      function FindByEmailDomain L91-102 [syntax] a953bf4930e28d731f5f55c6
+      function UpdateUser L104-114 [syntax] 891817d3825a0712a251d557
+      function DeleteUser L116-131 [syntax] 2d8ff5f55302bae20365e464
+      function FindUserOrThrow L133-140 [syntax] a8b96aa65b7e83cad42e87ea
+      function ValidateUserId L142-148 [syntax] 2445f8e4dd1d7233b9981723
+      function ValidateUserName L150-156 [syntax] 3934de2b5bd196abc52303f6
+      function ValidateEmail L158-164 [syntax] 46823c2292daaca625f501dc
+      function ValidateAge L166-177 [syntax] 8323af8f242c1352bf336e23
+      function Log L179-182 [syntax] 059d938fff2ffaa2ea34fe80
+    preproc #endregion L184-184 [syntax] 1995d4b1833f3ae1ce2ee87e

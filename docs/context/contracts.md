@@ -67,7 +67,7 @@ class WholeFileAdapter:
                                     "start": 0, "end": len(text)}])
 ```
 
-Once syntax is supported, return positioned children and `Reference(kind, symbol, start, end)`. Common scope kinds are `file`, `package_body`, `package_spec`, `function`, `procedure`, `class` and `block`. Other kinds express interval hierarchy.
+Once syntax is supported, return positioned children and `Reference(kind, symbol, start, end)`. Common scope kinds are `file`, `package_body`, `package_spec`, `namespace`, `function`, `procedure`, `class` and `block`; `namespace` also qualifies the names below it. Other kinds (for example `control`, `branch`, `handler`, `label`, `preproc`) express interval hierarchy only.
 
 `header_end` marks the end of source needed as enclosing context. Including an entire body can make every split payload large. Unrecognized regions must have both an `opaque` node and diagnostics.
 
