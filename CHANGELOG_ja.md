@@ -7,13 +7,18 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
-## [0.5.0] 未リリース
+## [0.5.0] - 2026-09-10
 
 ### 追加
 
 - 共通エンジンのC#アダプター（`code2map/context/adapters/csharp.py`・Tree-sitter `tree-sitter-c-sharp`）。Javaアダプターと同じ契約：名前空間をスコープに、型・メンバー・制御構文・例外ハンドラーをノードに、`#if`／`#elif`／`#else`のブロックは囲んだ宣言を子に持つ`preproc`ノードに（評価せず書かれたまま索引化）、その他のディレクティブ行は葉の`preproc`ノードに、共有する`case`ラベルは一つの分岐ヘッダーに併合、式形式メンバー内のswitch式はarmごとに分割、それ以外の式は分割せず、構文エラーは`opaque`、呼出・`new`・`goto`・識別子は字句候補（[#36](https://github.com/elvezjp/code2map/issues/36)）。`build`は変更なし。
 - 候補解決と修飾名のスコープ種別に`namespace`を追加。
 - 回帰テスト（CRLF・Unicode・オーバーロード、BOM付きUTF-8、else／ループヘッダー／ハンドラーの保持、switchと式形式メンバー、大きなswitch式、分割不能な`do`、構文エラー、ファイルスコープ名前空間、`#region`、クラスと名前空間を囲む`#if`、共有`case`ラベル、ローカル関数、`goto`、`partial`型、混在ディレクトリ）と、4言語の`docs/examples/v0.5.0/`サンプル（合成のC#サンプルは新規。Java・Python・PL/SQLはv0.4.0の入力から再生成し、構造と分割は同一）。
+
+### 修正
+
+- code2mapが使用するパーサーAPIと互換性のないバージョンを除外するため、Tree-sitterの最低バージョンを0.21.0から0.26.0に引き上げ。
+- セキュリティポリシーの入力対象にC#（`.cs`）を追加し、`uv sync`の説明を`uv.lock`に基づく環境の同期に修正。
 
 ## [0.4.0] - 2026-09-07
 
