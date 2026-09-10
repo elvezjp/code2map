@@ -8,7 +8,7 @@ This document summarizes the latest available validation results. Update the rel
 
 | Check | Latest verification | Result |
 | --- | --- | --- |
-| Local full suite, macOS / Python 3.12.10 (`811466b` plus the UTF-8 BOM test) | 2026-09-10 | 81 passed (including 13 C# adapter tests) |
+| Local full suite, macOS / Python 3.14.5 (`052e813` with the version bumped to 0.5.0) | 2026-09-10 | 81 passed (including 13 C# adapter tests) |
 | Ruff (`uv run ruff check .`) | 2026-09-10 | Passed (locked 0.16.6) |
 | GitHub Actions CI, Linux / Windows / macOS × Python 3.11 / 3.13 / 3.14 | 2026-09-09, `d3ff096` (C# adapter PR) | All 9 jobs passed |
 | Packet boundaries, approximately 40,000-line PL/SQL package | 2026-09-07 | No mid-line boundaries in 137 packets |

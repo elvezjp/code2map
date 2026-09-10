@@ -7,7 +7,7 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
-## [未リリース]
+## [0.5.0] 未リリース
 
 ### 追加
 
