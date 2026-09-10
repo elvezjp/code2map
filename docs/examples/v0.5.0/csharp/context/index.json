@@ -1807,7 +1807,7 @@
       ]
     }
   ],
-  "generator": "code2map/0.4.0",
+  "generator": "code2map/0.5.0",
   "nodes": [
     {
       "confidence": "syntax",
@@ -4023,7 +4023,7 @@
     }
   ],
   "runtime": {
-    "python": "3.14.2"
+    "python": "3.14.5"
   },
   "schema_version": 1,
   "sources": [

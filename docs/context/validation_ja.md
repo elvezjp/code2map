@@ -26,7 +26,7 @@ packet境界については、全packetの境界が行頭・行末にあるこ�
 
 比較に使った7種類は`sample.py`、`sample.java`、`java8_syntax.java`、`large_file.py`、`function_only.py`、`empty.py`、`comments_only.py`です。両版で同じ入力パスを使い、`INDEX.md`、`MAP.json`、`parts/`を含むすべての生成ファイルをバイト単位で比較しました。
 
-共通エンジンの出力サンプルは、`docs/examples/`配下の各言語のディレクトリ（Python・Java・PL/SQLは`v0.4.0/`、C#は`v0.5.0/csharp/`）の`context/`に収録しています。
+共通エンジンの出力サンプルは、`docs/examples/v0.5.0/`の各言語の`context/`に収録しています。
 
 C#アダプター（[#36](https://github.com/elvezjp/code2map/issues/36)）は12件の回帰テストで確認しています。CRLF・Unicode・オーバーロードでの索引の再現性、分割後の`else`条件・ループヘッダー・例外ハンドラーの保持、switch文と式形式メンバー、150armのswitch式の分割、分割不能な`do`、構文エラーの`opaque`化、ファイルスコープ名前空間・`#region`・ローカル関数・`goto`、クラスと名前空間を囲む`#if`の内部構造の抽出と分割後の条件ヘッダーの保持、共有する`case`ラベルの分岐ヘッダーへの保持、別ファイルの`partial`型、4言語の混在ディレクトリです。合成サンプルは`docs/examples/v0.5.0/csharp/`に収録しています（予算6,000バイトで8packet・ready 8・oversized 0・`check` passed）。既存のPython・Java・PL/SQLサンプルは再生成しても構造と分割が同一で、変わるのは実行環境の記録だけです。
 

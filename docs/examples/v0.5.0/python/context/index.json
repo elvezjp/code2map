@@ -1,0 +1,3614 @@
+{
+  "adapters": {
+    "python-ast": "1"
+  },
+  "diagnostics": [],
+  "edges": [
+    {
+      "end": 532,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "490b735be263ddcdd29c11a2",
+      "kind": "call",
+      "owner_id": "0446274445734bc5008c480d",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 522,
+      "symbol": "re.compile",
+      "target_ids": []
+    },
+    {
+      "end": 738,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "bc522893a291487a2e2ceb92",
+      "kind": "reference",
+      "owner_id": "2d0d7f2465a790111f8ca060",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 734,
+      "symbol": "self",
+      "target_ids": [
+        "7d34f4216be2d244719b5a2d"
+      ]
+    },
+    {
+      "end": 761,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "d449c352cacb9d63ff58db0a",
+      "kind": "reference",
+      "owner_id": "2d0d7f2465a790111f8ca060",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 757,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 856,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c28b49cf9f617e98eabebdae",
+      "kind": "reference",
+      "owner_id": "4d6b82c6991ab21518441687",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 852,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 1262,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "12b7506aea7e3576f980efe1",
+      "kind": "call",
+      "owner_id": "bf056c6a8cf7576359f70ebc",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1240,
+      "symbol": "self._validate_user_id",
+      "target_ids": []
+    },
+    {
+      "end": 1244,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5084dcf3638d2623a21917ef",
+      "kind": "reference",
+      "owner_id": "bf056c6a8cf7576359f70ebc",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1240,
+      "symbol": "self",
+      "target_ids": [
+        "3723a6f957ee3b8b6bebade7"
+      ]
+    },
+    {
+      "end": 1270,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "86e5a6b04ab91c3941a34c2e",
+      "kind": "reference",
+      "owner_id": "bf056c6a8cf7576359f70ebc",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1263,
+      "symbol": "user_id",
+      "target_ids": [
+        "4f799928039daa9ca1216957"
+      ]
+    },
+    {
+      "end": 1304,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5078853b9dfb7564e4d70628",
+      "kind": "call",
+      "owner_id": "a02f13eede7148610a98a6ae",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1280,
+      "symbol": "self._validate_user_name",
+      "target_ids": []
+    },
+    {
+      "end": 1284,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "764fb48d073c2f5d64a67ce0",
+      "kind": "reference",
+      "owner_id": "a02f13eede7148610a98a6ae",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1280,
+      "symbol": "self",
+      "target_ids": [
+        "3723a6f957ee3b8b6bebade7"
+      ]
+    },
+    {
+      "end": 1314,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "bb908fdc985735ff3145d2c4",
+      "kind": "reference",
+      "owner_id": "a02f13eede7148610a98a6ae",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1305,
+      "symbol": "user_name",
+      "target_ids": [
+        "50d5f455ae72d9a8d546d2e0"
+      ]
+    },
+    {
+      "end": 1344,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "ee95acfecf45094334727437",
+      "kind": "call",
+      "owner_id": "0e01142ebf80b9299c990295",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1324,
+      "symbol": "self._validate_email",
+      "target_ids": []
+    },
+    {
+      "end": 1328,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a24cb1d0b2bcf1fad60884a4",
+      "kind": "reference",
+      "owner_id": "0e01142ebf80b9299c990295",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1324,
+      "symbol": "self",
+      "target_ids": [
+        "3723a6f957ee3b8b6bebade7"
+      ]
+    },
+    {
+      "end": 1350,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "0b99522e6e0f9bb3c36175e4",
+      "kind": "reference",
+      "owner_id": "0e01142ebf80b9299c990295",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1345,
+      "symbol": "email",
+      "target_ids": [
+        "933b9a837058e494b9524384"
+      ]
+    },
+    {
+      "end": 1378,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "1839bb076719863e57de175e",
+      "kind": "call",
+      "owner_id": "e808d80941995d2618f32622",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1360,
+      "symbol": "self._validate_age",
+      "target_ids": []
+    },
+    {
+      "end": 1364,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "71dc523d0df49b8ccbdcb47e",
+      "kind": "reference",
+      "owner_id": "e808d80941995d2618f32622",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1360,
+      "symbol": "self",
+      "target_ids": [
+        "3723a6f957ee3b8b6bebade7"
+      ]
+    },
+    {
+      "end": 1382,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "39c3fe5dd46691fbae9cf7f4",
+      "kind": "reference",
+      "owner_id": "e808d80941995d2618f32622",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1379,
+      "symbol": "age",
+      "target_ids": [
+        "1777ea10eceec2dbf5805c0f"
+      ]
+    },
+    {
+      "end": 1420,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "0a202a892d1b7abeb3fe3172",
+      "kind": "reference",
+      "owner_id": "f2f5edcadd603931a1a3bec1",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1413,
+      "symbol": "user_id",
+      "target_ids": [
+        "4f799928039daa9ca1216957"
+      ]
+    },
+    {
+      "end": 1428,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5a524d520dc3fc75df855c70",
+      "kind": "reference",
+      "owner_id": "f2f5edcadd603931a1a3bec1",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1424,
+      "symbol": "self",
+      "target_ids": [
+        "3723a6f957ee3b8b6bebade7"
+      ]
+    },
+    {
+      "end": 1481,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5d82b2d9258031a02fc61097",
+      "kind": "call",
+      "owner_id": "acfcbbe67f120bb359299508",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1455,
+      "symbol": "UserAlreadyExistsException",
+      "target_ids": [
+        "be9eb470a8bfc997754341c3"
+      ]
+    },
+    {
+      "end": 1481,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "96466706ba19961f02f26d76",
+      "kind": "reference",
+      "owner_id": "acfcbbe67f120bb359299508",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1455,
+      "symbol": "UserAlreadyExistsException",
+      "target_ids": [
+        "be9eb470a8bfc997754341c3"
+      ]
+    },
+    {
+      "end": 1500,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "08b3d1ae65a1b6fdb7be4cf4",
+      "kind": "reference",
+      "owner_id": "acfcbbe67f120bb359299508",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1493,
+      "symbol": "user_id",
+      "target_ids": [
+        "4f799928039daa9ca1216957"
+      ]
+    },
+    {
+      "end": 1561,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "d74d6128e267560a91472f59",
+      "kind": "call",
+      "owner_id": "d539ecfd665d23d2d7787eba",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1557,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 1561,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "cb33bdbfca990a16c61b3800",
+      "kind": "reference",
+      "owner_id": "d539ecfd665d23d2d7787eba",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1557,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 1569,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "f681f05c87ab2791aa2959cb",
+      "kind": "reference",
+      "owner_id": "d539ecfd665d23d2d7787eba",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1562,
+      "symbol": "user_id",
+      "target_ids": [
+        "4f799928039daa9ca1216957"
+      ]
+    },
+    {
+      "end": 1580,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "d943a1dc9d4002c4f7aa0c53",
+      "kind": "reference",
+      "owner_id": "d539ecfd665d23d2d7787eba",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1571,
+      "symbol": "user_name",
+      "target_ids": [
+        "50d5f455ae72d9a8d546d2e0"
+      ]
+    },
+    {
+      "end": 1587,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "4ab16d439d9e3fab59351708",
+      "kind": "reference",
+      "owner_id": "d539ecfd665d23d2d7787eba",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1582,
+      "symbol": "email",
+      "target_ids": [
+        "933b9a837058e494b9524384"
+      ]
+    },
+    {
+      "end": 1592,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "38142a6d4a27ee9386ccc0cb",
+      "kind": "reference",
+      "owner_id": "d539ecfd665d23d2d7787eba",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1589,
+      "symbol": "age",
+      "target_ids": [
+        "1777ea10eceec2dbf5805c0f"
+      ]
+    },
+    {
+      "end": 1606,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "004c2883f44b06e6d7be34bf",
+      "kind": "reference",
+      "owner_id": "ae99acc41aef21705ed82cc1",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1602,
+      "symbol": "self",
+      "target_ids": [
+        "3723a6f957ee3b8b6bebade7"
+      ]
+    },
+    {
+      "end": 1621,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "73c3a8329ef3e44d9c3c8d18",
+      "kind": "reference",
+      "owner_id": "ae99acc41aef21705ed82cc1",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1614,
+      "symbol": "user_id",
+      "target_ids": [
+        "4f799928039daa9ca1216957"
+      ]
+    },
+    {
+      "end": 1633,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a08d55a15d81a3b0081e1fbd",
+      "kind": "reference",
+      "owner_id": "ae99acc41aef21705ed82cc1",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1625,
+      "symbol": "new_user",
+      "target_ids": [
+        "d539ecfd665d23d2d7787eba"
+      ]
+    },
+    {
+      "end": 1658,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "f5105f19b5f99d4e4c3162aa",
+      "kind": "reference",
+      "owner_id": "99089ead90593e559f6c79a7",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1650,
+      "symbol": "new_user",
+      "target_ids": [
+        "d539ecfd665d23d2d7787eba"
+      ]
+    },
+    {
+      "end": 1843,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "2f01463dcb83cb259f2a0efb",
+      "kind": "reference",
+      "owner_id": "1dff441729f63b3ec4d57a98",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1839,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 2221,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5f18b4adaa5b818990da04c4",
+      "kind": "call",
+      "owner_id": "2483afa42e92fec4822053ed",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2197,
+      "symbol": "self._find_user_or_throw",
+      "target_ids": []
+    },
+    {
+      "end": 2201,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a91affc61dda1a6855028890",
+      "kind": "reference",
+      "owner_id": "2483afa42e92fec4822053ed",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2197,
+      "symbol": "self",
+      "target_ids": [
+        "ba0e8a4b1825e9857f78229a"
+      ]
+    },
+    {
+      "end": 2229,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5c1aea179ebfbfad3c6c1845",
+      "kind": "reference",
+      "owner_id": "2483afa42e92fec4822053ed",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2222,
+      "symbol": "user_id",
+      "target_ids": [
+        "b717b71498527f2c0bbde477"
+      ]
+    },
+    {
+      "end": 2285,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "beded7b102a0cdfe76795764",
+      "kind": "reference",
+      "owner_id": "1ea32fd2bef98fd9d282151e",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2276,
+      "symbol": "user_name",
+      "target_ids": [
+        "daa7bab3514f679dcbf049b1"
+      ]
+    },
+    {
+      "end": 2311,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "65a3914148bfe5ee296bf274",
+      "kind": "reference",
+      "owner_id": "1ea32fd2bef98fd9d282151e",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2302,
+      "symbol": "user_name",
+      "target_ids": [
+        "daa7bab3514f679dcbf049b1"
+      ]
+    },
+    {
+      "end": 2349,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e8057d9e466fb537268d80a4",
+      "kind": "call",
+      "owner_id": "876046f8b5e23a7aebb44d65",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2325,
+      "symbol": "self._validate_user_name",
+      "target_ids": []
+    },
+    {
+      "end": 2329,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "2f99012ee17fafb8ff478ce4",
+      "kind": "reference",
+      "owner_id": "876046f8b5e23a7aebb44d65",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2325,
+      "symbol": "self",
+      "target_ids": [
+        "ba0e8a4b1825e9857f78229a"
+      ]
+    },
+    {
+      "end": 2359,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "30d17613a875a83ba0298f11",
+      "kind": "reference",
+      "owner_id": "876046f8b5e23a7aebb44d65",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2350,
+      "symbol": "user_name",
+      "target_ids": [
+        "daa7bab3514f679dcbf049b1"
+      ]
+    },
+    {
+      "end": 2386,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e4370d76da8890d708ca5834",
+      "kind": "reference",
+      "owner_id": "5cc4553fe06f6bf38d8e56fe",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2373,
+      "symbol": "existing_user",
+      "target_ids": [
+        "2483afa42e92fec4822053ed"
+      ]
+    },
+    {
+      "end": 2408,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "8f85d07d7230f2c546f9dde6",
+      "kind": "reference",
+      "owner_id": "5cc4553fe06f6bf38d8e56fe",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2399,
+      "symbol": "user_name",
+      "target_ids": [
+        "daa7bab3514f679dcbf049b1"
+      ]
+    },
+    {
+      "end": 2426,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5f2077be555422609b20b081",
+      "kind": "reference",
+      "owner_id": "5efb88e3c0deb0f0bc94450d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2421,
+      "symbol": "email",
+      "target_ids": [
+        "a682e5cc4f4a5a1d181e8dd0"
+      ]
+    },
+    {
+      "end": 2448,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "15f6c29158bcf780623e46a3",
+      "kind": "reference",
+      "owner_id": "5efb88e3c0deb0f0bc94450d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2443,
+      "symbol": "email",
+      "target_ids": [
+        "a682e5cc4f4a5a1d181e8dd0"
+      ]
+    },
+    {
+      "end": 2482,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "327500f0401412aaa6edf5c8",
+      "kind": "call",
+      "owner_id": "1d7358d6483603c992bda31d",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2462,
+      "symbol": "self._validate_email",
+      "target_ids": []
+    },
+    {
+      "end": 2466,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "dfc9bf015831dff0b0cdc1c4",
+      "kind": "reference",
+      "owner_id": "1d7358d6483603c992bda31d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2462,
+      "symbol": "self",
+      "target_ids": [
+        "ba0e8a4b1825e9857f78229a"
+      ]
+    },
+    {
+      "end": 2488,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e5aca74a16e81e08097a0bf2",
+      "kind": "reference",
+      "owner_id": "1d7358d6483603c992bda31d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2483,
+      "symbol": "email",
+      "target_ids": [
+        "a682e5cc4f4a5a1d181e8dd0"
+      ]
+    },
+    {
+      "end": 2515,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "50ae0e63f5883c4d6a30cbcc",
+      "kind": "reference",
+      "owner_id": "f943b9e5bd96f6b33759d042",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2502,
+      "symbol": "existing_user",
+      "target_ids": [
+        "2483afa42e92fec4822053ed"
+      ]
+    },
+    {
+      "end": 2529,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "970b7b6ee8f280cdd490439e",
+      "kind": "reference",
+      "owner_id": "f943b9e5bd96f6b33759d042",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2524,
+      "symbol": "email",
+      "target_ids": [
+        "a682e5cc4f4a5a1d181e8dd0"
+      ]
+    },
+    {
+      "end": 2545,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "53c807a48c0b50f907e94971",
+      "kind": "reference",
+      "owner_id": "b17115be977bdd1b9b833b58",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2542,
+      "symbol": "age",
+      "target_ids": [
+        "caec7f8621e42b5b89bca571"
+      ]
+    },
+    {
+      "end": 2589,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "8b3a694063682cbbb177e275",
+      "kind": "call",
+      "owner_id": "f286800794c87f697bafb69b",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2571,
+      "symbol": "self._validate_age",
+      "target_ids": []
+    },
+    {
+      "end": 2575,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "09a7eecb085d8025b8ac2b1f",
+      "kind": "reference",
+      "owner_id": "f286800794c87f697bafb69b",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2571,
+      "symbol": "self",
+      "target_ids": [
+        "ba0e8a4b1825e9857f78229a"
+      ]
+    },
+    {
+      "end": 2593,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "2bd3fb8c2761a83d09f93df2",
+      "kind": "reference",
+      "owner_id": "f286800794c87f697bafb69b",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2590,
+      "symbol": "age",
+      "target_ids": [
+        "caec7f8621e42b5b89bca571"
+      ]
+    },
+    {
+      "end": 2620,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "d30272430a33df2f18a25bed",
+      "kind": "reference",
+      "owner_id": "b6e141c326761c0abe3ee81d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2607,
+      "symbol": "existing_user",
+      "target_ids": [
+        "2483afa42e92fec4822053ed"
+      ]
+    },
+    {
+      "end": 2630,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "bac0bd5b9694816859775d1a",
+      "kind": "reference",
+      "owner_id": "b6e141c326761c0abe3ee81d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2627,
+      "symbol": "age",
+      "target_ids": [
+        "caec7f8621e42b5b89bca571"
+      ]
+    },
+    {
+      "end": 2660,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "b84b3559a69d2d7c7c99efa8",
+      "kind": "reference",
+      "owner_id": "0697c0e579e6757e0727279c",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2647,
+      "symbol": "existing_user",
+      "target_ids": [
+        "2483afa42e92fec4822053ed"
+      ]
+    },
+    {
+      "end": 2709,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "4bd98464b4faf36ac7932058",
+      "kind": "reference",
+      "owner_id": "4c130f216451c2afa8999cb5",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2705,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 2955,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "f2f777a995adcdb5d39a9a81",
+      "kind": "call",
+      "owner_id": "7905e0574622e0903c000a60",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2931,
+      "symbol": "self._find_user_or_throw",
+      "target_ids": []
+    },
+    {
+      "end": 2935,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c246664ea24f8e23d184e6ab",
+      "kind": "reference",
+      "owner_id": "7905e0574622e0903c000a60",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2931,
+      "symbol": "self",
+      "target_ids": [
+        "ff544f6d06288ec62514768e"
+      ]
+    },
+    {
+      "end": 2963,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5a068c3b15d4a3ac5a383bab",
+      "kind": "reference",
+      "owner_id": "7905e0574622e0903c000a60",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2956,
+      "symbol": "user_id",
+      "target_ids": [
+        "26623974367a09f2676804fa"
+      ]
+    },
+    {
+      "end": 2981,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "234ff5bf38f063845cb3db1f",
+      "kind": "reference",
+      "owner_id": "4485d2bc6e4dfdfabc503f03",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2977,
+      "symbol": "self",
+      "target_ids": [
+        "ff544f6d06288ec62514768e"
+      ]
+    },
+    {
+      "end": 2996,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c81b8c2ff86871e0683a86f0",
+      "kind": "reference",
+      "owner_id": "4485d2bc6e4dfdfabc503f03",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2989,
+      "symbol": "user_id",
+      "target_ids": [
+        "26623974367a09f2676804fa"
+      ]
+    },
+    {
+      "end": 3026,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "3ca26121bca73b0a48a219ac",
+      "kind": "reference",
+      "owner_id": "93c05266777b32641f027a18",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3013,
+      "symbol": "existing_user",
+      "target_ids": [
+        "7905e0574622e0903c000a60"
+      ]
+    },
+    {
+      "end": 3083,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5c42f2e36ebcddb4cf80ffee",
+      "kind": "reference",
+      "owner_id": "5259ffa31faf484a487e6020",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3079,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 3268,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c5f7b5ac53020ac1bd214933",
+      "kind": "call",
+      "owner_id": "ae18f5f5c3e0f2af55d7e67d",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3253,
+      "symbol": "self._users.get",
+      "target_ids": []
+    },
+    {
+      "end": 3257,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "69c6b1115e423dedff303da2",
+      "kind": "reference",
+      "owner_id": "ae18f5f5c3e0f2af55d7e67d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3253,
+      "symbol": "self",
+      "target_ids": [
+        "c6f9fb503b02673c4e553dfb"
+      ]
+    },
+    {
+      "end": 3276,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "237b920ed429d3efea390036",
+      "kind": "reference",
+      "owner_id": "ae18f5f5c3e0f2af55d7e67d",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3269,
+      "symbol": "user_id",
+      "target_ids": [
+        "b67467a8aed6566d7c003a1a"
+      ]
+    },
+    {
+      "end": 3314,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "f14cb023d76f055fb9f1b0b7",
+      "kind": "reference",
+      "owner_id": "bcc7efad0e15c14661a1cdff",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3310,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 3419,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "bf86bf35579dd61ee860fe64",
+      "kind": "call",
+      "owner_id": "756980dedc65844f8a2c21dc",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3415,
+      "symbol": "list",
+      "target_ids": []
+    },
+    {
+      "end": 3438,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "7ecee9d9ced327b3c26a5e1b",
+      "kind": "call",
+      "owner_id": "756980dedc65844f8a2c21dc",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3420,
+      "symbol": "self._users.values",
+      "target_ids": []
+    },
+    {
+      "end": 3424,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "5765165881c3995b017e8804",
+      "kind": "reference",
+      "owner_id": "756980dedc65844f8a2c21dc",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3420,
+      "symbol": "self",
+      "target_ids": [
+        "404a749a7cc244d52ccc9bf8"
+      ]
+    },
+    {
+      "end": 3515,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "7e17ee46e5ae450815f7502f",
+      "kind": "reference",
+      "owner_id": "404e56ee756a86d50dab30c4",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3511,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 3744,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "44452beb52d005cdef9d673b",
+      "kind": "call",
+      "owner_id": "b5b4a5c434a89a904ca88bd9",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3726,
+      "symbol": "self._users.values",
+      "target_ids": []
+    },
+    {
+      "end": 3730,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "dca93e87c608d5a8525d9ba4",
+      "kind": "reference",
+      "owner_id": "b5b4a5c434a89a904ca88bd9",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3726,
+      "symbol": "self",
+      "target_ids": [
+        "635a4efb65b7002f36b95a0e"
+      ]
+    },
+    {
+      "end": 3770,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a3952ff927e95b2f210176e7",
+      "kind": "reference",
+      "owner_id": "77bfa0cc5e87c7f9c912faa2",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3763,
+      "symbol": "min_age",
+      "target_ids": [
+        "644fff81441d56a8c6b28502"
+      ]
+    },
+    {
+      "end": 3793,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "2911232d96807c4adcd281ce",
+      "kind": "reference",
+      "owner_id": "77bfa0cc5e87c7f9c912faa2",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3786,
+      "symbol": "max_age",
+      "target_ids": [
+        "246688c16a7cd91abc556edf"
+      ]
+    },
+    {
+      "end": 3824,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "fd48d41921e71bba4d9301d3",
+      "kind": "call",
+      "owner_id": "73b00abd603a62d0e530f415",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3811,
+      "symbol": "result.append",
+      "target_ids": []
+    },
+    {
+      "end": 3817,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "ad36c7f12f7f15ed55fe0b98",
+      "kind": "reference",
+      "owner_id": "73b00abd603a62d0e530f415",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3811,
+      "symbol": "result",
+      "target_ids": [
+        "5bdbee08cf14531cb9382cf9"
+      ]
+    },
+    {
+      "end": 3852,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "89b151e4e4f96bac5f626f3e",
+      "kind": "reference",
+      "owner_id": "ece44ddfb9e7288fd4680fee",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3846,
+      "symbol": "result",
+      "target_ids": [
+        "5bdbee08cf14531cb9382cf9"
+      ]
+    },
+    {
+      "end": 3914,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "35b62712f1ef9cb7bc7933f0",
+      "kind": "reference",
+      "owner_id": "eeec783a92367efd038f5de7",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3910,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 4128,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "990ab6c43453a7872035fa74",
+      "kind": "reference",
+      "owner_id": "d5de4e54b874ed9930ffe040",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4122,
+      "symbol": "domain",
+      "target_ids": [
+        "d65d7d5a97e419f627ad11aa"
+      ]
+    },
+    {
+      "end": 4169,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "ae3a03b1a790a741b7637197",
+      "kind": "call",
+      "owner_id": "eb6a65b3afe53037cfecd518",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4151,
+      "symbol": "self._users.values",
+      "target_ids": []
+    },
+    {
+      "end": 4155,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "b4205f345d7fa21768bc3b1b",
+      "kind": "reference",
+      "owner_id": "eb6a65b3afe53037cfecd518",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4151,
+      "symbol": "self",
+      "target_ids": [
+        "dd6a9a1113bb00f8a3ea1c3b"
+      ]
+    },
+    {
+      "end": 4207,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "dc976946369265a5421ab5c8",
+      "kind": "call",
+      "owner_id": "36e8b20bc3cfd2f0b1eb67e8",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4188,
+      "symbol": "user.email.endswith",
+      "target_ids": []
+    },
+    {
+      "end": 4221,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "130c125034887d53a058dfb1",
+      "kind": "reference",
+      "owner_id": "36e8b20bc3cfd2f0b1eb67e8",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4208,
+      "symbol": "domain_suffix",
+      "target_ids": [
+        "d5de4e54b874ed9930ffe040"
+      ]
+    },
+    {
+      "end": 4253,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "d8cec615d131b92878fbd5b4",
+      "kind": "call",
+      "owner_id": "8372d6bbd204b529879d1d6e",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4240,
+      "symbol": "result.append",
+      "target_ids": []
+    },
+    {
+      "end": 4246,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "ece6e41a8baf6c553bb01a52",
+      "kind": "reference",
+      "owner_id": "8372d6bbd204b529879d1d6e",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4240,
+      "symbol": "result",
+      "target_ids": [
+        "0ecd3a89dac249b3b9c2c8fa"
+      ]
+    },
+    {
+      "end": 4281,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c38faba9f80d2afb953095c7",
+      "kind": "reference",
+      "owner_id": "1b582c214732843f2c39cd31",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4275,
+      "symbol": "result",
+      "target_ids": [
+        "0ecd3a89dac249b3b9c2c8fa"
+      ]
+    },
+    {
+      "end": 4421,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "8dcef1b7a7b5322412e6bfb3",
+      "kind": "call",
+      "owner_id": "53a40f30d8e4dab667b54e03",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4418,
+      "symbol": "len",
+      "target_ids": []
+    },
+    {
+      "end": 4426,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "1116055d8b00d3b9bdc77831",
+      "kind": "reference",
+      "owner_id": "53a40f30d8e4dab667b54e03",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4422,
+      "symbol": "self",
+      "target_ids": [
+        "da9ad1610ae766017352abba"
+      ]
+    },
+    {
+      "end": 4540,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "d187d1d081cd544e33ad8179",
+      "kind": "reference",
+      "owner_id": "591bdbab04550deae54dfb4c",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4533,
+      "symbol": "user_id",
+      "target_ids": [
+        "e920e0bfe9e47a658a615fe2"
+      ]
+    },
+    {
+      "end": 4561,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "752abc67c09b51b438fe84c6",
+      "kind": "call",
+      "owner_id": "591bdbab04550deae54dfb4c",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4548,
+      "symbol": "user_id.strip",
+      "target_ids": []
+    },
+    {
+      "end": 4555,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "cc71788973902ee4d127204f",
+      "kind": "reference",
+      "owner_id": "591bdbab04550deae54dfb4c",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4548,
+      "symbol": "user_id",
+      "target_ids": [
+        "e920e0bfe9e47a658a615fe2"
+      ]
+    },
+    {
+      "end": 4593,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "7a221620b451648ae8379505",
+      "kind": "call",
+      "owner_id": "df7ba72a8b3ca6585c4adbdf",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4583,
+      "symbol": "ValueError",
+      "target_ids": []
+    },
+    {
+      "end": 4623,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e574aa8961670737863dfde2",
+      "kind": "call",
+      "owner_id": "2bf075182b91aec86314540e",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4620,
+      "symbol": "len",
+      "target_ids": []
+    },
+    {
+      "end": 4631,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "77b4251660de6dcea6e437da",
+      "kind": "reference",
+      "owner_id": "2bf075182b91aec86314540e",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4624,
+      "symbol": "user_id",
+      "target_ids": [
+        "e920e0bfe9e47a658a615fe2"
+      ]
+    },
+    {
+      "end": 4639,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "95b7e93cc140ee9862a8c720",
+      "kind": "reference",
+      "owner_id": "2bf075182b91aec86314540e",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4635,
+      "symbol": "self",
+      "target_ids": [
+        "59d01936d6ddd9fdb1a156b8"
+      ]
+    },
+    {
+      "end": 4688,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "528f87f4e76a27ec37362662",
+      "kind": "call",
+      "owner_id": "93c9ab3c0d903de9dcb50cd4",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4678,
+      "symbol": "ValueError",
+      "target_ids": []
+    },
+    {
+      "end": 4703,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a385f69a43d21cb299008daf",
+      "kind": "reference",
+      "owner_id": "93c9ab3c0d903de9dcb50cd4",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4699,
+      "symbol": "self",
+      "target_ids": [
+        "59d01936d6ddd9fdb1a156b8"
+      ]
+    },
+    {
+      "end": 4823,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "7ac02e91ab2825f41fb385e4",
+      "kind": "reference",
+      "owner_id": "63d79630f62772b5acfaef03",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4814,
+      "symbol": "user_name",
+      "target_ids": [
+        "982587b7e72944dbbf32c3a8"
+      ]
+    },
+    {
+      "end": 4846,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "cd5c64736b4044bbf91c77de",
+      "kind": "call",
+      "owner_id": "63d79630f62772b5acfaef03",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4831,
+      "symbol": "user_name.strip",
+      "target_ids": []
+    },
+    {
+      "end": 4840,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "533174486caea6c59072c8b9",
+      "kind": "reference",
+      "owner_id": "63d79630f62772b5acfaef03",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4831,
+      "symbol": "user_name",
+      "target_ids": [
+        "982587b7e72944dbbf32c3a8"
+      ]
+    },
+    {
+      "end": 4878,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "dcfb5979db19bfe7b81efead",
+      "kind": "call",
+      "owner_id": "7ad4cc857465e5e8bb91a9f3",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4868,
+      "symbol": "ValueError",
+      "target_ids": []
+    },
+    {
+      "end": 4907,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "1f6f54ead7f16798402399b9",
+      "kind": "call",
+      "owner_id": "b15e10fbccf38240b1c6aeaf",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4904,
+      "symbol": "len",
+      "target_ids": []
+    },
+    {
+      "end": 4917,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "7a97a8b9aaa9e3525ee02845",
+      "kind": "reference",
+      "owner_id": "b15e10fbccf38240b1c6aeaf",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4908,
+      "symbol": "user_name",
+      "target_ids": [
+        "982587b7e72944dbbf32c3a8"
+      ]
+    },
+    {
+      "end": 4925,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "cafa34763b9f267da7116bb8",
+      "kind": "reference",
+      "owner_id": "b15e10fbccf38240b1c6aeaf",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4921,
+      "symbol": "self",
+      "target_ids": [
+        "5ba9049a565430405884b55d"
+      ]
+    },
+    {
+      "end": 4976,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "6ca6124341d1d5f95e9873ad",
+      "kind": "call",
+      "owner_id": "d0c86cf77aa546dbe5f65d71",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4966,
+      "symbol": "ValueError",
+      "target_ids": []
+    },
+    {
+      "end": 4990,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "0a2f6e0cc81753de4bc6642c",
+      "kind": "reference",
+      "owner_id": "d0c86cf77aa546dbe5f65d71",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4986,
+      "symbol": "self",
+      "target_ids": [
+        "5ba9049a565430405884b55d"
+      ]
+    },
+    {
+      "end": 5100,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "f0b464bcb2e3adb4198f1288",
+      "kind": "reference",
+      "owner_id": "522bfb4527724a757a7c7f21",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5095,
+      "symbol": "email",
+      "target_ids": [
+        "c4f241ee842a6c014bcf462e"
+      ]
+    },
+    {
+      "end": 5119,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "0f3e01101a4453b1370d5783",
+      "kind": "call",
+      "owner_id": "522bfb4527724a757a7c7f21",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5108,
+      "symbol": "email.strip",
+      "target_ids": []
+    },
+    {
+      "end": 5113,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "a87b3cd718f023c9a708831c",
+      "kind": "reference",
+      "owner_id": "522bfb4527724a757a7c7f21",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5108,
+      "symbol": "email",
+      "target_ids": [
+        "c4f241ee842a6c014bcf462e"
+      ]
+    },
+    {
+      "end": 5151,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "ac75e84c47e1a5789de26d85",
+      "kind": "call",
+      "owner_id": "a5e36f1a77bc675f8d726438",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5141,
+      "symbol": "ValueError",
+      "target_ids": []
+    },
+    {
+      "end": 5207,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e378c51955ef8b98bbf57dc1",
+      "kind": "call",
+      "owner_id": "a9baeeac4a5c2f709987930b",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5183,
+      "symbol": "self.EMAIL_PATTERN.match",
+      "target_ids": []
+    },
+    {
+      "end": 5187,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "21c4c88e284c288474e3780f",
+      "kind": "reference",
+      "owner_id": "a9baeeac4a5c2f709987930b",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5183,
+      "symbol": "self",
+      "target_ids": [
+        "48198cd44a1b68d42325f9cc"
+      ]
+    },
+    {
+      "end": 5213,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "2346d8035cfb0fbb082441bc",
+      "kind": "reference",
+      "owner_id": "a9baeeac4a5c2f709987930b",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5208,
+      "symbol": "email",
+      "target_ids": [
+        "c4f241ee842a6c014bcf462e"
+      ]
+    },
+    {
+      "end": 5244,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "e3d3ccbec61dd6de9a63ae04",
+      "kind": "call",
+      "owner_id": "f7f3cb0f980a4933880396be",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5234,
+      "symbol": "ValueError",
+      "target_ids": []
+    },
+    {
+      "end": 5326,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c69a7b1575b513fec9cdd5a5",
+      "kind": "reference",
+      "owner_id": "a4110c17665a682057618678",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5323,
+      "symbol": "age",
+      "target_ids": [
+        "a197f5e7431ccfb865d4f985"
+      ]
+    },
+    {
+      "end": 5337,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c54e6b2da48f6e7a80dac674",
+      "kind": "reference",
+      "owner_id": "a4110c17665a682057618678",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5334,
+      "symbol": "age",
+      "target_ids": [
+        "a197f5e7431ccfb865d4f985"
+      ]
+    },
+    {
+      "end": 5373,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "593808d125cd35498dc4c17b",
+      "kind": "call",
+      "owner_id": "67e634eee33816efd85c7706",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5363,
+      "symbol": "ValueError",
+      "target_ids": []
+    },
+    {
+      "end": 5454,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "3e1ca5f5b7b3eb63f166aabe",
+      "kind": "reference",
+      "owner_id": "e9639cccbbc863fcbc4ae5e2",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5450,
+      "symbol": "User",
+      "target_ids": [
+        "9234ae99a582a8b8e87ec86b"
+      ]
+    },
+    {
+      "end": 5486,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "668919b21ac80d2de4b216a8",
+      "kind": "call",
+      "owner_id": "c036e6f78c83d94d47c2d8ea",
+      "resolution": "unresolved",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5471,
+      "symbol": "self._users.get",
+      "target_ids": []
+    },
+    {
+      "end": 5475,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "7ba12caaa2b84fb6a970d215",
+      "kind": "reference",
+      "owner_id": "c036e6f78c83d94d47c2d8ea",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5471,
+      "symbol": "self",
+      "target_ids": [
+        "8d91663a3ffee5990eca69e5"
+      ]
+    },
+    {
+      "end": 5494,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "31cfb15aedd48c7a8abbf75d",
+      "kind": "reference",
+      "owner_id": "c036e6f78c83d94d47c2d8ea",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5487,
+      "symbol": "user_id",
+      "target_ids": [
+        "be5859ca1a04889119fa6a63"
+      ]
+    },
+    {
+      "end": 5511,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "145316f057204920bc1c862a",
+      "kind": "reference",
+      "owner_id": "16bcb52ca93a14545be08e81",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5507,
+      "symbol": "user",
+      "target_ids": [
+        "c036e6f78c83d94d47c2d8ea"
+      ]
+    },
+    {
+      "end": 5560,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "061d2979453641f677514c10",
+      "kind": "call",
+      "owner_id": "567beb8f6bb8ab5f6c106c34",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5539,
+      "symbol": "UserNotFoundException",
+      "target_ids": [
+        "4063bbd0f0cbc81b974af937"
+      ]
+    },
+    {
+      "end": 5560,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "c194c0f82e61c5bbdb357f19",
+      "kind": "reference",
+      "owner_id": "567beb8f6bb8ab5f6c106c34",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5539,
+      "symbol": "UserNotFoundException",
+      "target_ids": [
+        "4063bbd0f0cbc81b974af937"
+      ]
+    },
+    {
+      "end": 5579,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "ba56e2a37020987518df2db0",
+      "kind": "reference",
+      "owner_id": "567beb8f6bb8ab5f6c106c34",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5572,
+      "symbol": "user_id",
+      "target_ids": [
+        "be5859ca1a04889119fa6a63"
+      ]
+    },
+    {
+      "end": 5612,
+      "evidence": "lexical; runtime binding and side effects are not proven",
+      "id": "06edbcc08a716cd4c3b360bf",
+      "kind": "reference",
+      "owner_id": "d6359adb9fc8876c2d96c4db",
+      "resolution": "candidate",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5608,
+      "symbol": "user",
+      "target_ids": [
+        "c036e6f78c83d94d47c2d8ea"
+      ]
+    }
+  ],
+  "generator": "code2map/0.5.0",
+  "nodes": [
+    {
+      "confidence": "syntax",
+      "end": 5613,
+      "end_line": 231,
+      "header_end": 0,
+      "id": "23bd5d862c45983cb810e462",
+      "kind": "file",
+      "name": "user_management_service.py",
+      "parent_id": null,
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 0,
+      "start_line": 1,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 42,
+      "end_line": 4,
+      "header_end": 42,
+      "id": "4d9bca6e6194c50e280215e7",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 0,
+      "start_line": 1,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 53,
+      "end_line": 6,
+      "header_end": 53,
+      "id": "5fe5079d699b9bd14f86d630",
+      "kind": "import",
+      "name": "Import",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 44,
+      "start_line": 6,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 87,
+      "end_line": 7,
+      "header_end": 87,
+      "id": "57af1757ca8c8ff11c509c4e",
+      "kind": "import",
+      "name": "ImportFrom",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 54,
+      "start_line": 7,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 115,
+      "end_line": 8,
+      "header_end": 115,
+      "id": "441263bfad6d44472e4ffcac",
+      "kind": "import",
+      "name": "ImportFrom",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 88,
+      "start_line": 8,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 198,
+      "end_line": 13,
+      "header_end": 167,
+      "id": "be9eb470a8bfc997754341c3",
+      "kind": "class",
+      "name": "UserAlreadyExistsException",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 118,
+      "start_line": 11,
+      "symbol": "UserAlreadyExistsException"
+    },
+    {
+      "confidence": "syntax",
+      "end": 189,
+      "end_line": 12,
+      "header_end": 189,
+      "id": "41d69fa12ec463be250b1aad",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "be9eb470a8bfc997754341c3",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 167,
+      "start_line": 12,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 198,
+      "end_line": 13,
+      "header_end": 198,
+      "id": "ea6be87bd3a70f9b5a566b2a",
+      "kind": "statement",
+      "name": "Pass",
+      "parent_id": "be9eb470a8bfc997754341c3",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 194,
+      "start_line": 13,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 276,
+      "end_line": 18,
+      "header_end": 245,
+      "id": "4063bbd0f0cbc81b974af937",
+      "kind": "class",
+      "name": "UserNotFoundException",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 201,
+      "start_line": 16,
+      "symbol": "UserNotFoundException"
+    },
+    {
+      "confidence": "syntax",
+      "end": 267,
+      "end_line": 17,
+      "header_end": 267,
+      "id": "fb6da8a451690a15f8bc5570",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "4063bbd0f0cbc81b974af937",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 245,
+      "start_line": 17,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 276,
+      "end_line": 18,
+      "header_end": 276,
+      "id": "94be6a2b6d3cdacb2b4de29a",
+      "kind": "statement",
+      "name": "Pass",
+      "parent_id": "4063bbd0f0cbc81b974af937",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 272,
+      "start_line": 18,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 386,
+      "end_line": 27,
+      "header_end": 306,
+      "id": "9234ae99a582a8b8e87ec86b",
+      "kind": "class",
+      "name": "User",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 279,
+      "start_line": 21,
+      "symbol": "User"
+    },
+    {
+      "confidence": "syntax",
+      "end": 322,
+      "end_line": 23,
+      "header_end": 322,
+      "id": "d5d324a534209fdbba5d619b",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "9234ae99a582a8b8e87ec86b",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 306,
+      "start_line": 23,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 339,
+      "end_line": 24,
+      "header_end": 339,
+      "id": "e7f0e8c15a70e47625ec0f40",
+      "kind": "declaration",
+      "name": "user_id",
+      "parent_id": "9234ae99a582a8b8e87ec86b",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 327,
+      "start_line": 24,
+      "symbol": "user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 358,
+      "end_line": 25,
+      "header_end": 358,
+      "id": "b3909ace17026fcf9d40cd1f",
+      "kind": "declaration",
+      "name": "user_name",
+      "parent_id": "9234ae99a582a8b8e87ec86b",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 344,
+      "start_line": 25,
+      "symbol": "user_name"
+    },
+    {
+      "confidence": "syntax",
+      "end": 373,
+      "end_line": 26,
+      "header_end": 373,
+      "id": "cc3bdb3631602db2aae10272",
+      "kind": "declaration",
+      "name": "email",
+      "parent_id": "9234ae99a582a8b8e87ec86b",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 363,
+      "start_line": 26,
+      "symbol": "email"
+    },
+    {
+      "confidence": "syntax",
+      "end": 386,
+      "end_line": 27,
+      "header_end": 386,
+      "id": "7b6861b38df472c48112fc2a",
+      "kind": "declaration",
+      "name": "age",
+      "parent_id": "9234ae99a582a8b8e87ec86b",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 378,
+      "start_line": 27,
+      "symbol": "age"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5612,
+      "end_line": 231,
+      "header_end": 422,
+      "id": "93415b2e73f2e97a94504f69",
+      "kind": "class",
+      "name": "UserManagementService",
+      "parent_id": "23bd5d862c45983cb810e462",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 389,
+      "start_line": 30,
+      "symbol": "UserManagementService"
+    },
+    {
+      "confidence": "syntax",
+      "end": 477,
+      "end_line": 35,
+      "header_end": 477,
+      "id": "fc292aa7b7a171655926f953",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 422,
+      "start_line": 31,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 570,
+      "end_line": 38,
+      "header_end": 570,
+      "id": "0446274445734bc5008c480d",
+      "kind": "declaration",
+      "name": "EMAIL_PATTERN",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 506,
+      "start_line": 38,
+      "symbol": "EMAIL_PATTERN"
+    },
+    {
+      "confidence": "syntax",
+      "end": 616,
+      "end_line": 41,
+      "header_end": 616,
+      "id": "a8b09df8236a680e7e580d26",
+      "kind": "declaration",
+      "name": "MAX_USER_ID_LENGTH",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 593,
+      "start_line": 41,
+      "symbol": "MAX_USER_ID_LENGTH"
+    },
+    {
+      "confidence": "syntax",
+      "end": 663,
+      "end_line": 44,
+      "header_end": 663,
+      "id": "79eb4631639c545c7ddef8b8",
+      "kind": "declaration",
+      "name": "MAX_USER_NAME_LENGTH",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 638,
+      "start_line": 44,
+      "symbol": "MAX_USER_NAME_LENGTH"
+    },
+    {
+      "confidence": "syntax",
+      "end": 767,
+      "end_line": 48,
+      "header_end": 697,
+      "id": "b16118d228e032e8c1dce960",
+      "kind": "function",
+      "name": "__init__",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 669,
+      "start_line": 46,
+      "symbol": "__init__"
+    },
+    {
+      "confidence": "syntax",
+      "end": 686,
+      "end_line": 46,
+      "header_end": 686,
+      "id": "7d34f4216be2d244719b5a2d",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "b16118d228e032e8c1dce960",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 682,
+      "start_line": 46,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 725,
+      "end_line": 47,
+      "header_end": 725,
+      "id": "b82a78ce39cf761a1ea1691f",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "b16118d228e032e8c1dce960",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 697,
+      "start_line": 47,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 767,
+      "end_line": 48,
+      "header_end": 767,
+      "id": "2d0d7f2465a790111f8ca060",
+      "kind": "declaration",
+      "name": "AnnAssign",
+      "parent_id": "b16118d228e032e8c1dce960",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 734,
+      "start_line": 48,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1658,
+      "end_line": 81,
+      "header_end": 866,
+      "id": "4d6b82c6991ab21518441687",
+      "kind": "function",
+      "name": "register_user",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 773,
+      "start_line": 50,
+      "symbol": "register_user"
+    },
+    {
+      "confidence": "syntax",
+      "end": 795,
+      "end_line": 50,
+      "header_end": 795,
+      "id": "3723a6f957ee3b8b6bebade7",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 791,
+      "start_line": 50,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 809,
+      "end_line": 50,
+      "header_end": 809,
+      "id": "4f799928039daa9ca1216957",
+      "kind": "parameter",
+      "name": "user_id",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 797,
+      "start_line": 50,
+      "symbol": "user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 825,
+      "end_line": 50,
+      "header_end": 825,
+      "id": "50d5f455ae72d9a8d546d2e0",
+      "kind": "parameter",
+      "name": "user_name",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 811,
+      "start_line": 50,
+      "symbol": "user_name"
+    },
+    {
+      "confidence": "syntax",
+      "end": 837,
+      "end_line": 50,
+      "header_end": 837,
+      "id": "933b9a837058e494b9524384",
+      "kind": "parameter",
+      "name": "email",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 827,
+      "start_line": 50,
+      "symbol": "email"
+    },
+    {
+      "confidence": "syntax",
+      "end": 847,
+      "end_line": 50,
+      "header_end": 847,
+      "id": "1777ea10eceec2dbf5805c0f",
+      "kind": "parameter",
+      "name": "age",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 839,
+      "start_line": 50,
+      "symbol": "age"
+    },
+    {
+      "confidence": "syntax",
+      "end": 1215,
+      "end_line": 66,
+      "header_end": 1215,
+      "id": "ae3ad9f3257f3163bd29f57e",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 866,
+      "start_line": 51,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1271,
+      "end_line": 68,
+      "header_end": 1271,
+      "id": "bf056c6a8cf7576359f70ebc",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1240,
+      "start_line": 68,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1315,
+      "end_line": 69,
+      "header_end": 1315,
+      "id": "a02f13eede7148610a98a6ae",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1280,
+      "start_line": 69,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1351,
+      "end_line": 70,
+      "header_end": 1351,
+      "id": "0e01142ebf80b9299c990295",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1324,
+      "start_line": 70,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1383,
+      "end_line": 71,
+      "header_end": 1383,
+      "id": "e808d80941995d2618f32622",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1360,
+      "start_line": 71,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1516,
+      "end_line": 75,
+      "header_end": 1449,
+      "id": "f2f5edcadd603931a1a3bec1",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1410,
+      "start_line": 74,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1516,
+      "end_line": 75,
+      "header_end": 1516,
+      "id": "acfcbbe67f120bb359299508",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "f2f5edcadd603931a1a3bec1",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1449,
+      "start_line": 75,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1593,
+      "end_line": 78,
+      "header_end": 1593,
+      "id": "d539ecfd665d23d2d7787eba",
+      "kind": "declaration",
+      "name": "new_user",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1546,
+      "start_line": 78,
+      "symbol": "new_user"
+    },
+    {
+      "confidence": "syntax",
+      "end": 1633,
+      "end_line": 79,
+      "header_end": 1633,
+      "id": "ae99acc41aef21705ed82cc1",
+      "kind": "declaration",
+      "name": "Assign",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1602,
+      "start_line": 79,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 1658,
+      "end_line": 81,
+      "header_end": 1658,
+      "id": "99089ead90593e559f6c79a7",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "4d6b82c6991ab21518441687",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1643,
+      "start_line": 81,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2660,
+      "end_line": 120,
+      "header_end": 1853,
+      "id": "1dff441729f63b3ec4d57a98",
+      "kind": "function",
+      "name": "update_user",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1664,
+      "start_line": 83,
+      "symbol": "update_user"
+    },
+    {
+      "confidence": "syntax",
+      "end": 1693,
+      "end_line": 84,
+      "header_end": 1693,
+      "id": "ba0e8a4b1825e9857f78229a",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1689,
+      "start_line": 84,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 1715,
+      "end_line": 85,
+      "header_end": 1715,
+      "id": "b717b71498527f2c0bbde477",
+      "kind": "parameter",
+      "name": "user_id",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1703,
+      "start_line": 85,
+      "symbol": "user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 1749,
+      "end_line": 86,
+      "header_end": 1749,
+      "id": "daa7bab3514f679dcbf049b1",
+      "kind": "parameter",
+      "name": "user_name",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1725,
+      "start_line": 86,
+      "symbol": "user_name"
+    },
+    {
+      "confidence": "syntax",
+      "end": 1786,
+      "end_line": 87,
+      "header_end": 1786,
+      "id": "a682e5cc4f4a5a1d181e8dd0",
+      "kind": "parameter",
+      "name": "email",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1766,
+      "start_line": 87,
+      "symbol": "email"
+    },
+    {
+      "confidence": "syntax",
+      "end": 1821,
+      "end_line": 88,
+      "header_end": 1821,
+      "id": "caec7f8621e42b5b89bca571",
+      "kind": "parameter",
+      "name": "age",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1803,
+      "start_line": 88,
+      "symbol": "age"
+    },
+    {
+      "confidence": "syntax",
+      "end": 2172,
+      "end_line": 104,
+      "header_end": 2172,
+      "id": "f8e089eb5e4e1ab3e8542826",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 1853,
+      "start_line": 90,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2230,
+      "end_line": 105,
+      "header_end": 2230,
+      "id": "2483afa42e92fec4822053ed",
+      "kind": "declaration",
+      "name": "existing_user",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2181,
+      "start_line": 105,
+      "symbol": "existing_user"
+    },
+    {
+      "confidence": "syntax",
+      "end": 2408,
+      "end_line": 110,
+      "header_end": 2325,
+      "id": "1ea32fd2bef98fd9d282151e",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2273,
+      "start_line": 108,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2360,
+      "end_line": 109,
+      "header_end": 2360,
+      "id": "876046f8b5e23a7aebb44d65",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "1ea32fd2bef98fd9d282151e",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2325,
+      "start_line": 109,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2408,
+      "end_line": 110,
+      "header_end": 2408,
+      "id": "5cc4553fe06f6bf38d8e56fe",
+      "kind": "declaration",
+      "name": "Assign",
+      "parent_id": "1ea32fd2bef98fd9d282151e",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2373,
+      "start_line": 110,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2529,
+      "end_line": 114,
+      "header_end": 2462,
+      "id": "5efb88e3c0deb0f0bc94450d",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2418,
+      "start_line": 112,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2489,
+      "end_line": 113,
+      "header_end": 2489,
+      "id": "1d7358d6483603c992bda31d",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "5efb88e3c0deb0f0bc94450d",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2462,
+      "start_line": 113,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2529,
+      "end_line": 114,
+      "header_end": 2529,
+      "id": "f943b9e5bd96f6b33759d042",
+      "kind": "declaration",
+      "name": "Assign",
+      "parent_id": "5efb88e3c0deb0f0bc94450d",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2502,
+      "start_line": 114,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2630,
+      "end_line": 118,
+      "header_end": 2571,
+      "id": "b17115be977bdd1b9b833b58",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2539,
+      "start_line": 116,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2594,
+      "end_line": 117,
+      "header_end": 2594,
+      "id": "f286800794c87f697bafb69b",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "b17115be977bdd1b9b833b58",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2571,
+      "start_line": 117,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2630,
+      "end_line": 118,
+      "header_end": 2630,
+      "id": "b6e141c326761c0abe3ee81d",
+      "kind": "declaration",
+      "name": "Assign",
+      "parent_id": "b17115be977bdd1b9b833b58",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2607,
+      "start_line": 118,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2660,
+      "end_line": 120,
+      "header_end": 2660,
+      "id": "0697c0e579e6757e0727279c",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "1dff441729f63b3ec4d57a98",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2640,
+      "start_line": 120,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3026,
+      "end_line": 137,
+      "header_end": 2719,
+      "id": "4c130f216451c2afa8999cb5",
+      "kind": "function",
+      "name": "delete_user",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2666,
+      "start_line": 122,
+      "symbol": "delete_user"
+    },
+    {
+      "confidence": "syntax",
+      "end": 2686,
+      "end_line": 122,
+      "header_end": 2686,
+      "id": "ff544f6d06288ec62514768e",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "4c130f216451c2afa8999cb5",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2682,
+      "start_line": 122,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 2700,
+      "end_line": 122,
+      "header_end": 2700,
+      "id": "26623974367a09f2676804fa",
+      "kind": "parameter",
+      "name": "user_id",
+      "parent_id": "4c130f216451c2afa8999cb5",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2688,
+      "start_line": 122,
+      "symbol": "user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 2906,
+      "end_line": 134,
+      "header_end": 2906,
+      "id": "0f48f8618052758c01aed9ed",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "4c130f216451c2afa8999cb5",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2719,
+      "start_line": 123,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 2964,
+      "end_line": 135,
+      "header_end": 2964,
+      "id": "7905e0574622e0903c000a60",
+      "kind": "declaration",
+      "name": "existing_user",
+      "parent_id": "4c130f216451c2afa8999cb5",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2915,
+      "start_line": 135,
+      "symbol": "existing_user"
+    },
+    {
+      "confidence": "syntax",
+      "end": 2997,
+      "end_line": 136,
+      "header_end": 2997,
+      "id": "4485d2bc6e4dfdfabc503f03",
+      "kind": "statement",
+      "name": "Delete",
+      "parent_id": "4c130f216451c2afa8999cb5",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 2973,
+      "start_line": 136,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3026,
+      "end_line": 137,
+      "header_end": 3026,
+      "id": "93c05266777b32641f027a18",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "4c130f216451c2afa8999cb5",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3006,
+      "start_line": 137,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3277,
+      "end_line": 149,
+      "header_end": 3094,
+      "id": "5259ffa31faf484a487e6020",
+      "kind": "function",
+      "name": "find_by_id",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3032,
+      "start_line": 139,
+      "symbol": "find_by_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3051,
+      "end_line": 139,
+      "header_end": 3051,
+      "id": "c6f9fb503b02673c4e553dfb",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "5259ffa31faf484a487e6020",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3047,
+      "start_line": 139,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3065,
+      "end_line": 139,
+      "header_end": 3065,
+      "id": "b67467a8aed6566d7c003a1a",
+      "kind": "parameter",
+      "name": "user_id",
+      "parent_id": "5259ffa31faf484a487e6020",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3053,
+      "start_line": 139,
+      "symbol": "user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3237,
+      "end_line": 148,
+      "header_end": 3237,
+      "id": "40db63bfe30a270100ab83bb",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "5259ffa31faf484a487e6020",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3094,
+      "start_line": 140,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3277,
+      "end_line": 149,
+      "header_end": 3277,
+      "id": "ae18f5f5c3e0f2af55d7e67d",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "5259ffa31faf484a487e6020",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3246,
+      "start_line": 149,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3441,
+      "end_line": 158,
+      "header_end": 3325,
+      "id": "bcc7efad0e15c14661a1cdff",
+      "kind": "function",
+      "name": "find_all",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3283,
+      "start_line": 151,
+      "symbol": "find_all"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3300,
+      "end_line": 151,
+      "header_end": 3300,
+      "id": "404a749a7cc244d52ccc9bf8",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "bcc7efad0e15c14661a1cdff",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3296,
+      "start_line": 151,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3399,
+      "end_line": 157,
+      "header_end": 3399,
+      "id": "d81ef094ef73ca8ee1144ba3",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "bcc7efad0e15c14661a1cdff",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3325,
+      "start_line": 152,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3441,
+      "end_line": 158,
+      "header_end": 3441,
+      "id": "756980dedc65844f8a2c21dc",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "bcc7efad0e15c14661a1cdff",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3408,
+      "start_line": 158,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3852,
+      "end_line": 175,
+      "header_end": 3526,
+      "id": "404e56ee756a86d50dab30c4",
+      "kind": "function",
+      "name": "find_by_age_range",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3447,
+      "start_line": 160,
+      "symbol": "find_by_age_range"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3473,
+      "end_line": 160,
+      "header_end": 3473,
+      "id": "635a4efb65b7002f36b95a0e",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "404e56ee756a86d50dab30c4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3469,
+      "start_line": 160,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3487,
+      "end_line": 160,
+      "header_end": 3487,
+      "id": "644fff81441d56a8c6b28502",
+      "kind": "parameter",
+      "name": "min_age",
+      "parent_id": "404e56ee756a86d50dab30c4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3475,
+      "start_line": 160,
+      "symbol": "min_age"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3501,
+      "end_line": 160,
+      "header_end": 3501,
+      "id": "246688c16a7cd91abc556edf",
+      "kind": "parameter",
+      "name": "max_age",
+      "parent_id": "404e56ee756a86d50dab30c4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3489,
+      "start_line": 160,
+      "symbol": "max_age"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3685,
+      "end_line": 170,
+      "header_end": 3685,
+      "id": "7b37899ddc4aa1a2c7ad5d45",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "404e56ee756a86d50dab30c4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3526,
+      "start_line": 161,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3705,
+      "end_line": 171,
+      "header_end": 3705,
+      "id": "5bdbee08cf14531cb9382cf9",
+      "kind": "declaration",
+      "name": "result",
+      "parent_id": "404e56ee756a86d50dab30c4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3694,
+      "start_line": 171,
+      "symbol": "result"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3830,
+      "end_line": 174,
+      "header_end": 3760,
+      "id": "b5b4a5c434a89a904ca88bd9",
+      "kind": "control",
+      "name": "For",
+      "parent_id": "404e56ee756a86d50dab30c4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3714,
+      "start_line": 172,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3830,
+      "end_line": 174,
+      "header_end": 3811,
+      "id": "77bfa0cc5e87c7f9c912faa2",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "b5b4a5c434a89a904ca88bd9",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3760,
+      "start_line": 173,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3830,
+      "end_line": 174,
+      "header_end": 3830,
+      "id": "73b00abd603a62d0e530f415",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "77bfa0cc5e87c7f9c912faa2",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3811,
+      "start_line": 174,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 3852,
+      "end_line": 175,
+      "header_end": 3852,
+      "id": "ece44ddfb9e7288fd4680fee",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "404e56ee756a86d50dab30c4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3839,
+      "start_line": 175,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4281,
+      "end_line": 192,
+      "header_end": 3925,
+      "id": "eeec783a92367efd038f5de7",
+      "kind": "function",
+      "name": "find_by_email_domain",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3858,
+      "start_line": 177,
+      "symbol": "find_by_email_domain"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3887,
+      "end_line": 177,
+      "header_end": 3887,
+      "id": "dd6a9a1113bb00f8a3ea1c3b",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "eeec783a92367efd038f5de7",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3883,
+      "start_line": 177,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 3900,
+      "end_line": 177,
+      "header_end": 3900,
+      "id": "d65d7d5a97e419f627ad11aa",
+      "kind": "parameter",
+      "name": "domain",
+      "parent_id": "eeec783a92367efd038f5de7",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3889,
+      "start_line": 177,
+      "symbol": "domain"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4073,
+      "end_line": 186,
+      "header_end": 4073,
+      "id": "f4f673702cd5b24b462fa7f3",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "eeec783a92367efd038f5de7",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 3925,
+      "start_line": 178,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4093,
+      "end_line": 187,
+      "header_end": 4093,
+      "id": "0ecd3a89dac249b3b9c2c8fa",
+      "kind": "declaration",
+      "name": "result",
+      "parent_id": "eeec783a92367efd038f5de7",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4082,
+      "start_line": 187,
+      "symbol": "result"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4130,
+      "end_line": 188,
+      "header_end": 4130,
+      "id": "d5de4e54b874ed9930ffe040",
+      "kind": "declaration",
+      "name": "domain_suffix",
+      "parent_id": "eeec783a92367efd038f5de7",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4102,
+      "start_line": 188,
+      "symbol": "domain_suffix"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4259,
+      "end_line": 191,
+      "header_end": 4185,
+      "id": "eb6a65b3afe53037cfecd518",
+      "kind": "control",
+      "name": "For",
+      "parent_id": "eeec783a92367efd038f5de7",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4139,
+      "start_line": 189,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4259,
+      "end_line": 191,
+      "header_end": 4240,
+      "id": "36e8b20bc3cfd2f0b1eb67e8",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "eb6a65b3afe53037cfecd518",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4185,
+      "start_line": 190,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4259,
+      "end_line": 191,
+      "header_end": 4259,
+      "id": "8372d6bbd204b529879d1d6e",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "36e8b20bc3cfd2f0b1eb67e8",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4240,
+      "start_line": 191,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4281,
+      "end_line": 192,
+      "header_end": 4281,
+      "id": "1b582c214732843f2c39cd31",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "eeec783a92367efd038f5de7",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4268,
+      "start_line": 192,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4434,
+      "end_line": 201,
+      "header_end": 4328,
+      "id": "62d0fd39a17805027e372c78",
+      "kind": "function",
+      "name": "get_user_count",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4287,
+      "start_line": 194,
+      "symbol": "get_user_count"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4310,
+      "end_line": 194,
+      "header_end": 4310,
+      "id": "da9ad1610ae766017352abba",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "62d0fd39a17805027e372c78",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4306,
+      "start_line": 194,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4402,
+      "end_line": 200,
+      "header_end": 4402,
+      "id": "9e034cd10b38e3afdf6678d9",
+      "kind": "statement",
+      "name": "Expr",
+      "parent_id": "62d0fd39a17805027e372c78",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4328,
+      "start_line": 195,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4434,
+      "end_line": 201,
+      "header_end": 4434,
+      "id": "53a40f30d8e4dab667b54e03",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "62d0fd39a17805027e372c78",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4411,
+      "start_line": 201,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4738,
+      "end_line": 209,
+      "header_end": 4526,
+      "id": "893d4eaeef05d5de924dc7e4",
+      "kind": "function",
+      "name": "_validate_user_id",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4467,
+      "start_line": 205,
+      "symbol": "_validate_user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4493,
+      "end_line": 205,
+      "header_end": 4493,
+      "id": "59d01936d6ddd9fdb1a156b8",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "893d4eaeef05d5de924dc7e4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4489,
+      "start_line": 205,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4507,
+      "end_line": 205,
+      "header_end": 4507,
+      "id": "e920e0bfe9e47a658a615fe2",
+      "kind": "parameter",
+      "name": "user_id",
+      "parent_id": "893d4eaeef05d5de924dc7e4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4495,
+      "start_line": 205,
+      "symbol": "user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4608,
+      "end_line": 207,
+      "header_end": 4577,
+      "id": "591bdbab04550deae54dfb4c",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "893d4eaeef05d5de924dc7e4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4526,
+      "start_line": 206,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4608,
+      "end_line": 207,
+      "header_end": 4608,
+      "id": "df7ba72a8b3ca6585c4adbdf",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "591bdbab04550deae54dfb4c",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4577,
+      "start_line": 207,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4738,
+      "end_line": 209,
+      "header_end": 4672,
+      "id": "2bf075182b91aec86314540e",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "893d4eaeef05d5de924dc7e4",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4617,
+      "start_line": 208,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4738,
+      "end_line": 209,
+      "header_end": 4738,
+      "id": "93c9ab3c0d903de9dcb50cd4",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "2bf075182b91aec86314540e",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4672,
+      "start_line": 209,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5027,
+      "end_line": 215,
+      "header_end": 4807,
+      "id": "b643236f7b252bdafe67c705",
+      "kind": "function",
+      "name": "_validate_user_name",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4744,
+      "start_line": 211,
+      "symbol": "_validate_user_name"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4772,
+      "end_line": 211,
+      "header_end": 4772,
+      "id": "5ba9049a565430405884b55d",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "b643236f7b252bdafe67c705",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4768,
+      "start_line": 211,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4788,
+      "end_line": 211,
+      "header_end": 4788,
+      "id": "982587b7e72944dbbf32c3a8",
+      "kind": "parameter",
+      "name": "user_name",
+      "parent_id": "b643236f7b252bdafe67c705",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4774,
+      "start_line": 211,
+      "symbol": "user_name"
+    },
+    {
+      "confidence": "syntax",
+      "end": 4892,
+      "end_line": 213,
+      "header_end": 4862,
+      "id": "63d79630f62772b5acfaef03",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "b643236f7b252bdafe67c705",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4807,
+      "start_line": 212,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 4892,
+      "end_line": 213,
+      "header_end": 4892,
+      "id": "7ad4cc857465e5e8bb91a9f3",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "63d79630f62772b5acfaef03",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4862,
+      "start_line": 213,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5027,
+      "end_line": 215,
+      "header_end": 4960,
+      "id": "b15e10fbccf38240b1c6aeaf",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "b643236f7b252bdafe67c705",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4901,
+      "start_line": 214,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5027,
+      "end_line": 215,
+      "header_end": 5027,
+      "id": "d0c86cf77aa546dbe5f65d71",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "b15e10fbccf38240b1c6aeaf",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 4960,
+      "start_line": 215,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5263,
+      "end_line": 221,
+      "header_end": 5088,
+      "id": "9772c97bd6c4839f5ec0417a",
+      "kind": "function",
+      "name": "_validate_email",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5033,
+      "start_line": 217,
+      "symbol": "_validate_email"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5057,
+      "end_line": 217,
+      "header_end": 5057,
+      "id": "48198cd44a1b68d42325f9cc",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "9772c97bd6c4839f5ec0417a",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5053,
+      "start_line": 217,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5069,
+      "end_line": 217,
+      "header_end": 5069,
+      "id": "c4f241ee842a6c014bcf462e",
+      "kind": "parameter",
+      "name": "email",
+      "parent_id": "9772c97bd6c4839f5ec0417a",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5059,
+      "start_line": 217,
+      "symbol": "email"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5167,
+      "end_line": 219,
+      "header_end": 5135,
+      "id": "522bfb4527724a757a7c7f21",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "9772c97bd6c4839f5ec0417a",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5088,
+      "start_line": 218,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5167,
+      "end_line": 219,
+      "header_end": 5167,
+      "id": "a5e36f1a77bc675f8d726438",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "522bfb4527724a757a7c7f21",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5135,
+      "start_line": 219,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5263,
+      "end_line": 221,
+      "header_end": 5228,
+      "id": "a9baeeac4a5c2f709987930b",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "9772c97bd6c4839f5ec0417a",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5176,
+      "start_line": 220,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5263,
+      "end_line": 221,
+      "header_end": 5263,
+      "id": "f7f3cb0f980a4933880396be",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "a9baeeac4a5c2f709987930b",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5228,
+      "start_line": 221,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5397,
+      "end_line": 225,
+      "header_end": 5320,
+      "id": "dcaec807f1a2de8bd4218de0",
+      "kind": "function",
+      "name": "_validate_age",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5269,
+      "start_line": 223,
+      "symbol": "_validate_age"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5291,
+      "end_line": 223,
+      "header_end": 5291,
+      "id": "90b40cc2099ce021b2eab786",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "dcaec807f1a2de8bd4218de0",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5287,
+      "start_line": 223,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5301,
+      "end_line": 223,
+      "header_end": 5301,
+      "id": "a197f5e7431ccfb865d4f985",
+      "kind": "parameter",
+      "name": "age",
+      "parent_id": "dcaec807f1a2de8bd4218de0",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5293,
+      "start_line": 223,
+      "symbol": "age"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5397,
+      "end_line": 225,
+      "header_end": 5357,
+      "id": "a4110c17665a682057618678",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "dcaec807f1a2de8bd4218de0",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5320,
+      "start_line": 224,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5397,
+      "end_line": 225,
+      "header_end": 5397,
+      "id": "67e634eee33816efd85c7706",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "a4110c17665a682057618678",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5357,
+      "start_line": 225,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5612,
+      "end_line": 231,
+      "header_end": 5464,
+      "id": "e9639cccbbc863fcbc4ae5e2",
+      "kind": "function",
+      "name": "_find_user_or_throw",
+      "parent_id": "93415b2e73f2e97a94504f69",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5403,
+      "start_line": 227,
+      "symbol": "_find_user_or_throw"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5431,
+      "end_line": 227,
+      "header_end": 5431,
+      "id": "8d91663a3ffee5990eca69e5",
+      "kind": "parameter",
+      "name": "self",
+      "parent_id": "e9639cccbbc863fcbc4ae5e2",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5427,
+      "start_line": 227,
+      "symbol": "self"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5445,
+      "end_line": 227,
+      "header_end": 5445,
+      "id": "be5859ca1a04889119fa6a63",
+      "kind": "parameter",
+      "name": "user_id",
+      "parent_id": "e9639cccbbc863fcbc4ae5e2",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5433,
+      "start_line": 227,
+      "symbol": "user_id"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5495,
+      "end_line": 228,
+      "header_end": 5495,
+      "id": "c036e6f78c83d94d47c2d8ea",
+      "kind": "declaration",
+      "name": "user",
+      "parent_id": "e9639cccbbc863fcbc4ae5e2",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5464,
+      "start_line": 228,
+      "symbol": "user"
+    },
+    {
+      "confidence": "syntax",
+      "end": 5592,
+      "end_line": 230,
+      "header_end": 5533,
+      "id": "16bcb52ca93a14545be08e81",
+      "kind": "control",
+      "name": "If",
+      "parent_id": "e9639cccbbc863fcbc4ae5e2",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5504,
+      "start_line": 229,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5592,
+      "end_line": 230,
+      "header_end": 5592,
+      "id": "567beb8f6bb8ab5f6c106c34",
+      "kind": "statement",
+      "name": "Raise",
+      "parent_id": "16bcb52ca93a14545be08e81",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5533,
+      "start_line": 230,
+      "symbol": ""
+    },
+    {
+      "confidence": "syntax",
+      "end": 5612,
+      "end_line": 231,
+      "header_end": 5612,
+      "id": "d6359adb9fc8876c2d96c4db",
+      "kind": "statement",
+      "name": "Return",
+      "parent_id": "e9639cccbbc863fcbc4ae5e2",
+      "source_id": "57b4328de8cb2750e1b2828c",
+      "start": 5601,
+      "start_line": 231,
+      "symbol": ""
+    }
+  ],
+  "runtime": {
+    "python": "3.14.5"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "adapter": "python-ast",
+      "encoding": "utf-8",
+      "id": "57b4328de8cb2750e1b2828c",
+      "original_sha256": "547d69385a61f651e5ccb5b564565dc8ce04444c7b49d6d4edd1565e5859ae69",
+      "path": "user_management_service.py",
+      "text": "\"\"\"\nユーザー管理システム\nユーザーの登録、更新、削除、検索機能を提供する\n\"\"\"\n\nimport re\nfrom dataclasses import dataclass\nfrom typing import Optional\n\n\nclass UserAlreadyExistsException(Exception):\n    \"\"\"ユーザーが既に存在する場合の例外\"\"\"\n    pass\n\n\nclass UserNotFoundException(Exception):\n    \"\"\"ユーザーが見つからない場合の例外\"\"\"\n    pass\n\n\n@dataclass\nclass User:\n    \"\"\"ユーザーエンティティ\"\"\"\n    user_id: str\n    user_name: str\n    email: str\n    age: int\n\n\nclass UserManagementService:\n    \"\"\"\n    ユーザー管理サービス\n\n    ユーザーの登録、更新、削除、検索機能を提供する\n    \"\"\"\n\n    # メールアドレスの正規表現パターン\n    EMAIL_PATTERN = re.compile(r\"^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$\")\n\n    # ユーザーIDの最大長\n    MAX_USER_ID_LENGTH = 20\n\n    # ユーザー名の最大長\n    MAX_USER_NAME_LENGTH = 50\n\n    def __init__(self):\n        \"\"\"ユーザー格納用の辞書（キー: ユーザーID）\"\"\"\n        self._users: dict[str, User] = {}\n\n    def register_user(self, user_id: str, user_name: str, email: str, age: int) -> User:\n        \"\"\"\n        新規ユーザーを登録する\n\n        Args:\n            user_id: ユーザーID（必須、20文字以内）\n            user_name: ユーザー名（必須、50文字以内）\n            email: メールアドレス（必須、形式チェックあり）\n            age: 年齢（0以上150以下）\n\n        Returns:\n            登録されたユーザー\n\n        Raises:\n            ValueError: 入力値が不正な場合\n            UserAlreadyExistsException: 同一IDのユーザーが既に存在する場合\n        \"\"\"\n        # 入力値検証\n        self._validate_user_id(user_id)\n        self._validate_user_name(user_name)\n        self._validate_email(email)\n        self._validate_age(age)\n\n        # 重複チェック\n        if user_id in self._users:\n            raise UserAlreadyExistsException(f\"ユーザーID '{user_id}' は既に登録されています\")\n\n        # ユーザー作成・登録\n        new_user = User(user_id, user_name, email, age)\n        self._users[user_id] = new_user\n\n        return new_user\n\n    def update_user(\n        self,\n        user_id: str,\n        user_name: Optional[str] = None,\n        email: Optional[str] = None,\n        age: Optional[int] = None,\n    ) -> User:\n        \"\"\"\n        ユーザー情報を更新する\n\n        Args:\n            user_id: 更新対象のユーザーID\n            user_name: 新しいユーザー名（Noneの場合は更新しない）\n            email: 新しいメールアドレス（Noneの場合は更新しない）\n            age: 新しい年齢（Noneの場合は更新しない）\n\n        Returns:\n            更新されたユーザー\n\n        Raises:\n            UserNotFoundException: ユーザーが見つからない場合\n        \"\"\"\n        existing_user = self._find_user_or_throw(user_id)\n\n        # 各フィールドの更新（Noneでない場合のみ）\n        if user_name is not None and user_name:\n            self._validate_user_name(user_name)\n            existing_user.user_name = user_name\n\n        if email is not None and email:\n            self._validate_email(email)\n            existing_user.email = email\n\n        if age is not None:\n            self._validate_age(age)\n            existing_user.age = age\n\n        return existing_user\n\n    def delete_user(self, user_id: str) -> User:\n        \"\"\"\n        ユーザーを削除する\n\n        Args:\n            user_id: 削除対象のユーザーID\n\n        Returns:\n            削除されたユーザー\n\n        Raises:\n            UserNotFoundException: ユーザーが見つからない場合\n        \"\"\"\n        existing_user = self._find_user_or_throw(user_id)\n        del self._users[user_id]\n        return existing_user\n\n    def find_by_id(self, user_id: str) -> Optional[User]:\n        \"\"\"\n        ユーザーIDでユーザーを検索する\n\n        Args:\n            user_id: 検索対象のユーザーID\n\n        Returns:\n            見つかったユーザー（見つからない場合はNone）\n        \"\"\"\n        return self._users.get(user_id)\n\n    def find_all(self) -> list[User]:\n        \"\"\"\n        全ユーザーを取得する\n\n        Returns:\n            全ユーザーのリスト\n        \"\"\"\n        return list(self._users.values())\n\n    def find_by_age_range(self, min_age: int, max_age: int) -> list[User]:\n        \"\"\"\n        年齢範囲でユーザーを検索する\n\n        Args:\n            min_age: 最小年齢（含む）\n            max_age: 最大年齢（含む）\n\n        Returns:\n            条件に一致するユーザーのリスト\n        \"\"\"\n        result = []\n        for user in self._users.values():\n            if min_age <= user.age <= max_age:\n                result.append(user)\n        return result\n\n    def find_by_email_domain(self, domain: str) -> list[User]:\n        \"\"\"\n        メールドメインでユーザーを検索する\n\n        Args:\n            domain: メールドメイン（例: \"example.com\"）\n\n        Returns:\n            条件に一致するユーザーのリスト\n        \"\"\"\n        result = []\n        domain_suffix = f\"@{domain}\"\n        for user in self._users.values():\n            if user.email.endswith(domain_suffix):\n                result.append(user)\n        return result\n\n    def get_user_count(self) -> int:\n        \"\"\"\n        登録ユーザー数を取得する\n\n        Returns:\n            登録ユーザー数\n        \"\"\"\n        return len(self._users)\n\n    # --- バリデーションメソッド ---\n\n    def _validate_user_id(self, user_id: str) -> None:\n        if not user_id or not user_id.strip():\n            raise ValueError(\"ユーザーIDは必須です\")\n        if len(user_id) > self.MAX_USER_ID_LENGTH:\n            raise ValueError(f\"ユーザーIDは{self.MAX_USER_ID_LENGTH}文字以内で入力してください\")\n\n    def _validate_user_name(self, user_name: str) -> None:\n        if not user_name or not user_name.strip():\n            raise ValueError(\"ユーザー名は必須です\")\n        if len(user_name) > self.MAX_USER_NAME_LENGTH:\n            raise ValueError(f\"ユーザー名は{self.MAX_USER_NAME_LENGTH}文字以内で入力してください\")\n\n    def _validate_email(self, email: str) -> None:\n        if not email or not email.strip():\n            raise ValueError(\"メールアドレスは必須です\")\n        if not self.EMAIL_PATTERN.match(email):\n            raise ValueError(\"メールアドレスの形式が不正です\")\n\n    def _validate_age(self, age: int) -> None:\n        if age < 0 or age > 150:\n            raise ValueError(\"年齢は0以上150以下で入力してください\")\n\n    def _find_user_or_throw(self, user_id: str) -> User:\n        user = self._users.get(user_id)\n        if user is None:\n            raise UserNotFoundException(f\"ユーザーID '{user_id}' が見つかりません\")\n        return user\n",
+      "text_sha256": "547d69385a61f651e5ccb5b564565dc8ce04444c7b49d6d4edd1565e5859ae69"
+    }
+  ]
+}
