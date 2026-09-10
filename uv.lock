@@ -328,7 +328,7 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
-    { name = "tree-sitter", specifier = ">=0.21.0" },
+    { name = "tree-sitter", specifier = ">=0.26.0" },
     { name = "tree-sitter-c-sharp", specifier = ">=0.21.0" },
     { name = "tree-sitter-java", specifier = ">=0.21.0" },
     { name = "twine", marker = "extra == 'dev'", specifier = ">=5.0.0" },
