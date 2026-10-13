@@ -52,6 +52,26 @@ uv run code2map show output/index.json NODE_ID
 
 `packets[i].payload`は、利用側がソースデータとして渡せるJSON文字列です。CLIはこの文字列全体を**UTF-8バイト数で測ります。トークン数ではありません。** `reserve`は指示文、チャットの付加情報、出力に確保する枠として予算から差し引かれます。適切な予約枠は利用側で決めてください。`omitted_context`は予算や件数のために添付できなかった抜粋を記録し、関係のIDはpayload内にも残ります。送信前に状態と省略内容を確認してください。
 
+### 次の版で追加するコマンドと引数（実装前）
+
+次の版では、次のコマンドと引数を追加する。**まだ実装されていない。** 既定の振る舞いは変えないので、新しい引数を指定しなければ、現行の版と同じ出力になる（スキーマの版を除く）。契約は[データ契約](contracts_ja.md)の「次の版で追加する契約」、分割方式は[設計](architecture_ja.md)の「見出し優先の分割と切れ目の巻き上げ」を参照する。
+
+| コマンド | 引数・オプション | 内容 |
+| --- | --- | --- |
+| `index` | `--profile PATH` | 書き方の規則を与える TOML のプロファイル。見出しの検出と、書き方に依存する注記に使う。索引に正規化して保存する |
+| `pack` | `--algorithm` | 既定 `structural-greedy-v1`（現行の方式）。`structural-heading-v1` で見出し優先の分割と切れ目の巻き上げ |
+| `report` | `index`、`--pack PATH`、`--output DIR` | 分割結果の診断を `report.json`・`report.md` に書く。索引・pack は変えない |
+| `report` | 閾値の引数、`--lang` | 閾値はプロファイルの値を上書きする。`report.md` の文言は `en`（既定）か `ja` |
+
+```bash
+uv run code2map index examples --output output/index.json --profile my-profile.toml
+uv run code2map pack output/index.json --output output/pack.json \
+  --budget-bytes 16000 --reserve-bytes 2000 --algorithm structural-heading-v1
+uv run code2map report output/index.json --pack output/pack.json --output output/report
+```
+
+索引と pack のスキーマは2に上がる。次の版の `check`・`pack`・`report` は schema 1 の成果物を明示的に拒否するので、`index` から作り直す。`report` は finding があっても終了コード0を返し、不正な入力と検査の失敗では2を返す。
+
 ## Python API
 
 ```python
