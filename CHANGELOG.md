@@ -7,12 +7,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.6.0] - unreleased
-
-### Added
-
-- Specifications under consideration for enhancing the context engine, added to the context documentation and marked as not yet implemented (`docs/context/README.md`, `architecture.md`, `contracts.md`, `limitations.md` and their Japanese versions). They cover TOML profiles that supply writing-style rules from outside (`index --profile`), an optional adapter capability `lex`, comment headings in Index schema 2, a selectable heading-first partitioning method with raised cut points (`pack --algorithm structural-heading-v1`; the default stays `structural-greedy-v1`), `annotations` and policy-wide packet IDs in Pack schema 2, and a `report` command for partitioning diagnostics (Report schema 1). No code has changed.
-
 ## [0.5.0] - 2026-09-10
 
 ### Added

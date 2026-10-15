@@ -7,12 +7,6 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
-## [0.6.0] - unreleased
-
-### 追加
-
-- 共通エンジンの機能強化について、検討中の仕様を共通エンジンの文書に追記した（`docs/context/README_ja.md`・`architecture_ja.md`・`contracts_ja.md`・`limitations_ja.md` とその英語版。いずれも実装前と明記）。対象は、書き方の規則を外から与える TOML のプロファイル（`index --profile`）、アダプターの任意の能力 `lex`、Index schema 2 のコメント見出し、選んで使う見出し優先の分割と切れ目の巻き上げ（`pack --algorithm structural-heading-v1`。既定は `structural-greedy-v1` のまま）、Pack schema 2 の `annotations` と方針全体を含む packet ID、分割結果の診断を出す `report` コマンド（Report schema 1）。コードは変更していない。
-
 ## [0.5.0] - 2026-09-10
 
 ### 追加

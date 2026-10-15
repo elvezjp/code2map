@@ -35,24 +35,6 @@ Gaps include comments, whitespace, opening/closing syntax and SQL*Plus separator
 
 A single large SQL statement, literal, header or unrecognized region can exceed the budget. Such a range is retained with an explicit status.
 
-## Heading-first partitioning and raised cut points (next version, not yet implemented)
-
-This section specifies the partitioning method `structural-heading-v1` to be added in the next version. **It is not implemented yet.** The default remains the rules above (`structural-greedy-v1`); this method is used only with `pack --algorithm structural-heading-v1`. See "Contracts added in the next version" in [Data contracts](contracts.md).
-
-Partitioning by syntax alone can split or merge the procedural sections an author marked with comments for syntactic reasons only. Container headers (an `if` or `for` line, for example) and explanatory comments can also end up in a different packet from the code they describe. This method prefers the author's section breaks (headings) as boundaries and raises cut points to readable lines.
-
-1. If a range fits the budget with its required context, it becomes a candidate (same as rule 1 above).
-2. For a function or procedure range that does not fit, the first lines of the heading bands at the current level within that range become section boundaries. Sections are packed from the start and cut only where adding the next section would exceed the budget. Small sections share a packet with their neighbors.
-3. Only a section that does not fit on its own descends to headings one level lower; when headings run out, it descends to syntax children (rule 2 above).
-4. Every cut point, whether chosen by headings or by syntax, is raised in two steps.
-   - (1) If only the header lines of a container (control, branch, block, handler) whose body starts at that position lie directly above, raise it to the first line of the container.
-   - (2) If a run of line comments lies directly above that, raise it to the start of the run (skipping blank lines in between). Separators, change-history lines (the profile's `markers.change`), and heading band lines are not part of the run.
-   This keeps container headers from being stranded at the end of the previous packet and keeps explanatory comments with the code they describe.
-5. Boundaries chosen by headings are not removed by the final greedy merge.
-6. Cuts are allowed only at line starts outside literals, block comments, declarations, statements, and syntax headers. Headings that cannot be cut stay as context and are annotated `HEADING_FALLBACK`.
-
-Headings are detected from the profile, so for an index without a profile only the raising of cut points takes effect. Headings are the author's table of contents; their hierarchy is not treated as proof of control flow.
-
 ## Context and dependencies
 
 When a target covers only part of an ancestor, its source header is attached. A split inside an ELSE branch retains the enclosing IF condition and ELSE position. Applicable structural exception-region references are retained; handler source is added when budget and dependency-count limits permit.

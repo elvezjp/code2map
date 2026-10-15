@@ -44,16 +44,6 @@ Exception references are based on structural containment. Exact applicability, i
 
 Even `ready` packets may omit supporting excerpts. Consumers should inspect `omitted_context` and relations, then use `show` or the snapshot for additional source when needed. Consumers are responsible for budgeting any additional retrieval.
 
-## Headings, annotations, and diagnostics (next version, not yet implemented)
-
-Headings, annotations, and diagnostics added in the next version have the following limits. **They are not implemented yet.**
-
-- A heading is a run of comments matching the profile's rules and is only the author's table of contents. Its hierarchy does not prove control flow or processing scope. Headings written in styles that do not match the rules are not detected.
-- `DISABLED_REGION` is an annotation based on the profile's convention. It does not guarantee that the code in the range is really unused.
-- Headings and style-dependent annotations are produced only for sources whose adapter provides `lex`; initially only PL/SQL.
-- The cause of a diagnostic (`attribution_default`) is a per-kind default, not a cause determined by the machine.
-- The implementation holds no writing-style values as defaults; users write the profile.
-
 ## Next priorities
 
 1. Expand real PL/SQL compatibility corpora to reduce unrecognized regions and incorrect boundaries.

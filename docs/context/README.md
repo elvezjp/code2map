@@ -52,26 +52,6 @@ For context commands, exit codes are 0 for successful operations, 2 for invalid 
 
 Each `packets[i].payload` is a JSON string ready for the caller to pass as source data. The CLI counts this entire string in **UTF-8 bytes, not tokens**. `reserve` subtracts space for caller instructions, chat framing, and output. It is the caller's responsibility to choose an adequate reserve. `omitted_context` lists supporting excerpts excluded by budget or count; relation IDs remain inside the payload. Inspect status and omissions before dispatching a packet.
 
-### Commands and arguments added in the next version (not yet implemented)
-
-The next version adds the following commands and arguments. **They are not implemented yet.** Defaults do not change, so without the new arguments the output is the same as the current version (except for schema versions). See "Contracts added in the next version" in [Data contracts](contracts.md) and "Heading-first partitioning and raised cut points" in [Architecture](architecture.md).
-
-| Command | Arguments/options | Behavior |
-| --- | --- | --- |
-| `index` | `--profile PATH` | TOML profile supplying writing-style rules, used for heading detection and style-dependent annotations; stored normalized in the index |
-| `pack` | `--algorithm` | Default `structural-greedy-v1` (current method); `structural-heading-v1` for heading-first partitioning with raised cut points |
-| `report` | `index`, `--pack PATH`, `--output DIR` | Writes partitioning diagnostics to `report.json` and `report.md`; does not change the index or the pack |
-| `report` | threshold arguments, `--lang` | Thresholds override profile values; `report.md` text in `en` (default) or `ja` |
-
-```bash
-uv run code2map index examples --output output/index.json --profile my-profile.toml
-uv run code2map pack output/index.json --output output/pack.json \
-  --budget-bytes 16000 --reserve-bytes 2000 --algorithm structural-heading-v1
-uv run code2map report output/index.json --pack output/pack.json --output output/report
-```
-
-Index and pack schemas move to 2. The next version's `check`, `pack`, and `report` explicitly reject schema 1 artifacts; rebuild them with `index`. `report` returns exit code 0 even with findings, and 2 for invalid input and validation failures.
-
 ## Python API
 
 ```python
