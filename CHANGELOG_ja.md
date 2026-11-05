@@ -7,6 +7,16 @@
 このファイルの形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に準拠しています。
 
+## [0.5.1] - 未リリース
+
+### セキュリティ
+
+- **推移的依存の `certifi` と `urllib3` の下限を引き上げ**（Dependabot [#14](https://github.com/elvezjp/code2map/security/dependabot/14)）
+  - [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)（critical）: `certifi` < 2026.10.18 が、中間 CA の鍵が漏えいした emSign のルート CA を同梱していた
+  - [GHSA-vxq7-64xx-v4gw](https://github.com/advisories/GHSA-vxq7-64xx-v4gw)（high）/ [GHSA-gh4c-6fx4-qh6g](https://github.com/advisories/GHSA-gh4c-6fx4-qh6g)（medium）: `urllib3` < 2.8.0 で、チャンクサイズ行を上限なくメモリに読み込む可能性と、Deflate のチャンクストリーミングで無限ループに陥る可能性があった
+  - いずれも `pyproject.toml` の `[tool.uv]` `constraint-dependencies`（`certifi>=2026.10.18`、`urllib3>=2.8.0`）として宣言する
+  - `uv.lock` を再生成: `certifi` 2026.7.22 → 2026.10.23、`urllib3` 2.7.0 → 2.8.0
+
 ## [0.5.0] - 2026-09-10
 
 ### 追加
