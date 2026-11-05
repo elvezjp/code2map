@@ -54,7 +54,13 @@ dev = [
 #   - < 48.0.1 bundles a vulnerable OpenSSL in its wheels (GHSA-537c-gmf6-5ccf)
 #   - < 50.0.0 exposes a Bleichenbacher oracle in PKCS#7 EnvelopedData
 #     decryption (GHSA-g6cj-pr64-35w5 / CVE-2026-69247)
-constraint-dependencies = ["cryptography>=50.0.0"]
+# Security: raise the floor of the transitive dependencies `certifi` and `urllib3`.
+#   - certifi < 2026.10.18 bundles emSign root CAs whose intermediate CA keys
+#     were compromised (GHSA-6q48-6c7w-9gw2)
+#   - urllib3 < 2.8.0 buffers an unbounded chunk-size line into memory
+#     (GHSA-vxq7-64xx-v4gw) and can loop forever on chunked deflate streams
+#     (GHSA-gh4c-6fx4-qh6g)
+constraint-dependencies = ["cryptography>=50.0.0", "certifi>=2026.10.18", "urllib3>=2.8.0"]
 
 [project.scripts]
 code2map = "code2map.cli:main"

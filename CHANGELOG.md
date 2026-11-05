@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - Unreleased
+
+### Security
+
+- **Raised the floor of the transitive dependencies `certifi` and `urllib3`** (Dependabot [#14](https://github.com/elvezjp/code2map/security/dependabot/14))
+  - [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2) (critical): `certifi` < 2026.10.18 bundled emSign root CAs whose intermediate CA keys were compromised
+  - [GHSA-vxq7-64xx-v4gw](https://github.com/advisories/GHSA-vxq7-64xx-v4gw) (high) / [GHSA-gh4c-6fx4-qh6g](https://github.com/advisories/GHSA-gh4c-6fx4-qh6g) (medium): `urllib3` < 2.8.0 could buffer an unbounded chunk-size line into memory, and could loop forever on chunked deflate streams
+  - Both are declared as `[tool.uv]` `constraint-dependencies` (`certifi>=2026.10.18`, `urllib3>=2.8.0`) in `pyproject.toml`
+  - `uv.lock` regenerated: `certifi` 2026.7.22 → 2026.10.23, `urllib3` 2.7.0 → 2.8.0
+
 ## [0.5.0] - 2026-09-10
 
 ### Added
